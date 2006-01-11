@@ -140,7 +140,6 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
     def has_voted(self, REQUEST=None):
         if REQUEST is None:
             REQUEST = self.REQUEST
-        print repr(REQUEST.cookies)
         return REQUEST.has_key('voted_cookie_%s' % self.absolute_url())
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
