@@ -1,6 +1,15 @@
 from poll.question import Question
 from Persistence import Persistent
 
+class Question:
+    def __init__(self, question, answers):
+        self.question = question
+        self.answers = answers
+        self.votes = len(answers) * [0]
+
+    def vote(self, index):
+        self.votes[index] += 1
+
 class DB(Persistent):
     def __init__(self, context):
         # we don't need the context here, it's only useful in situations
