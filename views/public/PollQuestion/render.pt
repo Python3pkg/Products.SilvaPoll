@@ -1,0 +1,82 @@
+<tal:block define="model request/model;
+                    has_voted model/has_voted;
+                    has_voted python: has_voted or model.manage_vote(request);
+                    display_question model/display_question;
+                    display_results model/display_results">
+  <h3 tal:content="model/get_question" />
+  <tal:block condition="python: display_question and not has_voted">
+    <form method="post" action="" tal:define="answers model/get_answers">
+      <tal:block repeat="i python:xrange(len(answers))">
+        <label>
+          <input type="radio" name="answer" 
+                  tal:attributes="value python:answers[i];
+                                  checked python: i == 0" />
+          <tal:block replace="python: answers[i]" />
+          <br />
+        </label>
+      </tal:block>
+      <input type="submit" value="submit" />
+    </form>
+  </tal:block>
+  <tal:block condition="display_results">
+    <tal:block define="answers model/get_answers; 
+                        votes model/get_votes;
+                        total python: sum(votes) * 1.0;
+                        ">
+      <table border="1">
+        <tbody>
+          <tr>
+            <th>Answer</th>
+            <th>Votes</th>
+            <th>Graphical</th>
+          </tr>
+          <tr tal:repeat="i python:xrange(len(answers))">
+            <td tal:content="python: answers[i]" /> 
+            <td tal:content="python: votes[i]" /> 
+            <td tal:define="width python: (total and 
+                                round((votes[i] / total) * 100) or 0)">
+              <div class="graph" 
+                    tal:attributes="style python: ('background-color: green;; '
+                                                    'width: %s%%' % width)">
+                &nbsp;
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </tal:block>
+  </tal:block>
+  <tal:block condition="python: (has_voted or not display_results) and not display_question">
+    <h4>Vielen Dank für Ihre Teilnahme!</h4>
+    <p>
+      Die Ergebnisse werden von 
+      <tal:block replace="model/start_display_date" /> 
+      <tal:block condition="model/end_display_date">
+        bis <tal:block replace="model/end_display_date" />
+      </tal:block> unter diezer Seite abrufbahr zein:
+    </p>
+    <p>
+      <a tal:attributes="href model/absolute_url" 
+          tal:content="model/absolute_url">url</a> 
+      <em id="bookmark_link_placeholder" 
+            tal:attributes="silva:url model/absolute_url;
+                              silva:title model/get_title_or_id;"></em>
+      <script type="text/javascript">
+        // <![CDATA[
+        if (window.external) {
+          var ph = document.getElementById('bookmark_link_placeholder');
+          var a = document.createElement('a');
+          a.href = '#';
+          a.onclick = function(evt) {
+            window.external.AddFavorite(ph.getAttribute('silva:url'), 
+                                          ph.getAttribute('silva:title'));
+            event.returnValue = false;
+            event.cancelBubble = true;
+          };
+          a.appendChild(document.createTextNode('bookmark'));
+          ph.appendChild(a);
+        };
+        // ]]>
+      </script>
+  </tal:block>
+</tal:block>
