@@ -88,7 +88,7 @@ class ServicePollsMySQL(SimpleItem):
         # this is kinda nasty: first get the ids of the answers, then (in 
         # order!) update the rows
         res = db.getSQLData(self,
-                u"SELECT id FROM answer WHERE id=%(id)s", {'id': qid})
+                u"SELECT id FROM answer WHERE qid=%(id)s", {'id': qid})
         for i, id in enumerate([r['id'] for r in res]):
             db.getSQLData(self,
                 u"UPDATE answer SET answer='%(answer)s' where id=%(id)s",
