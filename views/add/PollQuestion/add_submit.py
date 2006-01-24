@@ -22,6 +22,7 @@ except FormValidationError, e:
               message = view.render_form_errors(e))
 
 id = result['object_id'].encode('ascii')
+title = result['object_title']
 question = result['question']
 answers = result['answers'].split('\n\n')
 
@@ -30,7 +31,7 @@ view = context
 
 try:
     model.manage_addProduct['SilvaPoll'].manage_addPollQuestion(
-                                          id, question, answers)
+                                          id, title, question, answers)
 except ValueError, e:
     return view.add_form(message_type="error", message='Problem: %s' % e)
 object = getattr(model, id)

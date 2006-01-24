@@ -91,7 +91,10 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
     def save(self, question, answers, overwrite=False):
         """save question data"""
         votes = self.service_polls.get_votes(self.qid)
-        if votes != (len(answers) * [0]) and not overwrite:
+        curranswers = self.service_polls.get_answers(self.qid)
+        answers = answers.split('\n\n')
+        if (answers != curranswers and 
+              votes != (len(answers) * [0]) and not overwrite):
             raise OverwriteNotAllowed, self.qid
         self.service_polls.save(self.qid, question, answers)
 
@@ -199,13 +202,13 @@ InitializeClass(PollQuestion)
 manage_addPollQuestionForm = PageTemplateFile('www/pollQuestionAdd', 
                         globals(), __name__='manage_addPollQuestionForm')
 
-def manage_addPollQuestion(self, id, question, answers, REQUEST=None):
+def manage_addPollQuestion(self, id, title, question, answers, REQUEST=None):
     """add a poll question"""
     if not mangle.Id(self, id).isValid():
         return
     obj = PollQuestion(id, question, answers)
     self._setObject(id, obj)
     obj = getattr(self, id)
-    obj.set_title(question)
+    obj.set_title(title)
     add_and_edit(self, id, REQUEST)
     return ''

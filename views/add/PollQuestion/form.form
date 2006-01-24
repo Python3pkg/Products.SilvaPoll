@@ -37,6 +37,28 @@
         </tales>
       </field>
       
+      <field><id>object_title</id> <type>TextAreaField</type>
+        <values>
+          <alternate_name></alternate_name>
+          <hidden type="int">0</hidden>
+          <max_linelength></max_linelength>
+          <max_length></max_length>
+          <max_lines></max_lines>
+          <width type="int">40</width>
+          <external_validator></external_validator>
+          <height type="int">2</height>
+          <required type="int">1</required>
+          <css_class></css_class>
+          <default></default>
+          <title>object_title</title>
+          <description></description>
+          <extra></extra>
+          <unicode type="int">1</unicode>
+        </values>
+        <tales>
+        </tales>
+      </field>
+
       <field><id>question</id> <type>TextAreaField</type>
         <values>
           <alternate_name></alternate_name>
