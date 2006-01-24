@@ -25,4 +25,5 @@ def initialize(context):
     )
 
     registerDirectory('views', globals())
+    registerDirectory('resources', globals())
     registerTypeForMetadata('Silva Poll Question')

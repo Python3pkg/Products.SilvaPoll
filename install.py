@@ -4,6 +4,7 @@ import os
 
 def install(root):
     add_fss_directory_view(root.service_views, 'SilvaPoll', __file__, 'views')
+    add_fss_directory_view(root.service_resources, 'SilvaPoll', __file__, 'resources')
     registerViews(root.service_view_registry)
     setupMetadata(root)
     #configureSecurity(root)
@@ -11,6 +12,7 @@ def install(root):
 def uninstall(root):
     unregisterViews(root.service_view_registry)
     root.service_views.manage_delObjects(['SilvaPoll'])
+    root.service_resources.manage_delObjects(['SilvaPoll'])
 
 def is_installed(root):
     return hasattr(root.service_views, 'SilvaPoll')
