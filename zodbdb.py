@@ -1,4 +1,3 @@
-from poll.question import Question
 from Persistence import Persistent
 
 class Question:
