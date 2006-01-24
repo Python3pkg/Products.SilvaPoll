@@ -2,6 +2,7 @@
 
 <metadata_set id="silvapolls-date" ns_uri="http://infrae.com/namespaces/metadata/silvapolls-date" ns_prefix="silvapolls-date">
 <title></title>
+<minimalrole>Editor</minimalrole>
 <description></description>
  <metadata_element id="startdate">
    <index_type>DateIndex</index_type>
