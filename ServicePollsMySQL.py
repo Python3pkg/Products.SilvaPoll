@@ -8,7 +8,12 @@ from Products.Silva.helpers import add_and_edit
 from interfaces import IServicePolls
 
 from sqldb import SQLDB
-import _mysql_exceptions
+try:
+    import _mysql_exceptions
+except ImportError:
+    has_mysql = False
+else:
+    has_mysql = True
 
 class ServicePollsMySQL(SimpleItem):
     """Service that manages poll data"""
@@ -18,6 +23,9 @@ class ServicePollsMySQL(SimpleItem):
     meta_type = 'Silva Service Polls MySQL'
 
     def __init__(self, id, title):
+        if not has_mysql:
+            raise Exception, (
+                'can not install this service without MySQL installed')
         self.id = id
         self.title = title
 
@@ -111,10 +119,11 @@ class ServicePollsMySQL(SimpleItem):
 
 InitializeClass(ServicePollsMySQL)
 
-manage_addServicePollsForm = PageTemplateFile('www/servicePollsAdd', globals(),
-                                        __name__='manage_addServicePollsForm')
+manage_addServicePollsMySQLForm = PageTemplateFile('www/servicePollsMySQLAdd', 
+                                globals(), 
+                                __name__='manage_addServicePollsMySQLForm')
 
-def manage_addServicePolls(self, id, title='', REQUEST=None):
+def manage_addServicePollsMySQL(self, id, title='', REQUEST=None):
     """add service to the ZODB"""
     id = self._setObject(id, ServicePollsMySQL(id, unicode(title, 'UTF-8')))
     add_and_edit(self, id, REQUEST)

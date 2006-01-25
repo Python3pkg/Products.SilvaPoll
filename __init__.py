@@ -19,8 +19,8 @@ def initialize(context):
 
     context.registerClass(
         ServicePollsMySQL.ServicePollsMySQL,
-        constructors = (ServicePollsMySQL.manage_addServicePollsForm,
-                        ServicePollsMySQL.manage_addServicePolls),
+        constructors = (ServicePollsMySQL.manage_addServicePollsMySQLForm,
+                        ServicePollsMySQL.manage_addServicePollsMySQL),
         icon = 'www/pollquestion.png'
     )
 
