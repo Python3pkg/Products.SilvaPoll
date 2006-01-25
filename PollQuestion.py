@@ -160,18 +160,18 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
         return REQUEST.has_key('voted_cookie_%s' % self.absolute_url())
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'start_display_date')
-    def start_display_date(self):
+                              'start_result_date')
+    def start_result_date(self):
         """return the start date/time for displaying the question"""
         return self.service_metadata.getMetadataValue(self, 'silvapolls-date',
-                                                      'startdate')
+                                                      'startresultdate')
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'end_display_date')
-    def end_display_date(self):
+                              'end_result_date')
+    def end_result_date(self):
         """return the start date/time for displaying the question"""
         return self.service_metadata.getMetadataValue(self, 'silvapolls-date',
-                                                      'enddate')
+                                                      'endresultdate')
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                               'display_question')

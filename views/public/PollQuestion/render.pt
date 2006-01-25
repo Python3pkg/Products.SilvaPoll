@@ -80,9 +80,9 @@
     <h4>Vielen Dank für Ihre Teilnahme!</h4>
     <p>
       Die Ergebnisse werden von 
-      <tal:block replace="model/start_display_date" /> 
-      <tal:block condition="model/end_display_date">
-        bis <tal:block replace="model/end_display_date" />
+      <tal:block replace="model/start_result_date" /> 
+      <tal:block condition="model/end_result_date">
+        bis <tal:block replace="model/end_result_date" />
       </tal:block> unter diezer Seite abrufbahr zein:
     </p>
     <p>
