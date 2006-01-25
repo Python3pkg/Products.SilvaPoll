@@ -136,6 +136,20 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
                                     '1', 
                                     expires='Wed, 19 Feb 2020 14:28:00 GMT',
                                     path='/')
+        headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
+                    ('Last-Modified', 
+                        DateTime("GMT").strftime("%a, %d %b %Y %H:%M:%S GMT")),
+                    ('Cache-Control', 'no-cache, must-revalidate'),
+                    ('Cache-Control', 'post-check=0, pre-check=0'),
+                    ('Pragma', 'no-cache'),
+                    ]
+        placed = []
+        for key, value in headers:
+            if key not in placed:
+                REQUEST.RESPONSE.setHeader(key, value)
+                placed.append(key)
+            else:
+                REQUEST.RESPONSE.addHeader(key, value)
         return True
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
