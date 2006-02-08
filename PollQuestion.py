@@ -7,24 +7,27 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from OFS.SimpleItem import SimpleItem
 from DateTime import DateTime
 
+from zope.interface import implements
+
 from Products.Formulator.Form import ZMIForm
 from Products.Formulator.XMLToForm import XMLToForm
 
-from Products.Silva.SimpleContent import SimpleContent
-from Products.Silva.interfaces import IContent
+from Products.Silva.VersionedContent import VersionedContent
+from Products.Silva.Version import Version
+from Products.Silva.interfaces import IVersionedContent, IVersion
 from Products.Silva import mangle
 from Products.Silva.helpers import add_and_edit
 from Products.Silva import SilvaPermissions
 
-interfaces = (IContent,)
+interfaces = (IVersionedContent,)
 try:
     from Products.SilvaExternalSources.ExternalSource import ExternalSource
     from Products.SilvaExternalSources.interfaces import IExternalSource
 except ImportError:
     class ExternalSource:
-        pass
+        is_fake_extsource = True
 else:
-    interfaces = (IContent, IExternalSource)
+    interfaces = (IVersionedContent, IExternalSource)
 
 icon = "www/pollquestion.png"
 
@@ -53,24 +56,22 @@ class ViewableExternalSource(ExternalSource):
         self.REQUEST.RESPONSE.setHeader('Cache-Control','max-age=300')
         return getattr(self, renderer)(view_method='view')
 
-class PollQuestion(SimpleContent, ViewableExternalSource):
-    """A poll question of the Silva Poll product"""
+class PollQuestion(VersionedContent, ViewableExternalSource):
+    """A question of the Silva Poll product"""
 
     security = ClassSecurityInfo()
     meta_type = 'Silva Poll Question'
-    __implements__ = interfaces
-
+    implements(interfaces)
+    
     _sql_method_id = 'poll_question'
     _layout_id = 'layout'
     parameters = None
 
-    def __init__(self, id, question, answers):
-        PollQuestion.inheritedAttribute('__init__')(self, id,
-            '[Title is stored in metadata. This is a bug.]')
-        self._question = question
-        self._answers = answers
-        self.qid = None
-        self._init_form()
+    def __init__(self, id):
+        PollQuestion.inheritedAttribute('__init__')(self, id)
+        if (not hasattr(self, 'is_fake_extsource') or 
+                not self.is_fake_extsource):
+            self._init_form()
 
     def _init_form(self):
         form = ZMIForm('form', 'Properties Form')
@@ -80,11 +81,37 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
         f.close()
         self.set_form(form)
 
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                              'get_OverwriteNotAllowed')
+    def get_OverwriteNotAllowed(self):
+        return OverwriteNotAllowed
+
+InitializeClass(PollQuestion)
+
+class PollQuestionVersion(Version):
+    """A poll question version"""
+
+    security = ClassSecurityInfo()
+    meta_type = 'Silva Poll Question Version'
+    implements(IVersion)
+
+    _question = None
+    _answers = None
+    qid = None
+
+    def __init__(self, id):
+        PollQuestionVersion.inheritedAttribute('__init__')(self, id, '')
+        self.qid = None
+
     def manage_afterAdd(self, item, container):
-        PollQuestion.inheritedAttribute('manage_afterAdd')(self, 
+        PollQuestionVersion.inheritedAttribute('manage_afterAdd')(self, 
                                                             item, container)
-        self.qid = self.service_polls.create_question(self._question, 
-                                                        self._answers)
+        question = ''
+        answers = []
+        if self.qid is not None:
+            question = self.get_question()
+            answers = self.get_answers()
+        self.qid = self.service_polls.create_question(question, answers)
 
     security.declareProtected(SilvaPermissions.ChangeSilvaContent,
                               'save')
@@ -93,15 +120,13 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
         votes = self.service_polls.get_votes(self.qid)
         curranswers = self.service_polls.get_answers(self.qid)
         answers = answers.split('\n\n')
-        if (answers != curranswers and 
-              votes != (len(answers) * [0]) and not overwrite):
+        have_votes = not not [x for x in votes if x != 0]
+        if (answers != curranswers and have_votes and not overwrite):
             raise OverwriteNotAllowed, self.qid
-        self.service_polls.save(self.qid, question, answers)
+        self._save(question, answers)
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'get_OverwriteNotAllowed')
-    def get_OverwriteNotAllowed(self):
-        return OverwriteNotAllowed
+    def _save(self, question, answers):
+        self.service_polls.save(self.qid, question, answers)
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                               'get_question')
@@ -211,7 +236,7 @@ class PollQuestion(SimpleContent, ViewableExternalSource):
             return ''
         return self.view()
 
-InitializeClass(PollQuestion)
+InitializeClass(PollQuestionVersion)
 
 manage_addPollQuestionForm = PageTemplateFile('www/pollQuestionAdd', 
                         globals(), __name__='manage_addPollQuestionForm')
@@ -220,9 +245,30 @@ def manage_addPollQuestion(self, id, title, question, answers, REQUEST=None):
     """add a poll question"""
     if not mangle.Id(self, id).isValid():
         return
-    obj = PollQuestion(id, question, answers)
+    obj = PollQuestion(id)
     self._setObject(id, obj)
     obj = getattr(self, id)
-    obj.set_title(title)
+    obj.manage_addProduct['SilvaPoll'].manage_addPollQuestionVersion(
+        '0', title, question, answers)
+    obj.create_version('0', None, None)
+    add_and_edit(self, id, REQUEST)
+    return ''
+
+manage_addPollQuestionVersionForm = PageTemplateFile('www/pollQuestionVersionAdd',
+                        globals(), 
+                        __name__='manage_addPollQuestionVersionForm')
+
+def manage_addPollQuestionVersion(self, id, title, question, answers,
+                                    REQUEST=None):
+    """add a poll question version"""
+    if not mangle.Id(self, id).isValid():
+        return
+    version = PollQuestionVersion(id)
+    self._setObject(id, version)
+    
+    version = self._getOb(id)
+    version.set_title(title)
+    version._save(question, answers)
+
     add_and_edit(self, id, REQUEST)
     return ''

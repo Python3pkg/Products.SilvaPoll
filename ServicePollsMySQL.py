@@ -3,6 +3,8 @@ from Globals import InitializeClass
 from OFS.SimpleItem import SimpleItem
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
+from zope.interface import implements
+
 from Products.Silva.helpers import add_and_edit
 
 from interfaces import IServicePolls
@@ -19,7 +21,7 @@ class ServicePollsMySQL(SimpleItem):
     """Service that manages poll data"""
 
     security = ClassSecurityInfo()
-    __implements__ = IServicePolls
+    implements(IServicePolls)
     meta_type = 'Silva Service Polls MySQL'
 
     def __init__(self, id, title):

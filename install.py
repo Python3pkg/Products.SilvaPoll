@@ -19,17 +19,17 @@ def is_installed(root):
 
 def registerViews(reg):
     reg.register('edit', 'Silva Poll Question',
-                    ['edit', 'Content', 'PollQuestion'])
+                    ['edit', 'VersionedContent', 'PollQuestion'])
     reg.register('add', 'Silva Poll Question',
                     ['add', 'PollQuestion'])
-    reg.register('public', 'Silva Poll Question',
+    reg.register('public', 'Silva Poll Question Version',
                     ['public', 'PollQuestion'])
 
 def unregisterViews(reg):
     """Unregister core views on registry.
     """
     reg.unregister('edit', 'Silva Poll Question')
-    reg.unregister('public', 'Silva Poll Question')
+    reg.unregister('public', 'Silva Poll Question Version')
     reg.unregister('add', 'Silva Poll Question')
 
 def setupMetadata(root):
@@ -44,14 +44,14 @@ def setupMetadata(root):
     fh = open(xml_file, 'r')        
     collection.importSet(fh)
 
-    root.service_metadata.addTypesMapping(['Silva Poll Question'],
+    root.service_metadata.addTypesMapping(['Silva Poll Question Version'],
                                             ('silva-content', 'silva-extra',
                                                 'silvapolls-date'))
     return
     mapping = root.service_metadata.getTypeMapping()
     default = ''
     tm = (
-            {'type': 'Silva Poll Question', 
+            {'type': 'Silva Poll Question Version', 
                 'chain': 'silva-content, silva-extra, silvapolls-date'},
         )
         

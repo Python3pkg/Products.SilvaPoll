@@ -34,7 +34,7 @@
           <unicode type="int">1</unicode>
         </values>
         <tales>
-          <default>python: form.REQUEST.model.get_title_or_id()</default>
+          <default>python: form.REQUEST.model.get_editable().get_title_or_id()</default>
         </tales>
       </field>
 
@@ -57,7 +57,7 @@
           <unicode type="int">1</unicode>
         </values>
         <tales>
-          <default>python: form.REQUEST.model.get_question()</default>
+          <default>python: form.REQUEST.model.get_editable().get_question()</default>
         </tales>
       </field>
 
@@ -80,7 +80,7 @@
           <unicode type="int">1</unicode>
         </values>
         <tales>
-          <default>python: '\n\n'.join(form.REQUEST.model.get_answers())</default>
+          <default>python: '\n\n'.join(form.REQUEST.model.get_editable().get_answers())</default>
         </tales>
       </field>
 

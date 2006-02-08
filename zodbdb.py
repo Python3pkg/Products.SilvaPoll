@@ -20,7 +20,8 @@ class DB(Persistent):
         q = (question, answers, len(answers) * [0])
         self.db.append(q)
         self._p_changed = True
-        return self.db.index(q)
+        # note that removing els from the db breaks things big-time
+        return len(self.db) - 1
 
     def get(self, id):
         data = self.db[id]
@@ -39,7 +40,7 @@ class DB(Persistent):
             # throw away any existing votes (since we can't really know 
             # what votes to keep)
             if len(current.votes) == len(answers):
-                votes = current[2]
+                votes = current.votes
         self.db[id] = (question, answers, votes)
         self._p_changed = True
 
