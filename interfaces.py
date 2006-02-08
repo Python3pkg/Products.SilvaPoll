@@ -1,4 +1,4 @@
-from zope.interface import Interface
+from Interface import Base
 
-class IServicePolls(Interface):
+class IServicePolls(Base):
     pass
