@@ -3,12 +3,11 @@
                     edit_mode python:request.get('edit_mode', False);
                     has_voted python: has_voted or (edit_mode or
                                             model.manage_vote(request));
-                    display_question edit_mode | model/display_question;
-                    display_results edit_mode | model/display_results">
+                    display_question python:edit_mode or model.display_question();
+                    display_results python:edit_mode or model.display_results()">
   <!-- note that nothing is displayed if the user has not voted and neither the
         question not the results should be displayed -->
   <h2 tal:content="request/model/get_title_or_id" />
-  <h3 tal:content="string: edit mode: ${has_voted}" />
   <table class="poll">
     <tbody>
       <tr>
@@ -65,8 +64,9 @@
             <td tal:attributes="class python:repeat['i'].end and 'poll_result_result_last' or 'poll_result'"
                 tal:define="percentage python: (total and round((votes[i] / total) * 100) or 0)">
               <div class="poll_bar_outer">
-                <div class="poll_bar_inner" >
+                <div class="poll_bar_inner">
                   <img class="poll_bar"
+                        style="height: 1em;"
                         tal:attributes="src here/service_resources/SilvaPoll/poll_bar.gif/absolute_url;
                                         width percentage">
                 </div>
@@ -82,7 +82,7 @@
     </tal:block>
   </tal:block>
   <tal:block condition="python: has_voted and not display_results">
-    <h4>Vielen Dank für Ihre Teilnahme!</h4>
+    <h4>Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
     <p>
       Die Ergebnisse werden von 
       <tal:block replace="model/start_result_date" /> 
