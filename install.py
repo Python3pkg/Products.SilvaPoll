@@ -24,6 +24,8 @@ def registerViews(reg):
                     ['add', 'PollQuestion'])
     reg.register('public', 'Silva Poll Question Version',
                     ['public', 'PollQuestion'])
+    reg.register('preview', 'Silva Poll Question Version',
+                    ['public', 'PollQuestion'])
 
 def unregisterViews(reg):
     """Unregister core views on registry.

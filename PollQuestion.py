@@ -86,6 +86,26 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
     def get_OverwriteNotAllowed(self):
         return OverwriteNotAllowed
 
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                              'to_html')
+    def to_html(self, REQUEST, **kw):
+        """return HTMl for ExternalSource interface"""
+        edit_mode = REQUEST.get('edit_mode', False)
+        if edit_mode:
+            version = self.get_previewable()
+        else:
+            version = self.get_viewable()
+        if kw.has_key('display') and kw['display'] == 'link':
+            return '<a href="%s">%s</a>' % (self.absolute_url(), 
+                                            version.get_title_or_id())
+        # XXX is this the expected behaviour? do we want to display a link to
+        # the poll instead when the question and results shouldn't be 
+        # displayed?
+        if not version.display_question() and not version.display_results():
+            return ''
+        view_type = edit_mode and 'preview' or 'public'
+        return self.view_version(view_type, version)
+
 InitializeClass(PollQuestion)
 
 class PollQuestionVersion(Version):
@@ -221,20 +241,6 @@ class PollQuestionVersion(Version):
         now = DateTime()
         return ((startdate and startdate < now) and 
                   (not enddate or enddate > now))
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'to_html')
-    def to_html(self, REQUEST, **kw):
-        """return HTMl for ExternalSource interface"""
-        if kw.has_key('display') and kw['display'] == 'link':
-            return '<a href="%s">%s</a>' % (self.absolute_url(), 
-                                            self.get_title_or_id())
-        # XXX is this the expected behaviour? do we want to display a link to
-        # the poll instead when the question and results shouldn't be 
-        # displayed?
-        if not self.display_question() and not self.display_results():
-            return ''
-        return self.view()
 
 InitializeClass(PollQuestionVersion)
 

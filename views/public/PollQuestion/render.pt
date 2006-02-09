@@ -1,11 +1,14 @@
 <tal:block define="model request/model;
                     has_voted model/has_voted;
-                    has_voted python: has_voted or model.manage_vote(request);
-                    display_question model/display_question;
-                    display_results model/display_results">
+                    edit_mode python:request.get('edit_mode', False);
+                    has_voted python: has_voted or (edit_mode or
+                                            model.manage_vote(request));
+                    display_question edit_mode | model/display_question;
+                    display_results edit_mode | model/display_results">
   <!-- note that nothing is displayed if the user has not voted and neither the
         question not the results should be displayed -->
   <h2 tal:content="request/model/get_title_or_id" />
+  <h3 tal:content="string: edit mode: ${has_voted}" />
   <table class="poll">
     <tbody>
       <tr>
@@ -16,10 +19,12 @@
       </tr>
     </tbody>
   </table>
-  <h3 tal:condition="python: (not has_voted and display_question) or display_results" 
+  <h3 tal:condition="python: (not has_voted and display_question or 
+                              display_results)" 
       tal:content="model/get_question" 
       class="poll_question" />
-  <tal:block condition="python: display_question and not has_voted">
+  <tal:block condition="python: edit_mode or (display_question and 
+                                                not has_voted)">
     <form method="post" action="" tal:define="answers model/get_answers"
           onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
       <table class="poll">
