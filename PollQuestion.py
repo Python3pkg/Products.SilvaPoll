@@ -26,6 +26,8 @@ try:
 except ImportError:
     class ExternalSource:
         is_fake_extsource = True
+        def is_cacheable(self, **kw):
+            return False
 else:
     interfaces = (IVersionedContent, IExternalSource)
 
@@ -105,6 +107,8 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
             return ''
         view_type = edit_mode and 'preview' or 'public'
         return self.view_version(view_type, version)
+
+    is_cacheable = ViewableExternalSource.is_cacheable
 
 InitializeClass(PollQuestion)
 
