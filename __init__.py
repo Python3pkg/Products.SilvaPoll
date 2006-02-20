@@ -8,7 +8,7 @@ import install
 def initialize(context):
     extensionRegistry.register(
         'SilvaPoll', 'Silva Poll', context, [PollQuestion], 
-        install, depends_on=None)
+        install, depends_on='SilvaExternalSources')
 
     context.registerClass(
         ServicePolls.ServicePolls,

@@ -19,17 +19,8 @@ from Products.Silva import mangle
 from Products.Silva.helpers import add_and_edit
 from Products.Silva import SilvaPermissions
 
-interfaces = (IVersionedContent,)
-try:
-    from Products.SilvaExternalSources.ExternalSource import ExternalSource
-    from Products.SilvaExternalSources.interfaces import IExternalSource
-except ImportError:
-    class ExternalSource:
-        is_fake_extsource = True
-        def is_cacheable(self, **kw):
-            return False
-else:
-    interfaces = (IVersionedContent, IExternalSource)
+from Products.SilvaExternalSources.ExternalSource import ExternalSource
+from Products.SilvaExternalSources.interfaces import IExternalSource
 
 icon = "www/pollquestion.png"
 
@@ -63,7 +54,7 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
 
     security = ClassSecurityInfo()
     meta_type = 'Silva Poll Question'
-    implements(interfaces)
+    implements((IVersionedContent, IExternalSource))
     
     _sql_method_id = 'poll_question'
     _layout_id = 'layout'
@@ -71,9 +62,7 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
 
     def __init__(self, id):
         PollQuestion.inheritedAttribute('__init__')(self, id)
-        if (not hasattr(self, 'is_fake_extsource') or 
-                not self.is_fake_extsource):
-            self._init_form()
+        self._init_form()
 
     def _init_form(self):
         form = ZMIForm('form', 'Properties Form')
@@ -329,8 +318,8 @@ def manage_addPollQuestion(self, id, title, question, answers, REQUEST=None):
     add_and_edit(self, id, REQUEST)
     return ''
 
-manage_addPollQuestionVersionForm = PageTemplateFile('www/pollQuestionVersionAdd',
-                        globals(), 
+manage_addPollQuestionVersionForm = PageTemplateFile(
+                        'www/pollQuestionVersionAdd', globals(), 
                         __name__='manage_addPollQuestionVersionForm')
 
 def manage_addPollQuestionVersion(self, id, title, question, answers,
