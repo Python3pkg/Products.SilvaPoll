@@ -223,7 +223,8 @@ class PollQuestionVersion(Version):
         answers = self.get_answers()
         id = answers.index(answer)
         self.service_polls.vote(self.qid, id)
-        REQUEST.RESPONSE.setCookie('voted_cookie_%s' % self.absolute_url(), 
+        REQUEST.RESPONSE.setCookie('voted_cookie_%s' % 
+                                        self.get_silva_object().absolute_url(), 
                                     '1', 
                                     expires='Wed, 19 Feb 2020 14:28:00 GMT',
                                     path='/')

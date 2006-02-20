@@ -90,11 +90,11 @@
         bis <tal:block replace="model/result_end_datetime" />
       </tal:block> unter diezer Seite abrufbahr zein:
     </p>
-    <p>
-      <a tal:attributes="href model/absolute_url" 
-          tal:content="model/absolute_url">url</a> 
+    <p tal:define="url model/get_silva_object/absolute_url">
+      <a tal:attributes="href url" 
+          tal:content="url">url</a> 
       <em id="bookmark_link_placeholder" 
-            tal:attributes="silva:url model/absolute_url;
+            tal:attributes="silva:url url;
                               silva:title model/get_title_or_id;"></em>
       <script type="text/javascript">
         // <![CDATA[
