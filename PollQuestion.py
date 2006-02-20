@@ -109,6 +109,44 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
         return self.view_version(view_type, version)
 
     is_cacheable = ViewableExternalSource.is_cacheable
+    
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'current_question_start_datetime')
+    def current_question_start_datetime(self):
+        version = self._get_published_or_closed()
+        if version is None:
+            return None
+        return version.question_start_datetime()
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'current_question_end_datetime')
+    def current_question_end_datetime(self):
+        version = self._get_published_or_closed()
+        if version is None:
+            return None
+        return version.question_end_datetime()
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'current_result_start_datetime')
+    def current_result_start_datetime(self):
+        version = self._get_published_or_closed()
+        if version is None:
+            return None
+        return version.result_start_datetime()
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'current_result_end_datetime')
+    def current_result_end_datetime(self):
+        version = self._get_published_or_closed()
+        if version is None:
+            return None
+        return version.result_end_datetime()
+
+    def _get_published_or_closed(self):
+        version = self.get_viewable()
+        if version is None:
+            version = self.get_last_closed()
+        return version
 
 InitializeClass(PollQuestion)
 
@@ -126,6 +164,10 @@ class PollQuestionVersion(Version):
     def __init__(self, id):
         PollQuestionVersion.inheritedAttribute('__init__')(self, id, '')
         self.qid = None
+        self._question_start_datetime = None
+        self._question_end_datetime = None
+        self._result_start_datetime = None
+        self._result_end_datetime = None
 
     def manage_afterAdd(self, item, container):
         PollQuestionVersion.inheritedAttribute('manage_afterAdd')(self, 
@@ -209,27 +251,11 @@ class PollQuestionVersion(Version):
         return REQUEST.has_key('voted_cookie_%s' % self.absolute_url())
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'start_result_date')
-    def start_result_date(self):
-        """return the start date/time for displaying the question"""
-        return self.service_metadata.getMetadataValue(self, 'silvapolls-date',
-                                                      'startresultdate')
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'end_result_date')
-    def end_result_date(self):
-        """return the start date/time for displaying the question"""
-        return self.service_metadata.getMetadataValue(self, 'silvapolls-date',
-                                                      'endresultdate')
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
                               'display_question')
     def display_question(self):
         """returns True if the question should be displayed, False if not"""
-        startdate = self.service_metadata.getMetadataValue(self, 
-                  'silvapolls-date', 'startdate')
-        enddate = self.service_metadata.getMetadataValue(self,
-                  'silvapolls-date', 'enddate')
+        startdate = self.question_start_datetime()
+        enddate = self.question_end_datetime()
         now = DateTime()
         return ((startdate and startdate < now) and 
                   (not enddate or enddate > now))
@@ -238,13 +264,51 @@ class PollQuestionVersion(Version):
                               'display_results')
     def display_results(self):
         """returns True if results should be displayed, False if not"""
-        startdate = self.service_metadata.getMetadataValue(self,
-                  'silvapolls-date', 'startresultdate')
-        enddate = self.service_metadata.getMetadataValue(self,
-                  'silvapolls-date', 'endresultdate')
+        startdate = self.result_start_datetime()
+        enddate = self.result_end_datetime()
         now = DateTime()
         return ((startdate and startdate < now) and 
                   (not enddate or enddate > now))
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'question_start_datetime')
+    def question_start_datetime(self):
+        return self._question_start_datetime
+
+    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
+                                'set_question_start_datetime')
+    def set_question_start_datetime(self, dt):
+        self._question_start_datetime = dt
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'question_end_datetime')
+    def question_end_datetime(self):
+        return self._question_end_datetime
+
+    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
+                                'set_question_end_datetime')
+    def set_question_end_datetime(self, dt):
+        self._question_end_datetime = dt
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'result_start_datetime')
+    def result_start_datetime(self):
+        return self._result_start_datetime
+
+    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
+                                'set_result_start_datetime')
+    def set_result_start_datetime(self, dt):
+        self._result_start_datetime = dt
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                                'result_end_datetime')
+    def result_end_datetime(self):
+        return self._result_end_datetime
+
+    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
+                                'set_result_end_datetime')
+    def set_result_end_datetime(self, dt):
+        self._result_end_datetime = dt
 
 InitializeClass(PollQuestionVersion)
 

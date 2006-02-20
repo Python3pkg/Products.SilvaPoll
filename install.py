@@ -1,4 +1,5 @@
 from Products.Silva.install import add_fss_directory_view
+from Products.Silva import roleinfo
 from Globals import package_home
 import os
 
@@ -7,7 +8,7 @@ def install(root):
     add_fss_directory_view(root.service_resources, 'SilvaPoll', __file__, 'resources')
     registerViews(root.service_view_registry)
     setupMetadata(root)
-    #configureSecurity(root)
+    configureSecurity(root)
 
 def uninstall(root):
     unregisterViews(root.service_view_registry)
@@ -34,28 +35,9 @@ def unregisterViews(reg):
     reg.unregister('public', 'Silva Poll Question Version')
     reg.unregister('add', 'Silva Poll Question')
 
+def configureSecurity(root):
+    root.manage_permission('Add Silva Poll Question Versions', roleinfo.AUTHOR_ROLES)
+  
 def setupMetadata(root):
-    silvapoll_home = package_home(globals())
-    silvapoll_docs = os.path.join(silvapoll_home, 'doc')
-    
-    collection = root.service_metadata.getCollection()
-    if 'silvapolls-date' in collection.objectIds():
-        collection.manage_delObjects(['silvapolls-date'])
-
-    xml_file = os.path.join(silvapoll_docs, 'silvapolls-date.xml')
-    fh = open(xml_file, 'r')        
-    collection.importSet(fh)
-
     root.service_metadata.addTypesMapping(['Silva Poll Question Version'],
-                                            ('silva-content', 'silva-extra',
-                                                'silvapolls-date'))
-    return
-    mapping = root.service_metadata.getTypeMapping()
-    default = ''
-    tm = (
-            {'type': 'Silva Poll Question Version', 
-                'chain': 'silva-content, silva-extra, silvapolls-date'},
-        )
-        
-    mapping.editMappings(default, tm)
-
+                                            ('silva-content', 'silva-extra'))
