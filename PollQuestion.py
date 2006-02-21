@@ -137,6 +137,19 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
             version = self.get_last_closed()
         return version
 
+    # XXX hope this doesn't result in scary subtle breakage...
+    def approve_version(self):
+        """approve the current unapproved version"""
+        # just call super's approve_version, if that raises an exception let
+        # it pass through, in that case the dates are obviously not set
+        PollQuestion.inheritedAttribute('approve_version')(self)
+        viewable = self.get_viewable()
+        now = DateTime()
+        if self.current_question_start_datetime() is None:
+            viewable.set_question_start_datetime(now)
+        if self.current_result_start_datetime() is None:
+            viewable.set_result_start_datetime(now)
+
 InitializeClass(PollQuestion)
 
 class PollQuestionVersion(Version):
