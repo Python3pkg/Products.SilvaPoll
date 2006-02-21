@@ -280,7 +280,8 @@ class PollQuestionVersion(Version):
 
             on False only a message 'this poll is closed' will be showed
         """
-        return self.result_end_datetime() < DateTime()
+        red = self.result_end_datetime()
+        return red is None or red < DateTime()
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                                 'question_start_datetime')
