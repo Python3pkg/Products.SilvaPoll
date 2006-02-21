@@ -4,7 +4,8 @@
                     has_voted python: has_voted or (edit_mode or
                                             model.manage_vote(request));
                     display_question python:edit_mode or model.display_question();
-                    display_results python:edit_mode or model.display_results()">
+                    display_results python:edit_mode or model.display_results();
+                    display_too_late python: model.display_too_late()">
   <!-- note that nothing is displayed if the user has not voted and neither the
         question not the results should be displayed -->
   <h2 tal:content="request/model/get_title_or_id" />
@@ -18,101 +19,109 @@
       </tr>
     </tbody>
   </table>
-  <h3 tal:condition="python: (not has_voted and display_question or 
-                              display_results)" 
-      tal:content="model/get_question" 
-      class="poll_question" />
-  <tal:block condition="python: edit_mode or (display_question and 
-                                                not has_voted)">
-    <form method="post" action="" tal:define="answers model/get_answers"
-          onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
-      <table class="poll">
-        <tal:block repeat="i python:xrange(len(answers))">
-          <tr>
-            <td tal:attributes="class python: repeat['i'].end and 'poll_last' or 'poll_radio'">
-              <input type="radio" name="answer" 
-                      tal:attributes="value python:answers[i];
-                                      checked python: i == 0;
-                                      id string:answer_${i}" />
-            </td>
-            <td class="poll_label">
-              <label tal:attributes="for string:answer_${i}" class="p">
-                <tal:block replace="python: answers[i]" />
-                <br />
-              </label>
-            </td>
-          </tr>
-        </tal:block>
-      </table>
-      <input type="image" 
-              tal:attributes="src here/service_resources/SilvaPoll/send.gif/absolute_url" 
-              value="submit" 
-              class="poll_submit" />
-    </form>
-  </tal:block>
-  <tal:block condition="python: has_voted and display_results">
-    <tal:block define="answers model/get_answers; 
-                        votes model/get_votes;
-                        total python: sum(votes) * 1.0;
-                        ">
-      <table class="poll">
-        <tbody>
-          <tr tal:repeat="i python:xrange(len(answers))">
-            <td tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
-              <p class="p" tal:content="python: answers[i]" /> 
-            </td>
-            <td tal:attributes="class python:repeat['i'].end and 'poll_result_result_last' or 'poll_result'"
-                tal:define="percentage python: (total and round((votes[i] / total) * 100) or 0)">
-              <div class="poll_bar_outer">
-                <div class="poll_bar_inner">
-                  <img class="poll_bar"
-                        style="height: 1em;"
-                        tal:attributes="src here/service_resources/SilvaPoll/poll_bar.gif/absolute_url;
-                                        width percentage">
+  <tal:block condition="not: display_too_late">
+    <h3 tal:condition="python: (not has_voted and display_question or 
+                                display_results)" 
+        tal:content="model/get_question" 
+        class="poll_question" />
+    <tal:block condition="python: edit_mode or (display_question and 
+                                                  not has_voted)">
+      <form method="post" action="" tal:define="answers model/get_answers"
+            onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
+        <table class="poll">
+          <tal:block repeat="i python:xrange(len(answers))">
+            <tr>
+              <td tal:attributes="class python: repeat['i'].end and 'poll_last' or 'poll_radio'">
+                <input type="radio" name="answer" 
+                        tal:attributes="value python:answers[i];
+                                        checked python: i == 0;
+                                        id string:answer_${i}" />
+              </td>
+              <td class="poll_label">
+                <label tal:attributes="for string:answer_${i}" class="p">
+                  <tal:block replace="python: answers[i]" />
+                  <br />
+                </label>
+              </td>
+            </tr>
+          </tal:block>
+        </table>
+        <input type="image" 
+                tal:attributes="src here/service_resources/SilvaPoll/send.gif/absolute_url" 
+                value="submit" 
+                class="poll_submit" />
+      </form>
+    </tal:block>
+    <tal:block condition="python: has_voted and display_results">
+      <tal:block define="answers model/get_answers; 
+                          votes model/get_votes;
+                          total python: sum(votes) * 1.0;
+                          ">
+        <table class="poll">
+          <tbody>
+            <tr tal:repeat="i python:xrange(len(answers))">
+              <td tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
+                <p class="p" tal:content="python: answers[i]" /> 
+              </td>
+              <td tal:attributes="class python:repeat['i'].end and 'poll_result_result_last' or 'poll_result'"
+                  tal:define="percentage python: (total and round((votes[i] / total) * 100) or 0)">
+                <div class="poll_bar_outer">
+                  <div class="poll_bar_inner">
+                    <img class="poll_bar"
+                          style="height: 1em;"
+                          tal:attributes="src here/service_resources/SilvaPoll/poll_bar.gif/absolute_url;
+                                          width percentage">
+                  </div>
                 </div>
-              </div>
-              <p class="p">
-                <b tal:content="string:${percentage} %" /><br />
-                <tal:block replace="python:votes[i]" /> Stimmen
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                <p class="p">
+                  <b tal:content="string:${percentage} %" /><br />
+                  <tal:block replace="python:votes[i]" /> Stimmen
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </tal:block>
+    </tal:block>
+    <tal:block condition="python: has_voted and not display_results">
+      <h4>Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
+      <p>
+        Die Ergebnisse werden von 
+        <tal:block replace="model/result_start_datetime" /> 
+        <tal:block condition="model/result_end_datetime">
+          bis <tal:block replace="model/result_end_datetime" />
+        </tal:block> unter diezer Seite abrufbahr zein:
+      </p>
+      <p tal:define="url model/get_silva_object/absolute_url">
+        <a tal:attributes="href url" 
+            tal:content="url">url</a> 
+        <em id="bookmark_link_placeholder" 
+              tal:attributes="silva:url url;
+                                silva:title model/get_title_or_id;"></em>
+        <script type="text/javascript">
+          // <![CDATA[
+          if (window.external) {
+            var ph = document.getElementById('bookmark_link_placeholder');
+            var a = document.createElement('a');
+            a.href = '#';
+            a.onclick = function(evt) {
+              window.external.AddFavorite(ph.getAttribute('silva:url'), 
+                                            ph.getAttribute('silva:title'));
+              event.returnValue = false;
+              event.cancelBubble = true;
+            };
+            a.appendChild(document.createTextNode('bookmark'));
+            ph.appendChild(a);
+          };
+          // ]]>
+        </script>
+      </p>
     </tal:block>
   </tal:block>
-  <tal:block condition="python: has_voted and not display_results">
-    <h4>Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
+  <tal:block condition="display_too_late">
     <p>
-      Die Ergebnisse werden von 
-      <tal:block replace="model/result_start_datetime" /> 
-      <tal:block condition="model/result_end_datetime">
-        bis <tal:block replace="model/result_end_datetime" />
-      </tal:block> unter diezer Seite abrufbahr zein:
-    </p>
-    <p tal:define="url model/get_silva_object/absolute_url">
-      <a tal:attributes="href url" 
-          tal:content="url">url</a> 
-      <em id="bookmark_link_placeholder" 
-            tal:attributes="silva:url url;
-                              silva:title model/get_title_or_id;"></em>
-      <script type="text/javascript">
-        // <![CDATA[
-        if (window.external) {
-          var ph = document.getElementById('bookmark_link_placeholder');
-          var a = document.createElement('a');
-          a.href = '#';
-          a.onclick = function(evt) {
-            window.external.AddFavorite(ph.getAttribute('silva:url'), 
-                                          ph.getAttribute('silva:title'));
-            event.returnValue = false;
-            event.cancelBubble = true;
-          };
-          a.appendChild(document.createTextNode('bookmark'));
-          ph.appendChild(a);
-        };
-        // ]]>
-      </script>
+      Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider
+      nicht mehr zur Verf&#xfc;gung.
     </p>
   </tal:block>
 </tal:block>

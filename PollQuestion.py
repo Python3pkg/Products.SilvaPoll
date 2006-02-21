@@ -272,6 +272,15 @@ class PollQuestionVersion(Version):
         now = DateTime()
         return ((startdate and startdate < now) and 
                   (not enddate or enddate > now))
+    
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                              'display_too_late')
+    def display_too_late(self):
+        """returns True if questions or results should be displayed
+
+            on False only a message 'this poll is closed' will be showed
+        """
+        return self.result_end_datetime() < DateTime()
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                                 'question_start_datetime')
