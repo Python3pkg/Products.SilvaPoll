@@ -86,12 +86,22 @@
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
       <h4>Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
-      <p>
-        Die Ergebnisse werden von 
-        <tal:block replace="model/result_start_datetime" /> 
-        <tal:block condition="model/result_end_datetime">
-          bis <tal:block replace="model/result_end_datetime" />
-        </tal:block> unter diezer Seite abrufbahr zein:
+      <p tal:define="sdt model/result_start_datetime;
+                      edt model/result_end_datetime;
+                      fsdt python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '';
+                      fedt python: edt and '%s.%s.%s' % (edt.day(), edt.month(), edt.year()) or '';
+                      ">
+        Die Ergebnisse werden
+        <tal:block condition="edt">
+          von
+          <tal:block replace="fsdt" /> 
+          bis <tal:block replace="fedt" />
+        </tal:block> 
+        <tal:block condition="not:edt">
+          <tal:block replace="fsdt" /> 
+          ab
+        </tal:block>
+        unter dieser Seite abrufbahr sein:
       </p>
       <p tal:define="url python:model.get_silva_object().absolute_url()">
         <a tal:attributes="href url" 

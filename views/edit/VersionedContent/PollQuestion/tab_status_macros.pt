@@ -231,7 +231,8 @@ This message will remain visible in the status screen for other authors and edit
 <!-- start overridden bits, replaced publication/expiration datetime forms
       with question/result date ones -->
 
-<tal:block define="now modules/DateTime/DateTime">
+<tal:block define="now modules/DateTime/DateTime;
+                    previewable model/get_previewable;">
 <tr class="inter-controls"
   tal:define="field view/tab_status_form_author/question_start_datetime">
 <td class="align-right"
@@ -244,7 +245,7 @@ This message will remain visible in the status screen for other authors and edit
    >question display start time</label>
 <tal:block 
   attributes="id field/id" 
-  replace="structure python: field.render(value=(model.current_question_start_datetime() or now), REQUEST=request)"
+  replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"
 />
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
@@ -263,7 +264,7 @@ day / month / year &nbsp;(23:59)
   >question display end time</label>
 <tal:block 
   attributes="id field/id" 
-  replace="structure python: field.render(model.current_question_end_datetime())"
+  replace="structure python: field.render(previewable.question_end_datetime())"
 />
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
@@ -283,7 +284,7 @@ If this content's question should expire, set the time.
    >results display start time</label>
 <tal:block 
   attributes="id field/id" 
-  replace="structure python: field.render(value=(model.current_result_start_datetime() or now), REQUEST=request)"
+  replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"
 />
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
@@ -302,7 +303,7 @@ day / month / year &nbsp;(23:59)
   >results display end time</label>
 <tal:block 
   attributes="id field/id" 
-  replace="structure python: field.render(model.current_result_end_datetime())"
+  replace="structure python: field.render(previewable.result_end_datetime())"
 />
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
