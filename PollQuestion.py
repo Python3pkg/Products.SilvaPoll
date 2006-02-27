@@ -251,7 +251,8 @@ class PollQuestionVersion(Version):
     def has_voted(self, REQUEST=None):
         if REQUEST is None:
             REQUEST = self.REQUEST
-        return REQUEST.has_key('voted_cookie_%s' % self.absolute_url())
+        return REQUEST.has_key('voted_cookie_%s' % 
+                                    self.get_silva_object().absolute_url())
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                               'display_question')
