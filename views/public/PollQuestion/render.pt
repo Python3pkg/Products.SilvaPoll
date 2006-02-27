@@ -46,6 +46,7 @@
             </tr>
           </tal:block>
         </table>
+        <br />
         <input type="image" 
                 tal:attributes="src here/service_resources/SilvaPoll/send.gif/absolute_url" 
                 value="submit" 
