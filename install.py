@@ -36,7 +36,10 @@ def unregisterViews(reg):
     reg.unregister('add', 'Silva Poll Question')
 
 def configureSecurity(root):
-    root.manage_permission('Add Silva Poll Question Versions', roleinfo.AUTHOR_ROLES)
+    root.manage_permission('Add Silva Poll Question Versions', 
+                            roleinfo.AUTHOR_ROLES)
+    root.manage_permission('Add Silva Poll Questions', 
+                            roleinfo.AUTHOR_ROLES)
   
 def setupMetadata(root):
     root.service_metadata.addTypesMapping(['Silva Poll Question Version'],

@@ -92,7 +92,7 @@
           bis <tal:block replace="model/result_end_datetime" />
         </tal:block> unter diezer Seite abrufbahr zein:
       </p>
-      <p tal:define="url model/get_silva_object/absolute_url">
+      <p tal:define="url python:model.get_silva_object().absolute_url()">
         <a tal:attributes="href url" 
             tal:content="url">url</a> 
         <em id="bookmark_link_placeholder" 

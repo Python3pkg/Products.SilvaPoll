@@ -221,7 +221,7 @@ class PollQuestionVersion(Version):
             REQUEST = self.REQUEST
         if not REQUEST or not REQUEST.has_key('answer'):
             return
-        answer = REQUEST['answer']
+        answer = unicode(REQUEST['answer'], 'UTF-8')
         answers = self.get_answers()
         id = answers.index(answer)
         self.service_polls.vote(self.qid, id)
