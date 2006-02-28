@@ -88,7 +88,7 @@
       </tal:block>
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
-      <h4>Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
+      <h3 class="poll_question">Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
       <p tal:define="sdt model/result_start_datetime;
                       edt model/result_end_datetime;
                       fsdt python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '';
