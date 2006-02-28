@@ -46,7 +46,6 @@
             </tr>
           </tal:block>
         </table>
-        <br />
         <input type="image" 
                 tal:attributes="src here/service_resources/SilvaPoll/send.gif/absolute_url" 
                 value="submit" 
@@ -76,7 +75,8 @@
                 </div>
                 <p class="p">
                   <b tal:content="string:${percentage} %" /><br />
-                  <tal:block replace="python:votes[i]" /> Stimmen
+                  <tal:block replace="python:votes[i]" /> 
+                  <tal:block replace="python:int(votes[i]) == 1 and 'Stimme' or 'Stimmen'" />
                 </p>
               </td>
             </tr>
