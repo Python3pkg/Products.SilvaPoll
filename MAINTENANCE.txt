@@ -2,6 +2,20 @@
 Maintenance issues of SilvaPoll
 ===============================
 
+Meta
+----
+
+Copyright (c) 2006 Infrae. All rights reserved.
+See also LICENSE.txt
+
+Valid for:  SilvaPoll 0.1
+Author:     Guido Wesdorp
+Email:      guido@infrae.com
+CVS:        $Revision: 1.1 $
+
+SilvaPoll/PollQuestion maintenance
+----------------------------------
+
 This document describes the main problems for maintaining SilvaPoll. SilvaPoll
 is an extension of Silva to display Poll questions (and results), and since
 it (basically) overrides some of the core Silva workflow functionality in
