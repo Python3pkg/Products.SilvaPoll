@@ -71,7 +71,6 @@
                 <div class="poll_bar_outer">
                   <div class="poll_bar_inner">
                     <img class="poll_bar"
-                          style="height: 1em;"
                           tal:attributes="src here/service_resources/SilvaPoll/poll_bar.gif/absolute_url;
                                           width percentage">
                   </div>
