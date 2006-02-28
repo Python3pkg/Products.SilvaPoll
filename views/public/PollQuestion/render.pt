@@ -37,7 +37,7 @@
                                         checked python: i == 0;
                                         id string:answer_${i}" />
               </td>
-              <td class="poll_label">
+              <td class="poll_label" tal:attributes="class python:repeat['i'].end and 'poll_last' or 'poll_label'">
                 <label tal:attributes="for string:answer_${i}" class="p">
                   <tal:block replace="python: answers[i]" />
                   <br />
