@@ -59,7 +59,7 @@
       <h3 tal:condition="python: (not has_voted and display_question or 
                                   display_results)" 
           tal:content="model/get_question" 
-          class="poll_results">
+          class="poll_results" />
         <table class="poll">
           <tbody>
             <tr tal:repeat="i python:xrange(len(answers))">
@@ -88,7 +88,7 @@
       </tal:block>
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
-      <h3 class="poll_question">Vielen Dank f&#xfc;r Ihre Teilnahme!</h4>
+      <h3 class="poll_question">Vielen Dank f&#xfc;r Ihre Teilnahme!</h3>
       <p tal:define="sdt model/result_start_datetime;
                       edt model/result_end_datetime;
                       fsdt python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '';
