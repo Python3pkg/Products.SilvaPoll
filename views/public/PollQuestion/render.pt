@@ -8,7 +8,7 @@
                     display_too_late python: model.display_too_late()">
   <!-- note that nothing is displayed if the user has not voted and neither the
         question not the results should be displayed -->
-  <h2 tal:content="request/model/get_title_or_id" />
+  <h2 tal:content="request/model/get_title_or_id" class="heading" />
   <table class="poll">
     <tbody>
       <tr>
@@ -20,19 +20,19 @@
     </tbody>
   </table>
   <tal:block condition="not: display_too_late">
-    <h3 tal:condition="python: (not has_voted and display_question or 
-                                display_results)" 
-        tal:content="model/get_question" 
-        class="poll_question" />
     <tal:block condition="python: edit_mode or (display_question and 
                                                   not has_voted)">
+      <h3 tal:condition="python: (not has_voted and display_question or 
+                                  display_results)" 
+          tal:content="model/get_question" 
+        class="poll_question" />
       <form method="post" action="" tal:define="answers model/get_answers"
             onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
         <table class="poll">
           <tal:block repeat="i python:xrange(len(answers))">
             <tr>
               <td tal:attributes="class python: repeat['i'].end and 'poll_last' or 'poll_radio'">
-                <input type="radio" name="answer" 
+                <input type="radio" name="answer" class="poll"
                         tal:attributes="value python:answers[i];
                                         checked python: i == 0;
                                         id string:answer_${i}" />
@@ -40,7 +40,6 @@
               <td class="poll_label" tal:attributes="class python:repeat['i'].end and 'poll_last' or 'poll_label'">
                 <label tal:attributes="for string:answer_${i}" class="p">
                   <tal:block replace="python: answers[i]" />
-                  <br />
                 </label>
               </td>
             </tr>
@@ -57,6 +56,10 @@
                           votes model/get_votes;
                           total python: sum(votes) * 1.0;
                           ">
+      <h3 tal:condition="python: (not has_voted and display_question or 
+                                  display_results)" 
+          tal:content="model/get_question" 
+          class="poll_results">
         <table class="poll">
           <tbody>
             <tr tal:repeat="i python:xrange(len(answers))">
