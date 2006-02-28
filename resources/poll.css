@@ -8,7 +8,7 @@ input.poll_submit {
   padding: 0px;
 }
 
-h3.poll {
+h3.poll_question {
   font-size: 12px;
   font-family: Arial, Sans-Serif;
   color: black;
@@ -18,7 +18,7 @@ h3.poll {
   font-weight: bold;
 }
 
-h3.poll2 {
+h3.poll_results {
   font-size: 12px;
   font-family: Arial, Sans-Serif;
   color: black;
