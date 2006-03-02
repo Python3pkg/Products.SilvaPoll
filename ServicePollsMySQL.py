@@ -24,8 +24,6 @@ class ServicePollsMySQL(SimpleItem):
     implements(IServicePolls)
     meta_type = 'Silva Service Polls MySQL'
 
-    encoding = 'UTF-8'
-
     def __init__(self, id, title):
         if not has_mysql:
             raise Exception, (
@@ -63,7 +61,7 @@ class ServicePollsMySQL(SimpleItem):
         db = self._get_db()
         db.getSQLData(self, 
             u"INSERT INTO question (question) VALUES ('%(question)s')",
-            {'question': question.encode(self.encoding)})
+            {'question': question})
         idres = db.getSQLData(self, u'SELECT LAST_INSERT_ID() as id')
         id = idres[0]['id']
         for answer in answers:
@@ -71,20 +69,21 @@ class ServicePollsMySQL(SimpleItem):
                 (u"INSERT INTO answer (qid, answer) VALUES (%(qid)s, "
                     "'%(answer)s')"),
                 {'qid': id,
-                    'answer': answer.encode(self.encoding)})
+                    'answer': answer})
         return id
 
     def get_question(self, qid):
         db = self._get_db()
         res = db.getSQLData(self,
                 u'SELECT * FROM question WHERE id=%(id)s', {'id': qid})
-        return unicode(res[0]['question'], self.encoding)
+        return res[0]['question']
 
     def get_answers(self, qid):
         db = self._get_db()
         res = db.getSQLData(self,
                 u'SELECT answer FROM answer WHERE qid=%(id)s', {'id': qid})
-        return [unicode(r['answer'], self.encoding) for r in res]
+        ret = [r['answer'] for r in res]
+        return ret
 
     def get_votes(self, qid):
         db = self._get_db()
@@ -96,16 +95,26 @@ class ServicePollsMySQL(SimpleItem):
         db = self._get_db()
         db.getSQLData(self,
                 u"UPDATE question SET question='%(question)s' WHERE id=%(id)s",
-                {'question': question.encode(self.encoding), 'id': qid})
-        # this is kinda nasty: first get the ids of the answers, then (in 
-        # order!) update the rows
-        res = db.getSQLData(self,
-                u"SELECT id FROM answer WHERE qid=%(id)s", {'id': qid})
-        for i, id in enumerate([r['id'] for r in res]):
-            db.getSQLData(self,
-                u"UPDATE answer SET answer='%(answer)s' where id=%(id)s",
-                {'id': id, 'answer': answers[i].encode(self.encoding)})
-
+                {'question': question, 'id': qid})
+        curranswers = self.get_answers(qid)
+        if curranswers and len(curranswers) == len(answers):
+            # this is kinda nasty: first get the ids of the answers, then (in 
+            # order!) update the rows
+            res = db.getSQLData(self,
+                    u"SELECT id FROM answer WHERE qid=%(id)s", {'id': qid})
+            for i, id in enumerate([r['id'] for r in res]):
+                db.getSQLData(self,
+                    u"UPDATE answer SET answer='%(answer)s' where id=%(id)s",
+                    {'id': id, 'answer': answers[i]})
+        else:
+            # drop any existing rows
+            db.getSQLData(self, u'DELETE FROM answer WHERE qid=%(qid)s',
+                            {'qid': qid})
+            for answer in answers:
+                db.getSQLData(self,
+                    (u"INSERT INTO answer (qid, answer) VALUES (%(qid)s, "
+                            "'%(answer)s')"), {'qid': qid, 'answer': answer})
+                                                                                    
     def vote(self, qid, index):
         # kinda nasty too, similar problem: we first get all answer rows to
         # find out what answer has index <index>, then do the update
@@ -119,7 +128,7 @@ class ServicePollsMySQL(SimpleItem):
                 {'id': idvotesindex[0], 'votes': idvotesindex[1] + 1})
 
     def _get_db(self):
-        return SQLDB('service_polls_mysqldb')
+        return SQLDB('service_polls_mysqldb', 'UTF-8')
 
 InitializeClass(ServicePollsMySQL)
 
