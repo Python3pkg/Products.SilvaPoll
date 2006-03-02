@@ -114,7 +114,7 @@ class ServicePollsMySQL(SimpleItem):
                 db.getSQLData(self,
                     (u"INSERT INTO answer (qid, answer) VALUES (%(qid)s, "
                             "'%(answer)s')"), {'qid': qid, 'answer': answer})
-                                                                                    
+    
     def vote(self, qid, index):
         # kinda nasty too, similar problem: we first get all answer rows to
         # find out what answer has index <index>, then do the update
@@ -138,6 +138,6 @@ manage_addServicePollsMySQLForm = PageTemplateFile('www/servicePollsMySQLAdd',
 
 def manage_addServicePollsMySQL(self, id, title='', REQUEST=None):
     """add service to the ZODB"""
-    id = self._setObject(id, ServicePollsMySQL(id, unicode(title, 'UTF-8')))
+    id = self._setObject(id, ServicePollsMySQL(id, title))
     add_and_edit(self, id, REQUEST)
     return ''
