@@ -92,7 +92,8 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
         # XXX is this the expected behaviour? do we want to display a link to
         # the poll instead when the question and results shouldn't be 
         # displayed?
-        if not version.display_question() and not version.display_results():
+        if version is None or (not version.display_question() and 
+                                not version.display_results()):
             return ''
         view_type = edit_mode and 'preview' or 'public'
         return self.view_version(view_type, version)
