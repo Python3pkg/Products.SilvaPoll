@@ -76,7 +76,7 @@
           <default></default>
           <title>answers</title>
           <description>enter individual answers, seperated by double newlines</description>
-          <extra></extra>
+          <extra>id="answers"</extra>
           <unicode type="int">1</unicode>
         </values>
         <tales>

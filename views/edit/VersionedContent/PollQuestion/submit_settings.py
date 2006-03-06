@@ -14,7 +14,7 @@ except FormValidationError, e:
 version.set_title(result['object_title'])
 
 try:
-    version.save(result['question'], result['answers'])
+    version.save(result['question'], result['answers'], True)
 except model.get_OverwriteNotAllowed():
     return view.tab_edit(message_type='error',
                             message=_(('overwriting values not allowed, '

@@ -16,8 +16,9 @@ class DB(Persistent):
         # connections)
         self.db = []
 
-    def create(self, question, answers):
-        q = (question, answers, len(answers) * [0])
+    def create(self, question, answers, votes):
+        assert len(votes) == len(answers), 'votes and answers don\'t match!'
+        q = (question, answers, votes)
         self.db.append(q)
         self._p_changed = True
         # note that removing els from the db breaks things big-time

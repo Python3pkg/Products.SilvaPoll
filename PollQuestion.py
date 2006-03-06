@@ -177,10 +177,12 @@ class PollQuestionVersion(Version):
                                                             item, container)
         question = ''
         answers = []
+        votes = []
         if self.qid is not None:
             question = self.get_question()
             answers = self.get_answers()
-        self.qid = self.service_polls.create_question(question, answers)
+            votes = self.get_votes()
+        self.qid = self.service_polls.create_question(question, answers, votes)
 
     security.declareProtected(SilvaPermissions.ChangeSilvaContent,
                               'save')

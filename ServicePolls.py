@@ -22,8 +22,8 @@ class ServicePolls(SimpleItem):
         self.title = title
         self.db = DB(self)
 
-    def create_question(self, question, answers):
-        return self.db.create(question, answers)
+    def create_question(self, question, answers, votes):
+        return self.db.create(question, answers, votes)
 
     def get_question(self, qid):
         return self.db.get(qid).question

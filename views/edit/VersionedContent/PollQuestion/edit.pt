@@ -87,11 +87,33 @@
         <tr class="controls">
           <td class="align-right"
             colspan="4">
+            <!-- hidden input to remember what the original answers were -->
+            <input type="hidden" id="organswers" />
+            <script type="text/javascript">
+              // <![CDATA[
+              
+                document.getElementById('organswers').value = 
+                    document.getElementById('answers').value;
+                function answersChanged() {
+                    var value = document.getElementById('answers').value;
+                    var orgvalue = document.getElementById('organswers').value;
+                    value = value.replace(/\r/g, '');
+                    orgvalue = orgvalue.replace(/\r/g, '');
+                    
+                    return (value.split('\n\n').length == 
+                            orgvalue.split('\n\n').length);
+                };
+                
+              // ]]>
+            </script>
             <input class="button" 
               type="submit"
               name="submit_settings:method"
               value="save settings"
               title="access key: alt-s"
+              onclick="return answersChanged() ? 'true' : 
+                        confirm('All votes will be discarded if you change ' +
+                                  'answers. Are you sure?');"
               accesskey="s"
               i18n:attributes="value title"
             />

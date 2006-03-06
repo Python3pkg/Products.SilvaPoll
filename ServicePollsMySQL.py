@@ -57,19 +57,19 @@ class ServicePollsMySQL(SimpleItem):
                 """PRIMARY KEY(id), """
                 """INDEX(qid))"""))
 
-    def create_question(self, question, answers):
+    def create_question(self, question, answers, votes):
+        assert len(votes) == len(answers), 'votes and answers don\'t match!'
         db = self._get_db()
         db.getSQLData(self, 
             u"INSERT INTO question (question) VALUES ('%(question)s')",
             {'question': question})
         idres = db.getSQLData(self, u'SELECT LAST_INSERT_ID() as id')
         id = idres[0]['id']
-        for answer in answers:
-            db.getSQLData(self,
-                (u"INSERT INTO answer (qid, answer) VALUES (%(qid)s, "
-                    "'%(answer)s')"),
-                {'qid': id,
-                    'answer': answer})
+        for i, answer in enumerate(answers):
+            query = (u"INSERT INTO answer (qid, answer, votes) VALUES "
+                        "(%(qid)s, '%(answer)s', '%(votes)s')")
+            db.getSQLData(self, query, {'qid': id, 'answer': answer,
+                                        'votes': votes[i]})
         return id
 
     def get_question(self, qid):
@@ -81,7 +81,8 @@ class ServicePollsMySQL(SimpleItem):
     def get_answers(self, qid):
         db = self._get_db()
         res = db.getSQLData(self,
-                u'SELECT answer FROM answer WHERE qid=%(id)s', {'id': qid})
+                u'SELECT answer FROM answer WHERE qid=%(id)s ORDER BY id', 
+                    {'id': qid})
         ret = [r['answer'] for r in res]
         return ret
 
@@ -101,7 +102,7 @@ class ServicePollsMySQL(SimpleItem):
             # this is kinda nasty: first get the ids of the answers, then (in 
             # order!) update the rows
             res = db.getSQLData(self,
-                    u"SELECT id FROM answer WHERE qid=%(id)s", {'id': qid})
+                    u"SELECT id FROM answer WHERE qid=%(id)s ORDER BY id", {'id': qid})
             for i, id in enumerate([r['id'] for r in res]):
                 db.getSQLData(self,
                     u"UPDATE answer SET answer='%(answer)s' where id=%(id)s",
