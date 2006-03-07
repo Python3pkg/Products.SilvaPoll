@@ -6,7 +6,7 @@
   xmlns:notal="http://www.infrae.com/silva/notal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="silva_news"
+  i18n:domain="silva_poll"
   tal:define="
     view here;
     model request/model;
@@ -111,11 +111,11 @@
               name="submit_settings:method"
               value="save settings"
               title="access key: alt-s"
+              alerttext="All votes will be discarded if you change answers. Are you sure?"
               onclick="return answersChanged() ? 'true' : 
-                        confirm('All votes will be discarded if you change ' +
-                                  'answers. Are you sure?');"
+                        confirm(this.getAttribute('alerttext'));"
               accesskey="s"
-              i18n:attributes="value title"
+              i18n:attributes="value; title; alerttext"
             />
           </td>
         </tr>

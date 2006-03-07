@@ -33,7 +33,9 @@ try:
     model.manage_addProduct['SilvaPoll'].manage_addPollQuestion(
                                           id, title, question, answers)
 except ValueError, e:
-    return view.add_form(message_type="error", message='Problem: %s' % e)
+    message=_('Problem: ${problem}', 'silva_poll')
+    message.set_mapping({'errors':context.render_form_errors(e)})
+    return view.add_form(message_type="error", unicode(message))
 object = getattr(model, id)
 
 # update last author info in new object
@@ -46,7 +48,7 @@ if lookup_mode:
 if REQUEST.has_key('add_edit_submit'):
     REQUEST.RESPONSE.redirect(object.absolute_url() + '/edit/tab_edit')
 else:
-    message = _("Added ${meta_type} ${id}.")
+    message = _("Added ${meta_type} ${id}.", 'silva_poll')
     message.set_mapping({
         'meta_type': object.meta_type,
         'id': view.quotify(id)})

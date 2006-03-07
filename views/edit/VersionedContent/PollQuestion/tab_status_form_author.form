@@ -6,7 +6,7 @@
   <action></action>
   <enctype></enctype>
   <method></method>
-  <i18n_domain>silva</i18n_domain>
+  <i18n_domain>silva_poll</i18n_domain>
   <i18n>tab_status_form_author</i18n>
 
   <groups multiple="true">

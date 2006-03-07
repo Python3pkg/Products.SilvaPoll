@@ -16,6 +16,8 @@ version.set_title(result['object_title'])
 try:
     version.save(result['question'], result['answers'], True)
 except model.get_OverwriteNotAllowed():
+    # note that we don't add an i18n domain since the message is exactly the
+    # same as in the core (this does mean it needs to be kept in sync, though!)
     return view.tab_edit(message_type='error',
                             message=_(('overwriting values not allowed, '
                                         'either you\'re trying to change the '

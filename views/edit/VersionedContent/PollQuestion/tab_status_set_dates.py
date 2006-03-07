@@ -19,4 +19,5 @@ viewable.set_question_end_datetime(result['question_end_datetime'])
 viewable.set_result_start_datetime(result['result_start_datetime'])
 viewable.set_result_end_datetime(result['result_end_datetime'])
 
-return view.tab_status(message_type="feedback", message=_("Dates set."))
+return view.tab_status(message_type="feedback", 
+                        message=_("Dates set.", 'silva_poll'))
