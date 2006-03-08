@@ -1,3 +1,4 @@
+from Products.Silva.i18n import translate as _
 from Products.Formulator.Errors import ValidationError, FormValidationError
 
 model = context.REQUEST.model

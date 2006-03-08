@@ -35,7 +35,7 @@ try:
 except ValueError, e:
     message=_('Problem: ${problem}', 'silva_poll')
     message.set_mapping({'errors':context.render_form_errors(e)})
-    return view.add_form(message_type="error", unicode(message))
+    return view.add_form(message_type="error", message=unicode(message))
 object = getattr(model, id)
 
 # update last author info in new object
