@@ -22,10 +22,7 @@
   <tal:block condition="not: display_too_late">
     <tal:block condition="python: edit_mode or (display_question and 
                                                   not has_voted)">
-      <h3 tal:condition="python: (not has_voted and display_question or 
-                                  display_results)" 
-          tal:content="model/get_question" 
-        class="poll_question" />
+      <h3 tal:content="model/get_question" class="poll_question" />
       <form method="post" action="" tal:define="answers model/get_answers"
             onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
         <table class="poll">
@@ -51,15 +48,13 @@
                 class="poll_submit" />
       </form>
     </tal:block>
-    <tal:block condition="python: has_voted and display_results">
+    <tal:block condition="python: (has_voted or not display_question) and
+                                    display_results">
       <tal:block define="answers model/get_answers; 
                           votes model/get_votes;
                           total python: sum(votes) * 1.0;
                           ">
-      <h3 tal:condition="python: (not has_voted and display_question or 
-                                  display_results)" 
-          tal:content="model/get_question" 
-          class="poll_results" />
+      <h3 tal:content="model/get_question" class="poll_results" />
         <table class="poll">
           <tbody>
             <tr tal:repeat="i python:xrange(len(answers))">
@@ -85,6 +80,15 @@
           </tbody>
         </table>
       </tal:block>
+    </tal:block>
+    <tal:block condition="python:(not has_voted and not display_question) and not display_results">
+      <p class="p">
+        <br />
+        Diese Umfrage steht ab 
+        <tal:block define="sdt model/question_start_datetime" 
+                    content="python: '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year())" /> 
+        zur Verf&#xfc;gung
+      </p>
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
       <h3 class="poll_question">Vielen Dank f&#xfc;r Ihre Teilnahme!</h3>
@@ -135,6 +139,7 @@
   </tal:block>
   <tal:block condition="display_too_late">
     <p class="p">
+      <br />
       Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider
       nicht mehr zur Verf&#xfc;gung.
     </p>
