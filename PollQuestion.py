@@ -87,14 +87,52 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
         else:
             version = self.get_viewable()
         if kw.has_key('display') and kw['display'] == 'link':
-            return '<p class="p"><a href="%s">%s</a></p>' % (self.absolute_url(), 
-                                            self.absolute_url())
+            return '<p class="p"><a href="%s">%s</a></p>' % (
+                self.absolute_url(), self.absolute_url())
         # XXX is this the expected behaviour? do we want to display a link to
         # the poll instead when the question and results shouldn't be 
         # displayed?
-        if version is None or (not version.display_question() and 
-                                not version.display_results()):
+        if version is None:
             return ''
+        sdt = version.question_start_datetime()
+        edt = version.question_end_datetime()
+        if (not version.has_voted() and not version.display_question(
+            )) and not version.display_results():
+            return '<p class="p"><br />Diese Umfrage steht ab %s.%s.%s zur Verf&#xfc;gung</p>' % (
+                sdt.day(), sdt.month(), sdt.year())
+        if version.has_voted() and not version.display_results():
+            fsdt = ''
+            fedt = ''
+            if sdt:
+                fsdt = '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year())
+            if edt:
+                fedt = '%s.%s.%s' % (edt.day(), edt.month(), edt.year())
+                range = 'von %s bis %s' % (fsdt, fedt)
+            else:
+                range = 'ab %s' % fsdt
+            ret = '<h3 class="poll_question">Vielen Dank f&#xfc;r Ihre Teilnahme!</h3><p class="p">Die Ergebnisse werden'
+            ret += range
+            url = version.get_silva_object().absolute_url()
+            ret += ' unter dieser Seite abrufbar sein:</p><p class="p"><a href="%s">%s</a> ' % (url, url)
+            ret += ' <em id="bookmark_link_placeholder" silva:url="%s" silva:title="%s"></em>' % (url, version.get_title_or_id())
+            ret += '''<script type="text/javascript">// <![CDATA[
+              if (window.external) {
+                var ph = document.getElementById('bookmark_link_placeholder');
+                var a = document.createElement('a');
+                a.href = '#';
+                a.onclick = function(evt) {
+                  window.external.AddFavorite(ph.getAttribute('silva:url'), 
+                                            ph.getAttribute('silva:title'));
+                  event.returnValue = false;
+                  event.cancelBubble = true;
+                };
+                a.appendChild(document.createTextNode('bookmark'));
+                ph.appendChild(a);
+             };
+             // ]]>
+            </script>
+            </p>
+            '''
         view_type = edit_mode and 'preview' or 'public'
         return self.view_version(view_type, version)
 
