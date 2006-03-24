@@ -87,7 +87,7 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
         else:
             version = self.get_viewable()
         if kw.has_key('display') and kw['display'] == 'link':
-            return '<a href="%s">%s</a>' % (self.absolute_url(), 
+            return '<p class="p"><a href="%s">%s</a></p>' % (self.absolute_url(), 
                                             self.absolute_url())
         # XXX is this the expected behaviour? do we want to display a link to
         # the poll instead when the question and results shouldn't be 
