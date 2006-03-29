@@ -87,7 +87,7 @@
         Diese Umfrage steht ab 
         <tal:block define="sdt model/question_start_datetime" 
                     content="python: '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year())" /> 
-        zur Verf&#xfc;gung
+        zur Verf&#xfc;gung.
       </p>
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
