@@ -23,6 +23,8 @@ def registerViews(reg):
                     ['edit', 'VersionedContent', 'PollQuestion'])
     reg.register('add', 'Silva Poll Question',
                     ['add', 'PollQuestion'])
+    reg.register('public', 'Silva Poll Question',
+                    ['public', 'PollQuestion'])
     reg.register('public', 'Silva Poll Question Version',
                     ['public', 'PollQuestion'])
     reg.register('preview', 'Silva Poll Question Version',
