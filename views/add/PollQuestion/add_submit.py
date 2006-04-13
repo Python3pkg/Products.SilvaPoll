@@ -1,3 +1,4 @@
+from Products.Silva import mangle
 from Products.Silva.i18n import translate as _
 
 model = context.REQUEST.model
@@ -25,6 +26,13 @@ id = result['object_id'].encode('ascii')
 title = result['object_title']
 question = result['question']
 answers = result['answers'].split('\n\n')
+
+# if we don't have the right id, reject adding
+mid = mangle.Id(model, id)
+id_check = mid.cook().validate()
+if id_check != mid.OK:
+    return view.add_form(message_type="error",
+        message=view.get_id_status_text(mid))
 
 # process data in result and add using validation result
 view = context
