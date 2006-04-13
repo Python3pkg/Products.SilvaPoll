@@ -32,7 +32,7 @@ class ViewableExternalSource(ExternalSource):
         external source object's public view as usual
     """
 
-    def index_html(self, *args, **kwargs):
+    def index_html(self, view_method='view'):
         """this is kinda nasty... copied the index_html Python script to
             avoid having ExternalSources.index_html (which returns the props
             form, not a decent public view, perhaps that should be changed some
@@ -47,7 +47,7 @@ class ViewableExternalSource(ExternalSource):
         self.REQUEST.RESPONSE.setHeader('Content-Type', 
                                             'text/html;charset=utf-8')
         self.REQUEST.RESPONSE.setHeader('Cache-Control','max-age=300')
-        return getattr(self, renderer)(view_method='view')
+        return getattr(self, renderer)(view_method=view_method)
 
 class PollQuestion(VersionedContent, ViewableExternalSource):
     """A question of the Silva Poll product"""
