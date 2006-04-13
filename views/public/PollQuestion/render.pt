@@ -86,7 +86,7 @@
         <br />
         Diese Umfrage steht ab 
         <tal:block define="sdt model/question_start_datetime" 
-                    content="python: '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year())" /> 
+                    content="python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '-'" /> 
         zur Verf&#xfc;gung.
       </p>
     </tal:block>
