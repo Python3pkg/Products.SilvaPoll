@@ -1,7 +1,25 @@
 HISTORY
 =======
 
-  * 0.2 (unreleased):
+  * 0.3 (unreleased):
+
+    Bugs fixed:
+
+      - Error page was displayed when trying to add Poll Question with 
+        duplicate id.
+
+      - Fixed problem that made that the publically viewable version was
+        used to get data from in preview screens (which could result in errors
+        if no public version was available).
+
+      - Fixed attribute errors on 'day' in preview.
+
+    Features added:
+
+      - There's now a restriction on the amount of answers one can save: 
+        the maximum allowed number of answers is 20.
+
+  * 0.2:
 
     Bugs fixed:
 
