@@ -27,6 +27,9 @@ icon = "www/pollquestion.png"
 class OverwriteNotAllowed(Exception):
     """raised when trying to overwrite answers for a used question"""
 
+class TooManyAnswers(Exception):
+    """raised when more than 20 answers are given"""
+
 class ViewableExternalSource(ExternalSource):
     """ExternalSource subclass that has index_html overridden to display the
         external source object's public view as usual
@@ -76,6 +79,11 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
                               'get_OverwriteNotAllowed')
     def get_OverwriteNotAllowed(self):
         return OverwriteNotAllowed
+
+    security.declareProtected(SilvaPermissions.AccessContentsInformation,
+                              'get_TooManyAnswers')
+    def get_TooManyAnswers(self):
+        return TooManyAnswers
 
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                               'to_html')
@@ -189,7 +197,9 @@ class PollQuestionVersion(Version):
         """save question data"""
         votes = self.service_polls.get_votes(self.qid)
         curranswers = self.service_polls.get_answers(self.qid)
-        answers = answers.split('\n\n')
+        answers = [x.strip() for x in answers.strip().split('\n\n')]
+        if len(answers) > 20:
+            raise TooManyAnswers, self.qid
         have_votes = not not [x for x in votes if x != 0]
         if (answers != curranswers and have_votes and not overwrite):
             raise OverwriteNotAllowed, self.qid

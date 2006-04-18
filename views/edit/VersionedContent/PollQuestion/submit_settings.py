@@ -24,5 +24,9 @@ except model.get_OverwriteNotAllowed():
                                         'number of answers (not allowed) or '
                                         'you\'re trying to change answers '
                                         'when people have already voted')))
+except model.get_TooManyAnswers():
+    return view.tab_edit(message_type='error',
+                            message=_(('you have exceeded the maximum of 20 '
+                                        'allowed answers')))
 
 return view.tab_edit(message_type='feedback', message=_('updated'))

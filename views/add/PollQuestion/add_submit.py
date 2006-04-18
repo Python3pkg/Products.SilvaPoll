@@ -25,7 +25,10 @@ except FormValidationError, e:
 id = result['object_id'].encode('ascii')
 title = result['object_title']
 question = result['question']
-answers = result['answers'].split('\n\n')
+answers = [x.strip() for x in result['answers'].strip().split('\n\n')]
+if len(answers) > 20:
+    return view.add_form(message_type='error',
+            message=_(('you have exceeded the maximum of 20 allowed answers')))
 
 # if we don't have the right id, reject adding
 mid = mangle.Id(model, id)
