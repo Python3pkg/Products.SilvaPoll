@@ -2,7 +2,7 @@
                     has_voted model/has_voted;
                     edit_mode python:request.get('edit_mode', False);
                     has_voted python: has_voted or (edit_mode or
-                                            model.manage_vote(request));
+                                            (request.get('pollid') == '/'.join(model.getPhysicalPath()) and model.manage_vote(request)));
                     display_question python:edit_mode or model.display_question();
                     display_results python:edit_mode or model.display_results();
                     display_too_late python: model.display_too_late()">
@@ -25,6 +25,9 @@
       <h3 tal:content="model/get_question" class="poll_question" />
       <form method="post" action="" tal:define="answers model/get_answers"
             onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
+        <input type="hidden" name="pollid" 
+                tal:attributes="value python:'/'.join(model.getPhysicalPath())" 
+                />
         <table class="poll">
           <tal:block repeat="i python:xrange(len(answers))">
             <tr>
