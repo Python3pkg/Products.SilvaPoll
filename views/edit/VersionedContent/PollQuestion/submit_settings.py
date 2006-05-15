@@ -31,6 +31,6 @@ except model.get_TooManyAnswers():
     return view.tab_edit(message_type='error',
                             message=translate(_(('you have exceeded the '
                                                     'maximum of 20 allowed '
-                                                    'answers')))
+                                                    'answers'))))
 
 return view.tab_edit(message_type='feedback', message=translate(_('updated')))
