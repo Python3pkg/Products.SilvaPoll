@@ -1,6 +1,9 @@
 from Products.Silva.i18n import translate as _
 from Products.Formulator.Errors import FormValidationError
 
+from zope.i18n import translate
+from Products.SilvaPoll.i18n import translate as _
+
 model = context.REQUEST.model
 view = context
 
@@ -20,4 +23,4 @@ viewable.set_result_start_datetime(result['result_start_datetime'])
 viewable.set_result_end_datetime(result['result_end_datetime'])
 
 return view.tab_status(message_type="feedback", 
-                        message=_("Dates set.", 'silva_poll'))
+                        message=translate(_("Dates set.", 'silva_poll')))

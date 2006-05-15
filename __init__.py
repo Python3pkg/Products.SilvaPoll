@@ -27,3 +27,7 @@ def initialize(context):
     registerDirectory('views', globals())
     registerDirectory('resources', globals())
     registerTypeForMetadata('Silva Poll Question Version')
+
+from AccessControl import allow_module
+
+allow_module('Products.SilvaPoll.i18n')

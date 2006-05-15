@@ -1,5 +1,7 @@
-from Products.Silva.i18n import translate as _
 from Products.Formulator.Errors import ValidationError, FormValidationError
+
+from zope.i18n import translate
+from Products.SilvaPoll.i18n import translate as _
 
 model = context.REQUEST.model
 view = context
@@ -11,7 +13,7 @@ if not model.get_unapproved_version():
     if model.is_version_published():
         return view.tab_status(
             message_type="error", 
-            message=_("There is no unapproved version to approve."))
+            message=translate(_("There is no unapproved version to approve.")))
     model.create_copy()
 
 try:
@@ -36,4 +38,5 @@ model.approve_version()
 if hasattr(model, 'service_messages'):
     model.service_messages.send_pending_messages()
 
-return view.tab_status(message_type="feedback", message=_("Version approved."))
+return view.tab_status(message_type="feedback", 
+                        message=translate(_("Version approved.")))

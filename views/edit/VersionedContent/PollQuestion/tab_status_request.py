@@ -1,5 +1,7 @@
-from Products.Silva.i18n import translate as _
 from Products.Formulator.Errors import FormValidationError
+
+from zope.i18n import translate
+from Products.SilvaPoll.i18n import translate as _
 
 model = context.REQUEST.model
 view = context
@@ -13,9 +15,9 @@ except FormValidationError, e:
 # check for status
 message=None
 if model.get_unapproved_version() is None:
-    message=_('There is no unapproved version.')
+    message=translate(_('There is no unapproved version.'))
 elif model.is_version_approval_requested():
-    message=_('Approval has already been requested.')
+    message=translate(_('Approval has already been requested.'))
 # no check for closed ...
 
 editable = model.get_editable()
@@ -36,4 +38,5 @@ model.request_version_approval(result['message'])
 if hasattr(model, 'service_messages'):
     model.service_messages.send_pending_messages()
     
-return view.tab_status(message_type="feedback", message=_("Approval requested."))
+return view.tab_status(message_type="feedback", 
+                        message=translate(_("Approval requested.")))
