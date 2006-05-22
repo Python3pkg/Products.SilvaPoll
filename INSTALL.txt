@@ -8,7 +8,7 @@ Meta
 Copyright (c) 2006 Infrae. All rights reserved.
 See also LICENSE.txt
 
-Valid for:  SilvaPoll 0.1
+Valid for:  SilvaPoll 0.3
 Author:     Guido Wesdorp
 Email:      guido@infrae.com
 CVS:        $Revision: 1.1 $
@@ -16,7 +16,7 @@ CVS:        $Revision: 1.1 $
 Prerequisities
 --------------
 
-SilvaPoll 0.1 requires a working Silva 1.4.x installation, with 
+SilvaPoll 0.3 requires a working Silva 1.5.x installation, with 
 SilvaExternalSources installed properly. If you want to use the MySQL service
 for storing poll data, a recent MySQL database and the zMySQLDA product should
 be installed, too.
@@ -24,7 +24,7 @@ be installed, too.
 Basic installation instructions
 -------------------------------
 
-Unpack the SilvaPoll-0.1.tar.gz tarball in the Products directory of your
+Unpack the SilvaPoll-0.3.tar.gz tarball in the Products directory of your
 Zope instance. Restart Zope. Go to 'service_extensions' in your Silva root
 (for Silva installation instructions, see Silva/INSTALL.txt), make sure that
 the SilvaExternalSource package has been installed properly (if the box is
