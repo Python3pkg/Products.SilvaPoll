@@ -11,6 +11,8 @@ HISTORY
 
       - Made public views not get cached anymore.
 
+      - Fixed i18n initialization.
+
   * 0.3:
 
     Bugs fixed:
