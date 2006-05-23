@@ -148,7 +148,8 @@
               event.returnValue = false;
               event.cancelBubble = true;
             };
-            a.appendChild(document.createTextNode('zu Favoriten hinzuf\xfcgen'));
+            a.appendChild(document.createTextNode(
+                            '[zu Favoriten hinzuf\xfcgen]'));
             ph.appendChild(a);
           };
           // ]]>
