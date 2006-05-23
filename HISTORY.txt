@@ -1,6 +1,16 @@
 HISTORY
 =======
 
+  * 0.3.1 (unreleased):
+
+    Bugs fixed:
+
+      - Fixed JS error in public view.
+
+      - Fixed bookmark text.
+
+      - Made public views not get cached anymore.
+
   * 0.3:
 
     Bugs fixed:

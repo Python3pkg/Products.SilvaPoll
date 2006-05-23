@@ -23,8 +23,24 @@
     <tal:block condition="python: edit_mode or (display_question and 
                                                   not has_voted)">
       <h3 tal:content="model/get_question" class="poll_question" />
+      <script type="text/javascript">
+        // <![CDATA[
+
+          function checkRadioSelected(form) {
+            var inputs = form.getElementsByTagName('input');
+            for (var i=0; i < inputs.length; i++) {
+              if (inputs[i].type == 'radio' && inputs[i].checked) {
+                return true;
+              };
+            };
+            return false;
+          };
+        
+        // ]]>
+      </script>
       <form method="post" action="" tal:define="answers model/get_answers"
-            onsubmit="var inputs = this.getElementsByTagName('input'); for (var i=0; i < inputs.length; i++) {if (inputs[i].type == 'radio' && inputs[i].checked) {return true;}; return false;">
+            onsubmit="return checkRadioSelected(this)">
+
         <input type="hidden" name="pollid" 
                 tal:attributes="value python:'/'.join(model.getPhysicalPath())" 
                 />
@@ -132,7 +148,7 @@
               event.returnValue = false;
               event.cancelBubble = true;
             };
-            a.appendChild(document.createTextNode('bookmark'));
+            a.appendChild(document.createTextNode('zu Favoriten hinzuf\xfcgen'));
             ph.appendChild(a);
           };
           // ]]>
