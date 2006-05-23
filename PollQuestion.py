@@ -40,6 +40,10 @@ class ViewableExternalSource(ExternalSource):
             avoid having ExternalSources.index_html (which returns the props
             form, not a decent public view, perhaps that should be changed some
             time) 
+
+            note that, in addition to the response headers index_html sets 
+            originally, this sets special headers to not have the content
+            cached in browsers
         """
         content = 'content.html'
         override = 'override.html'
@@ -49,7 +53,22 @@ class ViewableExternalSource(ExternalSource):
             renderer = content
         self.REQUEST.RESPONSE.setHeader('Content-Type', 
                                             'text/html;charset=utf-8')
-        self.REQUEST.RESPONSE.setHeader('Cache-Control','max-age=300')
+
+        headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
+                    ('Last-Modified', 
+                        DateTime("GMT").strftime("%a, %d %b %Y %H:%M:%S GMT")),
+                    ('Cache-Control', 'no-cache, must-revalidate'),
+                    ('Cache-Control', 'post-check=0, pre-check=0'),
+                    ('Pragma', 'no-cache'),
+                    ]
+        placed = []
+        for key, value in headers:
+            if key not in placed:
+                REQUEST.RESPONSE.setHeader(key, value)
+                placed.append(key)
+            else:
+                REQUEST.RESPONSE.addHeader(key, value)
+        
         return getattr(self, renderer)(view_method=view_method)
 
 class PollQuestion(VersionedContent, ViewableExternalSource):
