@@ -24,6 +24,22 @@ from Products.SilvaExternalSources.interfaces import IExternalSource
 
 icon = "www/pollquestion.png"
 
+def set_no_cache_headers(REQUEST):
+    headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
+                ('Last-Modified', 
+                    DateTime("GMT").strftime("%a, %d %b %Y %H:%M:%S GMT")),
+                ('Cache-Control', 'no-cache, must-revalidate'),
+                ('Cache-Control', 'post-check=0, pre-check=0'),
+                ('Pragma', 'no-cache'),
+                ]
+    placed = []
+    for key, value in headers:
+        if key not in placed:
+            REQUEST.RESPONSE.setHeader(key, value)
+            placed.append(key)
+        else:
+            REQUEST.RESPONSE.addHeader(key, value)
+    
 class OverwriteNotAllowed(Exception):
     """raised when trying to overwrite answers for a used question"""
 
@@ -54,21 +70,6 @@ class ViewableExternalSource(ExternalSource):
         self.REQUEST.RESPONSE.setHeader('Content-Type', 
                                             'text/html;charset=utf-8')
 
-        headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
-                    ('Last-Modified', 
-                        DateTime("GMT").strftime("%a, %d %b %Y %H:%M:%S GMT")),
-                    ('Cache-Control', 'no-cache, must-revalidate'),
-                    ('Cache-Control', 'post-check=0, pre-check=0'),
-                    ('Pragma', 'no-cache'),
-                    ]
-        placed = []
-        for key, value in headers:
-            if key not in placed:
-                REQUEST.RESPONSE.setHeader(key, value)
-                placed.append(key)
-            else:
-                REQUEST.RESPONSE.addHeader(key, value)
-        
         return getattr(self, renderer)(view_method=view_method)
 
 class PollQuestion(VersionedContent, ViewableExternalSource):
@@ -176,6 +177,13 @@ class PollQuestion(VersionedContent, ViewableExternalSource):
             viewable.set_question_start_datetime(now)
         if self.current_result_start_datetime() is None:
             viewable.set_result_start_datetime(now)
+
+    security.declarePublic('view_version')
+    def view_version(self, *args, **kwargs):
+        """overriding so we can set headers"""
+        set_no_cache_headers(self.REQUEST)
+        return PollQuestion.inheritedAttribute('view_version')(
+                                            self, *args, **kwargs)
 
 InitializeClass(PollQuestion)
 
