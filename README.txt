@@ -3,7 +3,7 @@ See also LICENSE.txt
 
 Meta::
 
-  Valid for:  SilvaPoll 0.3
+  Valid for:  SilvaPoll 0.3.x
   Author:     Guido Wesdorp
   Email:      <guido@infrae.com>
   CVS:        $Revision: 1.10 $
