@@ -13,8 +13,6 @@ except FormValidationError, e:
     return view.tab_edit(message_type="error",
                 message=context.render_form_errors(e))
 
-version.set_title(result['object_title'])
-
 try:
     version.save(result['question'], result['answers'], True)
 except model.get_OverwriteNotAllowed():
