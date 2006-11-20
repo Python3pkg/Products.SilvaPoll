@@ -50,7 +50,7 @@
               <td tal:attributes="class python: repeat['i'].end and 'poll_last' or 'poll_radio'">
                 <input type="radio" name="answer" class="poll"
                         tal:attributes="value python:answers[i];
-                                        checked python: i == 0;
+                                        checked python: i == 0 and 'checked';
                                         id string:answer_${i}" />
               </td>
               <td class="poll_label" tal:attributes="class python:repeat['i'].end and 'poll_last' or 'poll_label'">
