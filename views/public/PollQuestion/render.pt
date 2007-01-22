@@ -103,19 +103,18 @@
       </tal:block>
     </tal:block>
     <tal:block condition="python:(not has_voted and not display_question) and not display_results">
+      <br />
       <p class="p"
          i18n:translate="">
-        <br />
-        Diese Umfrage steht ab 
+        This poll is available from 
         <tal:block define="sdt model/question_start_datetime" 
                     content="python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '-'"
-                    i18n:name="startdatetime" /> 
-        zur Verf&#xfc;gung.
+                    i18n:name="startdatetime" />.
       </p>
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
       <h3 class="poll_question"
-          i18n:translate="">Vielen Dank f&#xfc;r Ihre Teilnahme!</h3>
+          i18n:translate="">Many thanks for your partipation!</h3>
       <p i18n:translate=""
          tal:define="sdt model/result_start_datetime;
                       edt model/result_end_datetime;
@@ -123,19 +122,20 @@
                       fedt python: edt and '%s.%s.%s' % (edt.day(), edt.month(), edt.year()) or '';
                       "
           class="p">
-        Die Ergebnisse werden
-        <tal:block condition="edt"
-          i18n:name="fromuntil">
-          von
-          <tal:block replace="fsdt" /> 
-          bis <tal:block replace="fedt" />
-        </tal:block> 
-        <tal:block condition="not:edt"
-          i18n:name="beginning">
-          ab
-          <tal:block replace="fsdt" /> 
-        </tal:block>
-        unter dieser Seite abrufbar sein:
+        The results will be available on this site
+        <span i18n:name="from-until-or-from">
+          <span tal:condition="edt"
+            i18n:translate="">
+              from
+              <span tal:content="fsdt" i18n:name="startdate" /> 
+              until <span tal:content="fedt" i18n:name="enddate" />
+          </span> 
+          <span tal:condition="not:edt"
+            i18n:translate="">
+              from
+              <span tal:content="fsdt" i18n:name="startdate"/> 
+          </span>.
+        </span>
       </p>
       <p tal:define="url python:model.get_silva_object().absolute_url()" 
           class="p">
@@ -166,11 +166,11 @@
     </tal:block>
   </tal:block>
   <tal:block condition="display_too_late">
+    <br />
     <p class="p"
       i18n:translate="">
-      <br />
-      Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider
-      nicht mehr zur Verf&#xfc;gung.
+      Thank you for your interest, unfortunately the results of this poll are
+      no longer available."
     </p>
   </tal:block>
 </tal:block>
