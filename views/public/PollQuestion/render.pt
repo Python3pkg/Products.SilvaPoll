@@ -92,9 +92,16 @@
                   </div>
                 </div>
                 <p class="p">
-                  <b tal:content="string:${percentage} %" /><br />
+                <b tal:content="string:${percentage} %" /><br />
                   <tal:block replace="python:votes[i]" /> 
-                  <tal:block replace="python:int(votes[i]) == 1 and 'Stimme' or 'Stimmen'" />
+                  <tal:condition condition="python:int(votes[i]) == 1"
+                    i18n:translate="">
+                      Vote
+                  </tal:condition>
+                  <tal:condition condition="python:int(votes[i]) == 0 or int(votes[i]) == 0"
+                    i18n:translate="">
+                      Votes
+                  </tal:condition>
                 </p>
               </td>
             </tr>
