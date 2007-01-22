@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SilvaPoll trunkPOT-Creation-Date: Mon Jan 22 15:26:49 "
 "2007\n"
-"POT-Creation-Date: Mon Jan 22 15:40:22 2007\n"
+"POT-Creation-Date: Mon Jan 22 16:38:29 2007\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Silva Translators <eric+i18n@infrae.com>\n"
@@ -422,35 +422,42 @@ msgstr ""
 msgid "Dates set."
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:110
+#: /views/public/PollQuestion/render.pt:101
+msgid "Votes"
+msgstr "Stimmen"
+
+#: /views/public/PollQuestion/render.pt:117
 msgid "This poll is available from ${startdatetime}."
 msgstr "Diese Umfrage steht ab ${startdatetime} zur Verf&#xfc;gung."
 
-#: /views/public/PollQuestion/render.pt:116
+#: /views/public/PollQuestion/render.pt:123
 msgid "Many thanks for your partipation!"
 msgstr "Vielen Dank f&#xfc;r Ihre Teilnahme!"
 
-#: /views/public/PollQuestion/render.pt:126
+#: /views/public/PollQuestion/render.pt:133
 msgid "The results will be available on this site ${from-until-or-from}"
 msgstr ""
-"Die Ergebnisse werden ${from-until-or-from} unter dieser Seite abrufbar "
-"sein:"
+"Die Ergebnisse werden ${from-until-or-from} unter dieser Seite abrufbar sein:"
 
-#: /views/public/PollQuestion/render.pt:131
+#: /views/public/PollQuestion/render.pt:138
 msgid "from ${startdate} until ${enddate}"
 msgstr "von ${startdate} bis ${enddate}"
 
-#: /views/public/PollQuestion/render.pt:136
+#: /views/public/PollQuestion/render.pt:143
 msgid "from ${startdate}"
 msgstr "ab ${startdate}"
 
-#: /views/public/PollQuestion/render.pt:170
+#: /views/public/PollQuestion/render.pt:177
 msgid ""
 "Thank you for your interest, unfortunately the results of this poll are no "
 "longer available.\""
 msgstr ""
 "Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider "
 "nicht mehr zur Verf&#xfc;gung."
+
+#: /views/public/PollQuestion/render.pt:97
+msgid "Vote"
+msgstr "Stimme"
 
 #: /www/externalSourceForm.form:20
 msgid ""
