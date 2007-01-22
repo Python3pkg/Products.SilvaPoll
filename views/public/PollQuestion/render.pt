@@ -5,7 +5,9 @@
                                             (request.get('pollid') == '/'.join(model.getPhysicalPath()) and model.manage_vote(request)));
                     display_question python:edit_mode or model.display_question();
                     display_results python:edit_mode or model.display_results();
-                    display_too_late python: model.display_too_late()">
+                    display_too_late python: model.display_too_late()"
+                    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+                    i18n:domain="silva_poll">
   <!-- note that nothing is displayed if the user has not voted and neither the
         question not the results should be displayed -->
   <h2 tal:content="request/model/get_title_or_id" class="heading" />
@@ -101,29 +103,35 @@
       </tal:block>
     </tal:block>
     <tal:block condition="python:(not has_voted and not display_question) and not display_results">
-      <p class="p">
+      <p class="p"
+         i18n:translate="">
         <br />
         Diese Umfrage steht ab 
         <tal:block define="sdt model/question_start_datetime" 
-                    content="python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '-'" /> 
+                    content="python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '-'"
+                    i18n:name="startdatetime" /> 
         zur Verf&#xfc;gung.
       </p>
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
-      <h3 class="poll_question">Vielen Dank f&#xfc;r Ihre Teilnahme!</h3>
-      <p tal:define="sdt model/result_start_datetime;
+      <h3 class="poll_question"
+          i18n:translate="">Vielen Dank f&#xfc;r Ihre Teilnahme!</h3>
+      <p i18n:translate=""
+         tal:define="sdt model/result_start_datetime;
                       edt model/result_end_datetime;
                       fsdt python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '';
                       fedt python: edt and '%s.%s.%s' % (edt.day(), edt.month(), edt.year()) or '';
                       "
           class="p">
         Die Ergebnisse werden
-        <tal:block condition="edt">
+        <tal:block condition="edt"
+          i18n:name="fromuntil">
           von
           <tal:block replace="fsdt" /> 
           bis <tal:block replace="fedt" />
         </tal:block> 
-        <tal:block condition="not:edt">
+        <tal:block condition="not:edt"
+          i18n:name="beginning">
           ab
           <tal:block replace="fsdt" /> 
         </tal:block>
@@ -158,7 +166,8 @@
     </tal:block>
   </tal:block>
   <tal:block condition="display_too_late">
-    <p class="p">
+    <p class="p"
+      i18n:translate="">
       <br />
       Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider
       nicht mehr zur Verf&#xfc;gung.
