@@ -1,11 +1,23 @@
+/*
+**  Instructions to set caching headers. Inside comments area to play nicer with CSS editors.
+** <dtml-let root_url="get_root_url()" last_modified="_.DateTime()-14" expires="_.DateTime()+7">
+** <dtml-call "REQUEST.RESPONSE.setHeader( 'Content-Type', 'text/css' )">
+** <dtml-call "REQUEST.RESPONSE.setHeader( 'Last-Modified', last_modified.toZone('GMT').rfc822() )">
+** <dtml-call "REQUEST.RESPONSE.setHeader( 'Cache-Control', 'max-age=36000, must-revalidate' )">
+** <dtml-call "REQUEST.RESPONSE.setHeader( 'Expires', expires.toZone('GMT').rfc822() )" >
+*/
+
 input.poll {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 input.poll_submit {
-  margin: 30px 0px 0px 0px;
-  padding: 0px;
+  margin:30px 0 0 0;
+  padding:0;
+  background:url(<dtml-var root_url>/images/send.gif) no-repeat center left;
+  border:none;
+  width:8em;
 }
 
 h3.poll_question {
@@ -28,17 +40,17 @@ h3.poll_results {
   font-weight: bold;
 }
 
-img.poll_head {
-  margin: 0px;
-  padding: 0px;
-  vertical-align: bottom;
+div.poll_head {
+  background:url(<dtml-var root_url>/images/poll_head.gif) no-repeat top left;
+  width:10em;
+  height:2em;
 }
 
 table.poll {
   width: 368px;
   border-collapse: collapse;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 td.poll_head {
@@ -46,9 +58,9 @@ td.poll_head {
   vertical-align: bottom;
   border-style: solid;
   border-color: #B5B5B5;
-  border-width: 0px 0px 1px 0px;
-  margin: 10px 0px 0px 0px;
-  padding: 18px 0px 0px 0px;
+  border-width: 0 0 1px 0;
+  margin: 10px 0 0 0;
+  padding: 18px 0 0 0;
 }
 
 td.poll_radio {
@@ -57,9 +69,9 @@ td.poll_radio {
   vertical-align: middle;
   border-style: solid;
   border-color: #B5B5B5;
-  border-width: 0px 0px 1px 0px;
-  margin: 0px;
-  padding: 3px 0px 3px 0px;
+  border-width: 0 0 1px 0;
+  margin: 0;
+  padding: 3px 0 3px 0;
 }
 
 td.poll_label {
@@ -68,17 +80,17 @@ td.poll_label {
   vertical-align: middle;
   border-style: solid;
   border-color: #B5B5B5;
-  border-width: 0px 0px 1px 0px;
-  margin: 0px;
-  padding: 3px 0px 3px 0px;
+  border-width: 0 0 1px 0;
+  margin: 0;
+  padding: 3px 0 3px 0;
 }
 
 td.poll_last {
   text-align: left;
   vertical-align: middle;
-  border: 0px none #B5B5B5;
-  margin: 0px;
-  padding: 3px 0px 3px 0px;
+  border: 0 none #B5B5B5;
+  margin: 0;
+  padding: 3px 0 3px 0;
 }
 
 td.poll_result_label {
@@ -86,9 +98,9 @@ td.poll_result_label {
   vertical-align: top;
   border-style: solid;
   border-color: #B5B5B5;
-  border-width: 0px 0px 1px 0px;
-  margin: 0px;
-  padding: 3px 15px 5px 0px;
+  border-width: 0 0 1px 0;
+  margin: 0;
+  padding: 3px 15px 5px 0;
 }
 
 td.poll_result {
@@ -97,33 +109,33 @@ td.poll_result {
   vertical-align: top;
   border-style: solid;
   border-color: #B5B5B5;
-  border-width: 0px 0px 1px 0px;
-  margin: 0px;
-  padding: 5px 0px 5px 0px;
+  border-width: 0 0 1px 0;
+  margin: 0;
+  padding: 5px 0 5px 0;
 }
 
 td.poll_result_label_last {
   text-align: left;
   vertical-align: top;
-  border: 0px none #B5B5B5;
-  margin: 0px;
-  padding: 3px 15px 5px 0px;
+  border: 0 none #B5B5B5;
+  margin: 0;
+  padding: 3px 15px 5px 0;
 }
 
 td.poll_result_result_last {
   text-align: right;
   vertical-align: top;
-  border: 0px none #B5B5B5;
-  margin: 0px;
-  padding: 5px 0px 5px 0px;
+  border: 0 none #B5B5B5;
+  margin: 0;
+  padding: 5px 0 5px 0;
 }
 
 div.poll_bar_outer {
   border: 1px solid #B5B5B5;
   height: 10px;
   overflow: visible;
-  padding: 0px;
-  margin: 0px 0px 3px 0px;
+  padding: 0;
+  margin: 0 0 3px 0;
 }
 
 div.poll_bar_inner {
@@ -131,15 +143,12 @@ div.poll_bar_inner {
   height: 10px;
   overflow: hidden;
   text-align: left;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
-img.poll_bar {
-  height: 10px;
-  text-align: left;
-  vertical-align: top;
-  margin: 0px;
-  padding: 0px;
+div.poll_bar {
+  background-color:#CF022A;
+  height:2em;
 }
-
+/*</dtml-let>*/
