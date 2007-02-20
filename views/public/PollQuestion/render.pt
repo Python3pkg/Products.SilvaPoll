@@ -14,7 +14,8 @@
   <table class="poll">
     <tbody>
       <tr>
-        <td class="poll_head"><div class="poll_head_image" />
+        <td class="poll_head">
+            <div class="poll_head_image" />
         </td>
       </tr>
     </tbody>
