@@ -7,19 +7,6 @@
 ** <dtml-call "REQUEST.RESPONSE.setHeader( 'Expires', expires.toZone('GMT').rfc822() )" >
 */
 
-input.poll {
-  margin: 0;
-  padding: 0;
-}
-
-input.poll_submit {
-  margin:30px 0 0 0;
-  padding:0;
-  background:url(<dtml-var root_url>/images/send.gif) no-repeat center left;
-  border:none;
-  width:8em;
-}
-
 h3.poll_question {
   font-size: 12px;
   font-family: Arial, Sans-Serif;
@@ -40,12 +27,6 @@ h3.poll_results {
   font-weight: bold;
 }
 
-div.poll_head {
-  background:url(<dtml-var root_url>/images/poll_head.gif) no-repeat top left;
-  width:10em;
-  height:2em;
-}
-
 table.poll {
   width: 368px;
   border-collapse: collapse;
@@ -61,6 +42,12 @@ td.poll_head {
   border-width: 0 0 1px 0;
   margin: 10px 0 0 0;
   padding: 18px 0 0 0;
+}
+
+div.poll_head_image {
+  background:url(<dtml-var root_url>/images/poll_head.gif) no-repeat top left;
+  width:10em;
+  height:2em;
 }
 
 td.poll_radio {
@@ -150,5 +137,18 @@ div.poll_bar_inner {
 div.poll_bar {
   background-color:#CF022A;
   height:2em;
+}
+
+input.poll {
+  margin: 0;
+  padding: 0;
+}
+
+input.poll_submit {
+  margin:30px 0 0 0;
+  padding:0;
+  background:url(<dtml-var root_url>/images/send.gif) no-repeat center left;
+  border:none;
+  width:8em;
 }
 /*</dtml-let>*/
