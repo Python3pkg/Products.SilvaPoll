@@ -1,12 +1,3 @@
-/*
-**  Instructions to set caching headers. Inside comments area to play nicer with CSS editors.
-** <dtml-let root_url="get_root_url()" last_modified="_.DateTime()-14" expires="_.DateTime()+7">
-** <dtml-call "REQUEST.RESPONSE.setHeader( 'Content-Type', 'text/css' )">
-** <dtml-call "REQUEST.RESPONSE.setHeader( 'Last-Modified', last_modified.toZone('GMT').rfc822() )">
-** <dtml-call "REQUEST.RESPONSE.setHeader( 'Cache-Control', 'max-age=36000, must-revalidate' )">
-** <dtml-call "REQUEST.RESPONSE.setHeader( 'Expires', expires.toZone('GMT').rfc822() )" >
-*/
-
 h3.poll_question {
   font-size: 12px;
   font-family: Arial, Sans-Serif;
@@ -45,7 +36,7 @@ td.poll_head {
 }
 
 div.poll_head_image {
-  background:url(<dtml-var root_url>/images/poll_head.gif) no-repeat top left;
+  background:url(../images/poll_head.gif) no-repeat top left;
   width:10em;
   height:1.1em;
 }
@@ -147,7 +138,7 @@ input.poll {
 input.poll_submit {
   margin:0;
   padding:0 0 0 2em;
-  background:url(<dtml-var root_url>/images/send.gif) no-repeat top left;
+  background:url(../images/poll_send.gif) no-repeat top left;
   border:none;
   color:#656565;
   font-size: 11px;
@@ -155,4 +146,3 @@ input.poll_submit {
   font-family: Arial, Sans-Serif;
 }
 
-/*</dtml-let>*/
