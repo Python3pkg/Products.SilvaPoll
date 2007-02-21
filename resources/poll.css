@@ -135,7 +135,7 @@ div.poll_bar_inner {
 }
 
 div.poll_bar {
-  background-color:#CF022A;
+  background-color:#979797;
   height:2em;
 }
 
@@ -150,5 +150,6 @@ input.poll_submit {
   background:url(<dtml-var root_url>/images/send.gif) no-repeat center left;
   border:none;
   width:8em;
+  text-transform:capitalize;
 }
 /*</dtml-let>*/
