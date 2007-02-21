@@ -47,7 +47,7 @@ td.poll_head {
 div.poll_head_image {
   background:url(<dtml-var root_url>/images/poll_head.gif) no-repeat top left;
   width:10em;
-  height:2em;
+  height:1.1em;
 }
 
 td.poll_radio {
@@ -75,9 +75,9 @@ td.poll_label {
 td.poll_last {
   text-align: left;
   vertical-align: middle;
-  border: 0 none #B5B5B5;
+  border: 0px none #B5B5B5;
   margin: 0;
-  padding: 3px 0 3px 0;
+  padding: 3px 0px 30px 0px;
 }
 
 td.poll_result_label {
@@ -145,11 +145,10 @@ input.poll {
 }
 
 input.poll_submit {
-  margin:30px 0 0 0;
-  padding:0;
+  margin:0;
+  padding:0 0 0 2em;
   background:url(<dtml-var root_url>/images/send.gif) no-repeat top left;
   border:none;
-  width:8em;
   color:#656565;
   font-size: 11px;
   font-weight: bold;

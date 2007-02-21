@@ -62,7 +62,7 @@
             </tr>
           </tal:block>
         </table>
-        <input type="submit"
+        <input type="image"
             value="Submit"
             class="poll_submit"
             i18n:attributes="value" />
