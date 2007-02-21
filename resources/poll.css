@@ -98,7 +98,7 @@ td.poll_result {
   border-color: #B5B5B5;
   border-width: 0 0 1px 0;
   margin: 0;
-  padding: 2em 0 2em 0;
+  padding: 0.5em 0 1.5em 0;
 }
 
 td.poll_result_label_last {
@@ -150,6 +150,10 @@ input.poll_submit {
   background:url(<dtml-var root_url>/images/send.gif) no-repeat center left;
   border:none;
   width:8em;
+  text-transform:capitalize;
+}
+
+input.poll_submit_text {
   text-transform:capitalize;
 }
 /*</dtml-let>*/
