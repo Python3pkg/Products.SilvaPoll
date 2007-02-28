@@ -68,7 +68,7 @@
                           total python: sum(votes) * 1.0;
                           ">
       <h3 tal:content="model/get_question" class="poll_results" />
-             <div tal:repeat="i python:xrange(len(answers))" class="poll_answers">
+             <div tal:repeat="i python:xrange(len(answers))" class="poll_results">
               <div tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
                 <p class="p" tal:content="python: answers[i]" />
               </div>
