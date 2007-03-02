@@ -79,7 +79,7 @@
                       <div class="poll_bar"
                           tal:attributes="style string:width: ${percentage}%;"></div>
                     </div>
-                  <p class="p"><b tal:content="string:${percentage} %" />(
+                  <p class="p"><b tal:content="string:${percentage} %" /> (
                     <tal:block replace="python:votes[i]" />
                     <tal:condition condition="python:int(votes[i]) == 1"
                       i18n:translate="">
