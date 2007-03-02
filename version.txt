@@ -1,1 +1,1 @@
-SilvaPoll 0.3.3-generic unreleased
+SilvaPoll-generic-0.3.3 unreleased
