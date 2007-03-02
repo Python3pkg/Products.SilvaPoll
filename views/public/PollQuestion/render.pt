@@ -53,7 +53,7 @@
               </span>
           </div>
 
-        <input type="image"
+        <input type="submit"
             value="Submit"
             class="poll_submit"
             i18n:attributes="value" />

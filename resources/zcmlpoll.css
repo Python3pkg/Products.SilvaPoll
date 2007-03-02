@@ -95,7 +95,5 @@ input.poll_submit {
   color:#979797;
   display:block;
   margin-top:2em;
-  padding:0 2em;
-  background:url(../++resource++images/send.gif) no-repeat center left;
   border:none;
 }
