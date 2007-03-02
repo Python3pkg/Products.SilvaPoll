@@ -1,12 +1,21 @@
 HISTORY
 =======
-  * 0.3.3-genric unreleased:
+  * 0.3.3-generic unreleased:
+
+    Changes:
+      - votes are now on the same line between ()'s
 
     Features:
+
       - tableless
-      
+
     Improvements:
+
       - code clean up
+
+      - better compliancy
+
+      - more generic
 
   * 0.3.1 from silva poll:
 
@@ -24,7 +33,7 @@ HISTORY
 
     Bugs fixed:
 
-      - Error page was displayed when trying to add Poll Question with 
+      - Error page was displayed when trying to add Poll Question with
         duplicate id.
 
       - Fixed problem that made that the publically viewable version was
@@ -35,7 +44,7 @@ HISTORY
 
     Features added:
 
-      - There's now a restriction on the amount of answers one can save: 
+      - There's now a restriction on the amount of answers one can save:
         the maximum allowed number of answers is 20.
 
   * 0.2:
