@@ -36,7 +36,7 @@
           <extra>string: id="field_${field/id}"</extra>
         </tales>
       </field>
-      
+
       <field><id>object_title</id> <type>TextAreaField</type>
         <values>
           <alternate_name></alternate_name>
@@ -95,7 +95,7 @@
           <css_class></css_class>
           <default></default>
           <title>answers</title>
-          <description>enter individual answers, seperated by double newlines</description>
+          <description>enter individual answers, seperated by a blank line</description>
           <extra></extra>
           <unicode type="int">1</unicode>
         </values>

@@ -9,13 +9,13 @@ Copyright (c) 2007 Infrae. All rights reserved.
 See also LICENSE.txt
 
 Valid for:  SilvaPoll 0.3.x-generic
-Author:     Guido Wesdorp, Wim Boucquaert, Jasper Op De Coul
+Authors:     Guido Wesdorp, Wim Boucquaert, Jasper Op De Coul
 Email:      guido@infrae.com, wim@infrae.com, jasper@infrae.com
 
 Prerequisities
 --------------
 
-SilvaPoll 0.3 requires a working Silva 1.5.x installation, with 
+SilvaPoll 0.3 requires a working Silva 1.5.x installation, with
 SilvaExternalSources installed properly. If you want to use the MySQL service
 for storing poll data, a recent MySQL database and the zMySQLDA product should
 be installed, too.
@@ -35,16 +35,16 @@ Installing a service for data
 -----------------------------
 
 SilvaPoll comes with several different services that manage poll data: in the
-current version there's one to add the data to the ZODB (not very optimal, 
+current version there's one to add the data to the ZODB (not very optimal,
 since it creates a new transaction, and theferore database bloat, on every
-vote) and one that uses a MySQL database. 
+vote) and one that uses a MySQL database.
 
 To install the ZODB version, go to the Silva root (ZMI) and choose 'Silva
 Service Polls' from the 'add' select menu. This will take you to a screen where
 an id and title can be entered for the service, leave the id as is, and
 optionally fill in the title.
 
-Installing the MySQL service requires similar steps, but also requires a 
+Installing the MySQL service requires similar steps, but also requires a
 zMySQLDA database adapter to be installed, with the id 'service_polls_mysqldb'.
 If this service has been placed, add a 'Silva Service Polls MySQL' and also
 make sure to not change the id (a ZODB and MySQL service can not co-exist).

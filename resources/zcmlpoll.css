@@ -50,7 +50,7 @@ span.poll_label, span.poll_label_last {
 
 div.poll_result_label, div.poll_result_label_last {
   float: left;
-  width: 250px;
+  width: 230px;
   height: 40px;
   text-align: left;
   vertical-align: top;
@@ -60,7 +60,7 @@ div.poll_result_label, div.poll_result_label_last {
 
 div.poll_result, div.poll_result_result_last {
   float: right;
-  width: 100px;
+  width: 120px;
   text-align: right;
   vertical-align: top;
   margin: 0;
