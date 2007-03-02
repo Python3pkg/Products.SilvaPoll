@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: Mon Jan 22 16:51:40 2007\n"
+"POT-Creation-Date: Fri Mar  2 10:51:45 2007\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Silva i18n team <walco@infrae.com>\n"
@@ -306,11 +306,11 @@ msgid "The message may be viewed by local users."
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:611
-msgid "reject approval request"
+msgid "access key: alt-j"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:611
-msgid "access key: alt-j"
+msgid "reject approval request"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:62
@@ -406,36 +406,40 @@ msgstr ""
 msgid "Dates set."
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:101
-msgid "Votes"
-msgstr ""
-
-#: /views/public/PollQuestion/render.pt:117
+#: /views/public/PollQuestion/render.pt:103
 msgid "This poll is available from ${startdatetime}."
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:123
+#: /views/public/PollQuestion/render.pt:109
 msgid "Many thanks for your partipation!"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:133
+#: /views/public/PollQuestion/render.pt:119
 msgid "The results will be available on this site ${from-until-or-from}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:138
+#: /views/public/PollQuestion/render.pt:124
 msgid "from ${startdate} until ${enddate}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:143
+#: /views/public/PollQuestion/render.pt:129
 msgid "from ${startdate}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:177
+#: /views/public/PollQuestion/render.pt:163
 msgid "Thank you for your interest, unfortunately the results of this poll are no longer available.\""
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:97
+#: /views/public/PollQuestion/render.pt:56
+msgid "Submit"
+msgstr ""
+
+#: /views/public/PollQuestion/render.pt:84
 msgid "Vote"
+msgstr ""
+
+#: /views/public/PollQuestion/render.pt:88
+msgid "Votes"
 msgstr ""
 
 #: /www/externalSourceForm.form:20
