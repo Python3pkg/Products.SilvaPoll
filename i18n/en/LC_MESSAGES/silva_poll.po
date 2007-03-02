@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: SilvaPoll trunkPOT-Creation-Date: Mon Jan 22 15:26:49 2007\n"
 "POT-Creation-Date: Fri Mar  2 10:51:45 2007\n"
-"PO-Revision-Date: 2007-03-02 11:45+0100\n"
+"PO-Revision-Date: 2007-03-02 12:08+0100\n"
 "Last-Translator: wim <wim@infrae.com>\n"
-"Language-Team: Silva Translators <eric+i18n@infrae.com>\n"
+"Language-Team: Silva i18n team <walco@infrae.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generated-By: zope/app/translation_files/extract.py\n"
+"Generated-By: zope/app/translation_files/extract.py\n"
+"Project-Id-Version: \n"
 
 #: /views/add/PollQuestion/add_submit.py:33
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:30
@@ -409,27 +409,27 @@ msgstr ""
 
 #: /views/public/PollQuestion/render.pt:103
 msgid "This poll is available from ${startdatetime}."
-msgstr "Diese Umfrage steht ab ${startdatetime} zur Verf&#xfc;gung."
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:109
 msgid "Many thanks for your partipation!"
-msgstr "Vielen Dank f&#xfc;r Ihre Teilnahme!"
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:119
 msgid "The results will be available on this site ${from-until-or-from}"
-msgstr "Die Ergebnisse werden ${from-until-or-from} unter dieser Seite abrufbar sein:"
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:124
 msgid "from ${startdate} until ${enddate}"
-msgstr "von ${startdate} bis ${enddate}"
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:129
 msgid "from ${startdate}"
-msgstr "ab ${startdate}"
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:163
 msgid "Thank you for your interest, unfortunately the results of this poll are no longer available.\""
-msgstr "Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider nicht mehr zur Verf&#xfc;gung."
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:56
 msgid "Submit"
@@ -437,11 +437,11 @@ msgstr ""
 
 #: /views/public/PollQuestion/render.pt:84
 msgid "Vote"
-msgstr "Stimme"
+msgstr ""
 
 #: /views/public/PollQuestion/render.pt:88
 msgid "Votes"
-msgstr "Stimmen"
+msgstr ""
 
 #: /www/externalSourceForm.form:20
 msgid "Set to 'inline' to display the question and results within the page, 'link' to display a link to the PollQuestion public views."
