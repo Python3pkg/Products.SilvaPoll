@@ -1,7 +1,17 @@
 HISTORY
 =======
+ * 0.3.3:
 
-  * 0.3.1 (unreleased):
+    Features:
+
+      - turn of cookies option
+
+    Improvements:
+
+      - updated documentation
+
+
+  * 0.3.1:
 
     Bugs fixed:
 

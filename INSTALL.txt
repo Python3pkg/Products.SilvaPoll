@@ -11,7 +11,6 @@ See also LICENSE.txt
 Valid for:  SilvaPoll 0.3.x
 Author:     Guido Wesdorp
 Email:      guido@infrae.com
-CVS:        $Revision: 1.1 $
 
 Prerequisities
 --------------
