@@ -21,10 +21,14 @@ class ServicePolls(SimpleItem):
         self.id = id
         self.title = title
         self.db = DB(self)
+        self.store_cookies = True
 
     def create_question(self, question, answers, votes):
         return self.db.create(question, answers, votes)
 
+    def set_store_cookies(self, store_cookies):
+        self.store_cookies = store_cookies
+        
     def get_question(self, qid):
         return self.db.get(qid).question
 
@@ -40,6 +44,9 @@ class ServicePolls(SimpleItem):
     def vote(self, qid, index):
         self.db.vote(qid, index)
 
+    def store_cookies(self):
+        return self.store_cookies
+    
 InitializeClass(ServicePolls)
 
 manage_addServicePollsForm = PageTemplateFile('www/servicePollsAdd', globals(),
@@ -48,5 +55,10 @@ manage_addServicePollsForm = PageTemplateFile('www/servicePollsAdd', globals(),
 def manage_addServicePolls(self, id, title='', REQUEST=None):
     """add service to the ZODB"""
     id = self._setObject(id, ServicePolls(id, unicode(title, 'UTF-8')))
+    store_cookies = False
+    if REQUEST.has_key('store_cookies'):
+        store_cookies = True
+    service = getattr(self, id)
+    service.set_store_cookies(store_cookies)
     add_and_edit(self, id, REQUEST)
     return ''
