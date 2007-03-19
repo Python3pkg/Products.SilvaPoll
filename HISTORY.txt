@@ -1,6 +1,6 @@
 HISTORY
 =======
-  * 0.3.3-generic unreleased:
+  * 0.3.3-generic:
 
     Changes:
       - votes are now on the same line between ()'s
@@ -9,6 +9,8 @@ HISTORY
 
       - tableless
 
+      - turn of cookies option
+
     Improvements:
 
       - code clean up
@@ -16,6 +18,8 @@ HISTORY
       - better compliancy
 
       - more generic
+
+      - updated documentation
 
   * 0.3.1 from silva poll:
 

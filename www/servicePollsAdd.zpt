@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2002-2005 Infrae. All rights reserved.
+Copyright (c) 2002-2007 Infrae. All rights reserved.
 See also LICENSE.txt
 Version of this file: $Revision: 1.1 $
 -->
@@ -37,6 +37,17 @@ Add Silva Polls Service
     <input type="text" name="title" size="40" />
     </td>
   </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">
+        Store cookies
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="checkbox" checked="checked" name="store_cookies" />
+    </td>
+  </tr>
+
   <tr>
     <td align="left" valign="top" colspan="2">
     <div class="form-element">
