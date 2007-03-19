@@ -263,8 +263,10 @@ class PollQuestionVersion(Version):
         answer = unicode(REQUEST['answer'], 'UTF-8')
         answers = self.get_answers()
         id = answers.index(answer)
-        self.service_polls.vote(self.qid, id)
-        REQUEST.RESPONSE.setCookie('voted_cookie_%s' % 
+        service = self.service_polls
+        service.vote(self.qid, id)
+        if service.store_cookies():
+            REQUEST.RESPONSE.setCookie('voted_cookie_%s' % 
                                         self.get_silva_object().absolute_url(), 
                                     '1', 
                                     expires='Wed, 19 Feb 2020 14:28:00 GMT',
@@ -288,6 +290,8 @@ class PollQuestionVersion(Version):
     security.declareProtected(SilvaPermissions.AccessContentsInformation,
                               'has_voted')
     def has_voted(self, REQUEST=None):
+        if not self.service_polls.store_cookies():
+            return False
         if REQUEST is None:
             REQUEST = self.REQUEST
         return REQUEST.has_key('voted_cookie_%s' % 
