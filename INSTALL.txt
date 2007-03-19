@@ -49,6 +49,9 @@ zMySQLDA database adapter to be installed, with the id 'service_polls_mysqldb'.
 If this service has been placed, add a 'Silva Service Polls MySQL' and also
 make sure to not change the id (a ZODB and MySQL service can not co-exist).
 
+By default the option store cookie is turned on. This option limits voting by setting a cookie.
+If you don't want voting limits you should uncheck this option.
+
 Optional requirements
 ---------------------
 
