@@ -36,7 +36,7 @@
           <extra>string: id="field_${field/id}"</extra>
         </tales>
       </field>
-      
+
       <field><id>object_title</id> <type>TextAreaField</type>
         <values>
           <alternate_name></alternate_name>
