@@ -199,7 +199,7 @@ class PollQuestionVersion(Version):
     qid = None
 
     def __init__(self, id):
-        PollQuestionVersion.inheritedAttribute('__init__')(self, id, '')
+        PollQuestionVersion.inheritedAttribute('__init__')(self, id)
         self.qid = None
         self._question_start_datetime = None
         self._question_end_datetime = None
