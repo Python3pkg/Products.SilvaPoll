@@ -21,13 +21,13 @@ class ServicePolls(SimpleItem):
         self.id = id
         self.title = title
         self.db = DB(self)
-        self.store_cookies = True
+        self._store_cookies = True
 
     def create_question(self, question, answers, votes):
         return self.db.create(question, answers, votes)
 
     def set_store_cookies(self, store_cookies):
-        self.store_cookies = store_cookies
+        self._store_cookies = store_cookies
         
     def get_question(self, qid):
         return self.db.get(qid).question
@@ -46,9 +46,9 @@ class ServicePolls(SimpleItem):
 
     def store_cookies(self):
         if not hasattr(self, 'store_cookies'):
-            self.store_cookies = True
+            self._store_cookies = True
             return True
-        return self.store_cookies
+        return self._store_cookies
     
 InitializeClass(ServicePolls)
 
