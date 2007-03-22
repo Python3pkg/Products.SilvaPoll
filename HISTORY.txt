@@ -1,6 +1,14 @@
 HISTORY
 =======
- * 0.3.3:
+  * 0.3.4:
+
+    Features:
+
+      - No answers selected when starting the Silva Poll
+
+      - Message when no answer is selected
+
+  * 0.3.3:
 
     Features:
 
