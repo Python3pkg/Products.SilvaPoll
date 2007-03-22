@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: SilvaPoll trunkPOT-Creation-Date: Mon Jan 22 15:26:49 2007\n"
-"POT-Creation-Date: Fri Mar  2 10:51:45 2007\n"
+"Project-Id-Version: SilvaPoll trunkPOT-Creation-Date: Mon Jan 22 15:26:49 "
+"2007\n"
+"POT-Creation-Date: Thu Mar 22 15:58:22 2007\n"
 "PO-Revision-Date: 2007-03-02 11:45+0100\n"
 "Last-Translator: wim <wim@infrae.com>\n"
 "Language-Team: Silva Translators <eric+i18n@infrae.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generated-By: zope/app/translation_files/extract.py\n"
 
 #: /views/add/PollQuestion/add_submit.py:33
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:30
@@ -28,11 +28,17 @@ msgid "id"
 msgstr ""
 
 #: /views/add/PollQuestion/form.form:31
-msgid "No spaces or special characters besides &#8216;_&#8217; or &#8216;-&#8217; or &#8216;.&#8217;"
+msgid ""
+"No spaces or special characters besides &#8216;_&#8217; or &#8216;-&#8217; "
+"or &#8216;.&#8217;"
 msgstr ""
 
 #: /views/add/PollQuestion/form.form:53
 msgid "object_title"
+msgstr ""
+
+#: /views/add/PollQuestion/form.form:98
+msgid "enter individual answers, seperated by a blank line"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:109
@@ -70,7 +76,6 @@ msgid "answers"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/form.form:55
-#: /views/add/PollQuestion/form.form:98
 msgid "enter individual answers, seperated by double newlines"
 msgstr ""
 
@@ -95,7 +100,10 @@ msgid "publish"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:22
-msgid "overwriting values not allowed, either you're trying to change the number of answers (not allowed) or you're trying to change answers when people have already voted"
+msgid ""
+"overwriting values not allowed, either you're trying to change the number of "
+"answers (not allowed) or you're trying to change answers when people have "
+"already voted"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:34
@@ -147,7 +155,9 @@ msgid "${author_id} sent a message on ${some_date} ${with_comments}"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:182
-msgid "A previous request for approval has been rejected / withdrawn by ${requester} on ${some_date}. The last message regarding this issue is:"
+msgid ""
+"A previous request for approval has been rejected / withdrawn by "
+"${requester} on ${some_date}. The last message regarding this issue is:"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:205
@@ -170,7 +180,9 @@ msgid "notes"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:226
-msgid "This message will remain visible in the status screen for other authors and editors."
+msgid ""
+"This message will remain visible in the status screen for other authors and "
+"editors."
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:319
@@ -353,7 +365,10 @@ msgid "revert to previous version"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:692
-msgid "The current editable version can be replaced with the previous (published) version. This can not be undone afterwards and will discard all changes made to the current version."
+msgid ""
+"The current editable version can be replaced with the previous (published) "
+"version. This can not be undone afterwards and will discard all changes made "
+"to the current version."
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:700
@@ -371,7 +386,9 @@ msgid "If this content's question should expire, set the time."
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:731
-msgid "If necessary, the published version of this content can be manually closed (taken offline). It will also be removed from the public index."
+msgid ""
+"If necessary, the published version of this content can be manually closed "
+"(taken offline). It will also be removed from the public index."
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:740
@@ -407,47 +424,57 @@ msgstr ""
 msgid "Dates set."
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:103
+#: /views/public/PollQuestion/render.pt:104
 msgid "This poll is available from ${startdatetime}."
 msgstr "Diese Umfrage steht ab ${startdatetime} zur Verf&#xfc;gung."
 
-#: /views/public/PollQuestion/render.pt:109
+#: /views/public/PollQuestion/render.pt:110
 msgid "Many thanks for your partipation!"
 msgstr "Vielen Dank f&#xfc;r Ihre Teilnahme!"
 
-#: /views/public/PollQuestion/render.pt:119
+#: /views/public/PollQuestion/render.pt:120
 msgid "The results will be available on this site ${from-until-or-from}"
-msgstr "Die Ergebnisse werden ${from-until-or-from} unter dieser Seite abrufbar sein:"
+msgstr ""
+"Die Ergebnisse werden ${from-until-or-from} unter dieser Seite abrufbar sein:"
 
-#: /views/public/PollQuestion/render.pt:124
+#: /views/public/PollQuestion/render.pt:125
 msgid "from ${startdate} until ${enddate}"
 msgstr "von ${startdate} bis ${enddate}"
 
-#: /views/public/PollQuestion/render.pt:129
+#: /views/public/PollQuestion/render.pt:130
 msgid "from ${startdate}"
 msgstr "ab ${startdate}"
 
-#: /views/public/PollQuestion/render.pt:163
-msgid "Thank you for your interest, unfortunately the results of this poll are no longer available.\""
-msgstr "Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider nicht mehr zur Verf&#xfc;gung."
+#: /views/public/PollQuestion/render.pt:164
+msgid ""
+"Thank you for your interest, unfortunately the results of this poll are no "
+"longer available.\""
+msgstr ""
+"Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider "
+"nicht mehr zur Verf&#xfc;gung."
 
 #: /views/public/PollQuestion/render.pt:56
+msgid "Please select an answer"
+msgstr ""
+
+#: /views/public/PollQuestion/render.pt:57
 msgid "Submit"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:84
+#: /views/public/PollQuestion/render.pt:85
 msgid "Vote"
 msgstr "Stimme"
 
-#: /views/public/PollQuestion/render.pt:88
+#: /views/public/PollQuestion/render.pt:89
 msgid "Votes"
 msgstr "Stimmen"
 
 #: /www/externalSourceForm.form:20
-msgid "Set to 'inline' to display the question and results within the page, 'link' to display a link to the PollQuestion public views."
+msgid ""
+"Set to 'inline' to display the question and results within the page, 'link' "
+"to display a link to the PollQuestion public views."
 msgstr ""
 
 #: /www/externalSourceForm.form:29
 msgid "display"
 msgstr ""
-

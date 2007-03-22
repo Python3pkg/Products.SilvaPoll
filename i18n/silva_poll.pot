@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: Fri Mar  2 10:51:45 2007\n"
+"POT-Creation-Date: Thu Mar 22 15:58:22 2007\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Silva i18n team <walco@infrae.com>\n"
@@ -32,6 +32,10 @@ msgstr ""
 
 #: /views/add/PollQuestion/form.form:53
 msgid "object_title"
+msgstr ""
+
+#: /views/add/PollQuestion/form.form:98
+msgid "enter individual answers, seperated by a blank line"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:109
@@ -69,7 +73,6 @@ msgid "answers"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/form.form:55
-#: /views/add/PollQuestion/form.form:98
 msgid "enter individual answers, seperated by double newlines"
 msgstr ""
 
@@ -406,39 +409,43 @@ msgstr ""
 msgid "Dates set."
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:103
+#: /views/public/PollQuestion/render.pt:104
 msgid "This poll is available from ${startdatetime}."
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:109
+#: /views/public/PollQuestion/render.pt:110
 msgid "Many thanks for your partipation!"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:119
+#: /views/public/PollQuestion/render.pt:120
 msgid "The results will be available on this site ${from-until-or-from}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:124
+#: /views/public/PollQuestion/render.pt:125
 msgid "from ${startdate} until ${enddate}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:129
+#: /views/public/PollQuestion/render.pt:130
 msgid "from ${startdate}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:163
+#: /views/public/PollQuestion/render.pt:164
 msgid "Thank you for your interest, unfortunately the results of this poll are no longer available.\""
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:56
+msgid "Please select an answer"
+msgstr ""
+
+#: /views/public/PollQuestion/render.pt:57
 msgid "Submit"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:84
+#: /views/public/PollQuestion/render.pt:85
 msgid "Vote"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:88
+#: /views/public/PollQuestion/render.pt:89
 msgid "Votes"
 msgstr ""
 
