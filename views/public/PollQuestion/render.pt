@@ -53,7 +53,7 @@
                 </label>
               </span>
           </div>
-        <span class="error" id="error_nothing_selected" style="display:none;" i18n:translate="">Please selected an answer</span>
+        <span class="error" id="error_nothing_selected" style="display:none;" i18n:translate="">Please select an answer</span>
         <input type="submit"
             value="Submit"
             class="poll_submit"
