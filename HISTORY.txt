@@ -1,5 +1,16 @@
 HISTORY
 =======
+  * 0.3.5:
+
+    Features:
+
+      - Silva Service Polls MySQL now also has the store cookie feature
+
+    Bugs fixed:
+
+      - Singular Plural of votes for results.
+
+
   * 0.3.4:
 
     Features:
@@ -35,7 +46,7 @@ HISTORY
 
     Bugs fixed:
 
-      - Error page was displayed when trying to add Poll Question with 
+      - Error page was displayed when trying to add Poll Question with
         duplicate id.
 
       - Fixed problem that made that the publically viewable version was
@@ -46,7 +57,7 @@ HISTORY
 
     Features added:
 
-      - There's now a restriction on the amount of answers one can save: 
+      - There's now a restriction on the amount of answers one can save:
         the maximum allowed number of answers is 20.
 
   * 0.2:

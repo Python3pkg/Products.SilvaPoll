@@ -47,6 +47,16 @@ Add Silva Polls Service
     </div>
     </td>
   </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">
+        Store cookies
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="checkbox" checked="checked" name="store_cookies" />
+    </td>
+  </tr>
 </table>
 </form>
 
