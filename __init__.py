@@ -7,7 +7,7 @@ import install
 
 def initialize(context):
     extensionRegistry.register(
-        'SilvaPoll', 'Silva Poll', context, [PollQuestion], 
+        'SilvaPoll', 'Silva Poll', context, [PollQuestion],
         install, depends_on='SilvaExternalSources')
 
     context.registerClass(
@@ -28,6 +28,5 @@ def initialize(context):
     registerDirectory('resources', globals())
     registerTypeForMetadata('Silva Poll Question Version')
 
-from AccessControl import allow_module
-
-allow_module('Products.SilvaPoll.i18n')
+import AccessControl
+AccessControl.ModuleSecurityInfo('Products.SilvaPoll.i18n').declarePublic('translate')
