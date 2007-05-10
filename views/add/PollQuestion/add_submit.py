@@ -34,8 +34,10 @@ if len(answers) > 20:
 
 # if we don't have the right id, reject adding
 mid = mangle.Id(model, id)
-id_check = mid.cook().validate()
-if id_check != mid.OK:
+id_check = mid.validate()
+if id_check == mid.OK:
+    mid = str(mid)
+else:
     return view.add_form(message_type="error",
         message=view.get_id_status_text(mid))
 
