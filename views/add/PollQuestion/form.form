@@ -23,7 +23,7 @@
           <external_validator></external_validator>
           <display_maxwidth></display_maxwidth>
           <display_width type="int">20</display_width>
-          <required type="int">0</required>
+          <required type="int">1</required>
           <css_class>store</css_class>
           <default></default>
           <title>id</title>
