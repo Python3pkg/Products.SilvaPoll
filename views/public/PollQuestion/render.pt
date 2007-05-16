@@ -61,7 +61,6 @@
       </form>
     </tal:block>
   </tal:block>
-
     <tal:block condition="python: (has_voted or not display_question) and
                                     display_results">
       <tal:block define="answers model/get_answers;

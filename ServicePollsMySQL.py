@@ -30,6 +30,7 @@ class ServicePollsMySQL(SimpleItem):
                 'can not install this service without MySQL installed')
         self.id = id
         self.title = title
+        self._store_cookies = True
 
     def manage_afterAdd(self, *a, **kw):
         ServicePollsMySQL.inheritedAttribute('manage_afterAdd')(self, *a, **kw)
@@ -71,6 +72,9 @@ class ServicePollsMySQL(SimpleItem):
             db.getSQLData(self, query, {'qid': id, 'answer': answer,
                                         'votes': votes[i]})
         return id
+
+    def set_store_cookies(self, store_cookies):
+        self._store_cookies = store_cookies
 
     def get_question(self, qid):
         db = self._get_db()
@@ -128,6 +132,12 @@ class ServicePollsMySQL(SimpleItem):
                 u"UPDATE answer SET votes=%(votes)s WHERE id=%(id)s",
                 {'id': idvotesindex[0], 'votes': idvotesindex[1] + 1})
 
+    def store_cookies(self):
+        if not hasattr(self, 'store_cookies'):
+            self._store_cookies = True
+            return True
+        return self._store_cookies
+
     def _get_db(self):
         return SQLDB('service_polls_mysqldb', 'UTF-8')
 
@@ -140,5 +150,10 @@ manage_addServicePollsMySQLForm = PageTemplateFile('www/servicePollsMySQLAdd',
 def manage_addServicePollsMySQL(self, id, title='', REQUEST=None):
     """add service to the ZODB"""
     id = self._setObject(id, ServicePollsMySQL(id, title))
+    store_cookies = False
+    if REQUEST.has_key('store_cookies'):
+        store_cookies = True
+    service = getattr(self, id)
+    service.set_store_cookies(store_cookies)
     add_and_edit(self, id, REQUEST)
     return ''

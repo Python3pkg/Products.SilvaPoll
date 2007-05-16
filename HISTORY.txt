@@ -1,5 +1,15 @@
 HISTORY
 =======
+  * 0.3.5-generic:
+
+    Features:
+
+      - Silva Service Polls MySQL now also has the store cookie feature
+
+    Bugs fixed:
+
+      - Singular Plural of votes for results.
+
   * 0.3.4-generic:
 
     Features:
