@@ -3,7 +3,7 @@ See also LICENSE.txt
 
 Meta::
 
-  Valid for:  SilvaPoll 0.3.x
+  Valid for:  SilvaPoll 0.4.x
   Authors:    Guido Wesdorp, Wim Boucquaert, Jasper Op De Coul
   Email:      guido@infrae.com, wim@infrae.com, jasper@infrae.com
 

@@ -1,7 +1,8 @@
 HISTORY
 =======
+  * SilvaPoll-generic 0.4:
 
-  * 0.3.6-generic:
+      - Different way of creating message ids for i18n
 
   * 0.3.5-generic:
 
