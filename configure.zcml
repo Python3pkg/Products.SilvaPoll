@@ -7,4 +7,10 @@
     
   <i18n:registerTranslations directory="i18n" />
 
+  <subscriber
+      for=".PollQuestion.PollQuestionVersion
+      zope.app.container.interfaces.IObjectMovedEvent"
+    handler=".PollQuestion.poll_question_version_moved" 
+  />
+
 </configure>
