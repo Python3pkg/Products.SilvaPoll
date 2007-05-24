@@ -206,20 +206,7 @@ class PollQuestionVersion(Version):
         self._result_start_datetime = None
         self._result_end_datetime = None
 
-    def manage_afterAdd(self, item, container):
-        PollQuestionVersion.inheritedAttribute('manage_afterAdd')(self, 
-                                                            item, container)
-        question = ''
-        answers = []
-        votes = []
-        if self.qid is not None:
-            question = self.get_question()
-            answers = self.get_answers()
-            votes = self.get_votes()
-        self.qid = self.service_polls.create_question(question, answers, votes)
-
-    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
-                              'save')
+    security.declareProtected(SilvaPermissions.ChangeSilvaContent, 'save')
     def save(self, question, answers, overwrite=False):
         """save question data"""
         votes = self.service_polls.get_votes(self.qid)
@@ -403,3 +390,14 @@ def manage_addPollQuestionVersion(self, id, title, question, answers,
 
     add_and_edit(self, id, REQUEST)
     return ''
+
+def poll_question_version_moved(object, event):
+    question = ''
+    answers = []
+    votes = []
+    if object.qid is not None:
+        question = object.get_question()
+        answers = object.get_answers()
+        votes = object.get_votes()
+    object.qid = object.service_polls.create_question(
+        question, answers, votes)
