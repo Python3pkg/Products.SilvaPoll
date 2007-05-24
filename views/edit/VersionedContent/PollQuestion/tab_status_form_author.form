@@ -50,6 +50,7 @@
           <title>question display start time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
+          <extra>id="question_start_datetime"</extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
@@ -72,6 +73,7 @@
           <title>question display end time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
+          <extra>id="question_end_datetime"</extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
@@ -94,6 +96,7 @@
           <title>results display start time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
+          <extra>id="result_start_datetime"</extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
@@ -116,6 +119,7 @@
           <title>results display end time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
+          <extra>id="result_end_datetime"</extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
