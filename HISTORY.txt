@@ -1,21 +1,25 @@
 HISTORY
 =======
-  * SilvaPoll 0.3.6:
 
-      - Different way of creating message ids for i18n
+  * SilvaPoll 0.4:
+
+      - Different way of creating message ids for i18n.
 
     Bugs fixed:
 
-      - When entering an id with capitols or specials character, you got an
-        attribute error.
+      - Removed tal:attribute where tal:replace is used.
 
-      - id is a required field but wasn't markt that way
+      - When entering an id with capitals or specials character, you
+        got an attribute error.
+
+      - 'id' is a required field but wasn't marked that way.
 
   * 0.3.5:
 
     Features:
 
-      - Silva Service Polls MySQL now also has the store cookie feature
+      - Silva Service Polls MySQL now also has the store cookie
+        feature.
 
     Bugs fixed:
 
