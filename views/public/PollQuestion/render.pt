@@ -142,8 +142,8 @@
           <span tal:condition="not:edt"
             i18n:translate="">
               from
-              <span tal:content="fsdt" i18n:name="startdate"/>
-          </span>.
+              <span tal:content="fsdt" i18n:name="startdate" />
+          </span>
         </span>
       </p>
       <p tal:define="url python:model.get_silva_object().absolute_url()"
