@@ -1,8 +1,6 @@
 HISTORY
 =======
 
-  * SilvaPoll 0.4.2:
-
   * SilvaPoll 0.4.1 06-08-2007:
 
       - Added English i18n.

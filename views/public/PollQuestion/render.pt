@@ -150,7 +150,8 @@
       <p tal:define="url python:model.get_silva_object().absolute_url();
                      title model/get_title_or_id;"
           class="p">
-        
+            <strong
+              tal:content="url">url</strong><br />
             <a tal:attributes="href string:javascript:bookmarksite('$title',
                                 '$url');;">
                 <em i18n:translate="">
