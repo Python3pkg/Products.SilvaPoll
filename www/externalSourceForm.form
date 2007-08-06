@@ -5,13 +5,12 @@
   <name>externalSourceForm</name>
   <action></action>
   <enctype>None</enctype>
-  <method>POST</method>
+  <method>post</method>
 
   <groups multiple="true">
     <group>
       <title>Default</title>
       <fields multiple="true">
-
       <field><id>display</id> <type>RadioField</type>
         <values>
           <alternate_name></alternate_name>

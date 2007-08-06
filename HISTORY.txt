@@ -1,6 +1,20 @@
 HISTORY
 =======
 
+  * SilvaPoll 0.4.1:
+
+      - Added English i18n.
+      
+      - Cross browser bookmark script.
+      
+      - Improved translation of phrases
+       
+      - Improved xhtml compliancy
+
+    Bugs fixed:
+
+      - Translation phrase issue 136
+
   * SilvaPoll 0.4:
 
       - Different way of creating message ids for i18n.

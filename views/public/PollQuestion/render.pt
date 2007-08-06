@@ -131,7 +131,7 @@
                       fedt python: edt and '%s.%s.%s' % (edt.day(), edt.month(), edt.year()) or '';
                       "
           class="p">
-        The results will be available on this site
+        The results will be available 
         <span i18n:name="from-until-or-from">
           <span tal:condition="edt"
             i18n:translate="">
@@ -142,17 +142,24 @@
           <span tal:condition="not:edt"
             i18n:translate="">
               from
-              <span tal:content="fsdt" i18n:name="startdate"/>
+              <span tal:content="fsdt" i18n:name="startdate" />
           </span>
         </span>
+         on this site:
       </p>
       <p tal:define="url python:model.get_silva_object().absolute_url();
                      title model/get_title_or_id;"
           class="p">
+        
             <a tal:attributes="href string:javascript:bookmarksite('$title',
                                 '$url');;">
-                <em i18n:translate="">Bookmark this site</em>
+                <em i18n:translate="">
+                    Bookmark <span
+                               i18n:name="bookmark-url"
+                               tal:content="url">url</span>
+                </em>
             </a>
+
         <script type="text/javascript">
         
         /***********************************************
