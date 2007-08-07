@@ -184,7 +184,6 @@
             window.external.AddFavorite(url, title);
         }
         </script>
-
       </p>
     
     </tal:block>
@@ -194,7 +193,7 @@
     <p class="p"
       i18n:translate="">
       Thank you for your interest, unfortunately the results of this poll are
-      no longer available."
+      no longer available.
     </p>
   </tal:block>
 </tal:block>
