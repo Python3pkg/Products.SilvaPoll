@@ -45,7 +45,7 @@ class ServicePolls(SimpleItem):
         self.db.vote(qid, index)
 
     def store_cookies(self):
-        if not hasattr(self, 'store_cookies'):
+        if not hasattr(self, '_store_cookies'):
             self._store_cookies = True
             return True
         return self._store_cookies
