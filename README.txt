@@ -84,6 +84,11 @@ def get_tree_html(node, endobj):
             continue
             ...
 
+ZODB product
+------------
+SilvaPoll questions refer to a SilvaPollService stored in the ZODB. It is
+important therefore not to delete the service as existing polls will break then.
+
 Contact information
 -------------------
 
