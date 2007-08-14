@@ -4,6 +4,10 @@ HISTORY
   * SilvaPoll 0.4.2:
 
       - Improved translation of some phrases
+      
+    Bugs fixed:
+
+      - Removed typo in variable _store_cokie which raised an attribute error
 
   * SilvaPoll 0.4.1 06-08-2007:
 
