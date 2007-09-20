@@ -420,7 +420,7 @@ msgid "This poll is available from ${startdatetime}."
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:125
-msgid "Many thanks for your partipation!"
+msgid "Many thanks for your participation!"
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:135

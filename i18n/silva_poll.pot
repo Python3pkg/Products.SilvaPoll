@@ -1,13 +1,14 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: Mon Aug  6 16:22:08 2007\n"
+"Project-Id-Version: SilvaPoll trunk"
+"POT-Creation-Date: Thu Sep 20 12:40:19 2007\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Silva i18n team <walco@infrae.com>\n"
+"Language-Team: Silva Translators <eric+i18n@infrae.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: zope/app/translation_files/extract.py\n"
+"X-Generated-By: zope/app/translation_files/extract.py\n"
 
 #: /views/add/PollQuestion/add_submit.py:33
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:30
@@ -420,7 +421,7 @@ msgid "This poll is available from ${startdatetime}."
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:125
-msgid "Many thanks for your partipation!"
+msgid "Many thanks for your participation!"
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:135
@@ -435,12 +436,12 @@ msgstr ""
 msgid "from ${startdate}"
 msgstr ""
 
-#: /views/public/PollQuestion/render.pt:157
+#: /views/public/PollQuestion/render.pt:158
 msgid "Bookmark ${bookmark-url}"
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:193
-msgid "Thank you for your interest, unfortunately the results of this poll are no longer available.\""
+msgid "Thank you for your interest, unfortunately the results of this poll are no longer available."
 msgstr ""
 
 #: /views/public/PollQuestion/render.pt:67

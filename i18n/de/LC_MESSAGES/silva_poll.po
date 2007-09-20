@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SilvaPoll trunkPOT-Creation-Date: Mon Jan 22 15:26:49 "
 "2007\n"
-"POT-Creation-Date: Mon Aug  6 16:06:05 2007\n"
+"POT-Creation-Date: Thu Sep 20 12:40:19 2007\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Silva Translators <eric+i18n@infrae.com>\n"
@@ -435,8 +435,8 @@ msgid "This poll is available from ${startdatetime}."
 msgstr "Diese Umfrage steht ab ${startdatetime} zur Verf&#xfc;gung."
 
 #: /views/public/PollQuestion/render.pt:125
-msgid "Many thanks for your partipation!"
-msgstr "Vielen Dank f&#xfc;r Ihre Teilnahme!"
+msgid "Many thanks for your participation!"
+msgstr "Vielen Dank für Ihre Teilnahme!"
 
 #: /views/public/PollQuestion/render.pt:135
 msgid "The results will be available ${from-until-or-from} on this site:"
@@ -451,17 +451,18 @@ msgstr "von ${startdate} bis ${enddate}"
 msgid "from ${startdate}"
 msgstr "ab ${startdate}"
 
-#: /views/public/PollQuestion/render.pt:157
+#: /views/public/PollQuestion/render.pt:158
 msgid "Bookmark ${bookmark-url}"
-msgstr "${bookmark-url} zu Favoriten hinzuf&#xfc;gen"
+msgstr "${bookmark-url} zu Favoriten hinzufügen"
 
 #: /views/public/PollQuestion/render.pt:193
 msgid ""
 "Thank you for your interest, unfortunately the results of this poll are no "
-"longer available.\""
+"longer available."
 msgstr ""
-"Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider "
-"nicht mehr zur Verf&#xfc;gung."
+"Danke für Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider "
+"nicht mehr zur Verfügung."
+
 
 #: /views/public/PollQuestion/render.pt:67
 msgid "Please select an answer"
@@ -480,3 +481,13 @@ msgstr ""
 #: /www/externalSourceForm.form:28
 msgid "display"
 msgstr ""
+
+#~ msgid "Many thanks for your partipation!"
+#~ msgstr "Vielen Dank f&#xfc;r Ihre Teilnahme!"
+
+#~ msgid ""
+#~ "Thank you for your interest, unfortunately the results of this poll are "
+#~ "no longer available.\""
+#~ msgstr ""
+#~ "Danke für Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider "
+#~ "nicht mehr zur Verfügung."

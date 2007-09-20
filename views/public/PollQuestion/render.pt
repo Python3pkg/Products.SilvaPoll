@@ -123,7 +123,7 @@
     </tal:block>
     <tal:block condition="python: has_voted and not display_results">
       <h3 class="poll_question"
-          i18n:translate="">Many thanks for your partipation!</h3>
+          i18n:translate="">Many thanks for your participation!</h3>
       <p i18n:translate=""
          tal:define="sdt model/result_start_datetime;
                       edt model/result_end_datetime;
