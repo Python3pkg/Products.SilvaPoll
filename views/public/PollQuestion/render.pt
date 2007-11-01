@@ -13,6 +13,7 @@
      question not the results should be displayed -->
 <h2 tal:content="request/model/get_title_or_id" class="heading" />
 <div class="poll">
+  <div class="poll_head_image"></div>
   <tal:block condition="not: display_too_late">
     <tal:block condition="python: edit_mode or (display_question and not has_voted)">
       <h3 tal:content="model/get_question" class="poll_question" />
