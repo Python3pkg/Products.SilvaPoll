@@ -9,11 +9,10 @@
   display_too_late python: model.display_too_late()"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="silva_poll">
-  <!-- note that nothing is displayed if the user has not voted and neither the
-       question not the results should be displayed -->
-  <h2 tal:content="request/model/get_title_or_id" class="heading" />
-  <div class="poll">
-    <div class="poll_head_image"></div>
+<!-- note that nothing is displayed if the user has not voted and neither the
+     question not the results should be displayed -->
+<h2 tal:content="request/model/get_title_or_id" class="heading" />
+<div class="poll">
   <tal:block condition="not: display_too_late">
     <tal:block condition="python: edit_mode or (display_question and not has_voted)">
       <h3 tal:content="model/get_question" class="poll_question" />
@@ -62,105 +61,105 @@
       </form>
     </tal:block>
   </tal:block>
-    <tal:block condition="python: (has_voted or not display_question) and display_results">
-      <tal:block define="
-        answers model/get_answers;
-        votes model/get_votes;
-        total python: sum(votes) * 1.0;
-        ">
-        <h3 tal:content="model/get_question" class="poll_results" />
+  <tal:block condition="python: (has_voted or not display_question) and display_results">
+    <tal:block define="
+      answers model/get_answers;
+      votes model/get_votes;
+      total python: sum(votes) * 1.0;
+      ">
+      <h3 tal:content="model/get_question" class="poll_results" />
 
-        <div tal:repeat="i python:xrange(len(answers))" class="poll_results">
-          <div tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
-            <p class="p" tal:content="python: answers[i]" />
-          </div>
-          <div tal:attributes="class python:repeat['i'].end and 'poll_result_result_last' or 'poll_result'"
-            tal:define="percentage python: (total and round((votes[i] / total) * 100) or 0)">
-            <div class="poll_bar_outer">
-              <div class="poll_bar"
-                tal:attributes="style string:width: ${percentage}%;"></div>
-            </div>
-            <p class="p"><b tal:content="string:${percentage} %" /> (
-              <tal:block replace="python:votes[i]" />
-              <tal:condition condition="python:int(votes[i]) == 1"
-                i18n:translate="">
-                  Vote
-              </tal:condition>
-              <tal:condition condition="python:int(votes[i]) == 0 or int(votes[i]) > 1"
-                i18n:translate="">
-                  Votes
-              </tal:condition>)
-            </p>
-          </div>
+      <div tal:repeat="i python:xrange(len(answers))" class="poll_results">
+        <div tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
+          <p class="p" tal:content="python: answers[i]" />
         </div>
-      </tal:block>
+        <div tal:attributes="class python:repeat['i'].end and 'poll_result_result_last' or 'poll_result'"
+          tal:define="percentage python: (total and round((votes[i] / total) * 100) or 0)">
+          <div class="poll_bar_outer">
+            <div class="poll_bar"
+              tal:attributes="style string:width: ${percentage}%;"></div>
+          </div>
+          <p class="p"><b tal:content="string:${percentage} %" /> (
+            <tal:block replace="python:votes[i]" />
+            <tal:condition condition="python:int(votes[i]) == 1"
+              i18n:translate="">
+                Vote
+            </tal:condition>
+            <tal:condition condition="python:int(votes[i]) == 0 or int(votes[i]) > 1"
+              i18n:translate="">
+                Votes
+            </tal:condition>)
+          </p>
+        </div>
+      </div>
     </tal:block>
+  </tal:block>
 
-    <tal:block condition="python:(not has_voted and not display_question) and not display_results">
-      <br />
-      <p class="p"
-         i18n:translate="">
-         This poll is available from
-         <tal:block define="sdt model/question_start_datetime"
-           content="python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '-'"
-           i18n:name="startdatetime" />.
-      </p>
-    </tal:block>
-    <tal:block condition="python: has_voted and not display_results">
-      <h3 class="poll_question"
-        i18n:translate="">Many thanks for your partipation!</h3>
-      <p class="p"
-        i18n:translate=""
-        tal:define="
-          sdt model/result_start_datetime;
-          edt model/result_end_datetime;
-          fsdt python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '';
-          fedt python: edt and '%s.%s.%s' % (edt.day(), edt.month(), edt.year()) or '';
-        ">
-        The results will be available on this site
-        <span i18n:name="from-until-or-from">
-          <span tal:condition="edt"
-            i18n:translate="">
-              from
-              <span tal:content="fsdt" i18n:name="startdate" />
-              until <span tal:content="fedt" i18n:name="enddate" />
-          </span>
-          <span tal:condition="not:edt"
-            i18n:translate="">
+  <tal:block condition="python:(not has_voted and not display_question) and not display_results">
+    <br />
+    <p class="p"
+       i18n:translate="">
+       This poll is available from
+       <tal:block define="sdt model/question_start_datetime"
+         content="python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '-'"
+         i18n:name="startdatetime" />.
+    </p>
+  </tal:block>
+  <tal:block condition="python: has_voted and not display_results">
+    <h3 class="poll_question"
+      i18n:translate="">Many thanks for your partipation!</h3>
+    <p class="p"
+      i18n:translate=""
+      tal:define="
+        sdt model/result_start_datetime;
+        edt model/result_end_datetime;
+        fsdt python: sdt and '%s.%s.%s' % (sdt.day(), sdt.month(), sdt.year()) or '';
+        fedt python: edt and '%s.%s.%s' % (edt.day(), edt.month(), edt.year()) or '';
+      ">
+      The results will be available on this site
+      <span i18n:name="from-until-or-from">
+        <span tal:condition="edt"
+          i18n:translate="">
             from
-            <span tal:content="fsdt" i18n:name="startdate"/>
-          </span>.
+            <span tal:content="fsdt" i18n:name="startdate" />
+            until <span tal:content="fedt" i18n:name="enddate" />
         </span>
-      </p>
-      <p class="p" 
-        tal:define="url python:model.get_silva_object().absolute_url()">
-        <a tal:attributes="href url"
-          tal:content="url">url</a>
-        <em id="bookmark_link_placeholder"
-          tal:attributes="
-            silva:url url;
-            silva:title model/get_title_or_id;
-            "></em>
-        <script type="text/javascript">
-          // <![CDATA[
-          if (window.external) {
-            var ph = document.getElementById('bookmark_link_placeholder');
-            var a = document.createElement('a');
-            a.href = '#';
-            a.onclick = function(evt) {
-              window.external.AddFavorite(ph.getAttribute('silva:url'),
-                                            ph.getAttribute('silva:title'));
-              event.returnValue = false;
-              event.cancelBubble = true;
-            };
-            a.appendChild(document.createTextNode(
-                            '[zu Favoriten hinzuf\xfcgen]'));
-            ph.appendChild(a);
+        <span tal:condition="not:edt"
+          i18n:translate="">
+          from
+          <span tal:content="fsdt" i18n:name="startdate"/>
+        </span>.
+      </span>
+    </p>
+    <p class="p" 
+      tal:define="url python:model.get_silva_object().absolute_url()">
+      <a tal:attributes="href url"
+        tal:content="url">url</a>
+      <em id="bookmark_link_placeholder"
+        tal:attributes="
+          silva:url url;
+          silva:title model/get_title_or_id;
+          "></em>
+      <script type="text/javascript">
+        // <![CDATA[
+        if (window.external) {
+          var ph = document.getElementById('bookmark_link_placeholder');
+          var a = document.createElement('a');
+          a.href = '#';
+          a.onclick = function(evt) {
+            window.external.AddFavorite(ph.getAttribute('silva:url'),
+                                          ph.getAttribute('silva:title'));
+            event.returnValue = false;
+            event.cancelBubble = true;
           };
-          // ]]>
-        </script>
-      </p>
-    </tal:block>
+          a.appendChild(document.createTextNode(
+                          '[zu Favoriten hinzuf\xfcgen]'));
+          ph.appendChild(a);
+        };
+        // ]]>
+      </script>
+    </p>
+  </tal:block>
 
   <tal:block condition="display_too_late">
     <br />
@@ -170,6 +169,6 @@
       no longer available."
     </p>
   </tal:block>
-  </div>
-  <br clear="all" />
+</div>
+<br clear="all" />
 </tal:block>
