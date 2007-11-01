@@ -108,6 +108,5 @@ Customize background image references and other references as wanted.
 
 Contact information
 -------------------
-
-For questions, bug reports, etc. send email to guido@infrae.com, wim@infrae.com, jasper@infrae.com.
+For questions, bug reports, etc. send email to wim@infrae.com, jasper@infrae.com
 

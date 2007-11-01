@@ -8,36 +8,35 @@ Meta
 Copyright (c) 2006-2007 Infrae. All rights reserved.
 See also LICENSE.txt
 
-Valid for:  SilvaPoll 0.3.x-generic
+Valid for:  SilvaPoll 0.3.x
 Authors:    Guido Wesdorp, Wim Boucquaert, Jasper Op De Coul
 Email:      guido@infrae.com, wim@infrae.com, jasper@infrae.com
 
 Prerequisities
 --------------
 
-SilvaPoll 0.3 requires a working Silva 1.5.x installation, with
-SilvaExternalSources installed properly. If you want to use the MySQL service
-for storing poll data, a recent MySQL database and the zMySQLDA product should
-be installed, too.
+SilvaPoll 0.3 requires a working Silva 1.6.x installation, with the extension
+SilvaExternalSources installed. If you expect many polls resulting data and you
+want to use MySQL for storing poll data, a recent MySQL database and the
+zMySQLDA product should be installed, too.
 
 Basic installation instructions
 -------------------------------
 
-Unpack the SilvaPoll-0.3.x-generic.tar.gz tarball in the Products directory of your
-Zope instance. Restart Zope. Go to 'service_extensions' in your Silva root
-(for Silva installation instructions, see Silva/INSTALL.txt), make sure that
-the SilvaExternalSource package has been installed properly (if the box is
-still gray, press the 'install' button) and press the 'install' button in
-the SilvaPoll box. Press 'refresh all' in the top of the service if you're
-updating other packages besides SilvaPoll.
+Unpack the SilvaPoll-0.3.x-generic.tar.gz tarball in the Products directory of
+your Zope instance. Restart Zope. Go to 'service_extensions' in your Silva root
+(for Silva installation instructions, see Silva/INSTALL.txt), make sure that the
+SilvaExternalSource package has been installed properly (if the box is still
+gray, press the 'install' button) and press the 'install' button in the
+SilvaPoll box. Press 'refresh all' in the top of the service if you're updating
+other packages besides SilvaPoll.
 
 Installing a service for data
 -----------------------------
 
 SilvaPoll comes with several different services that manage poll data: in the
-current version there's one to add the data to the ZODB (not very optimal,
-since it creates a new transaction, and theferore database bloat, on every
-vote) and one that uses a MySQL database.
+current version there's one to add the data to the ZODB (not very optimal, since
+it creates a new transaction on every vote) and one that uses a MySQL database.
 
 To install the ZODB version, go to the Silva root (ZMI) and choose 'Silva
 Service Polls' from the 'add' select menu. This will take you to a screen where
@@ -46,16 +45,24 @@ optionally fill in the title.
 
 Installing the MySQL service requires similar steps, but also requires a
 zMySQLDA database adapter to be installed, with the id 'service_polls_mysqldb'.
-If this service has been placed, add a 'Silva Service Polls MySQL' and also
+Once this adapter has been placed, add a 'Silva Service Polls MySQL' and also
 make sure to not change the id (a ZODB and MySQL service can not co-exist).
 
-By default the option store cookie is turned on. This option limits voting by setting a cookie.
-If you don't want voting limits you should uncheck this option.
+By default the option store cookie is turned on. This option limits voting by
+setting a cookie on the users computer. If you don't want voting limits you
+should uncheck this option.
 
 Optional requirements
 ---------------------
 
-Depending on other Silva products installed on your system, you might need
-to adjust the 'addables' settings on the Silva root. Go to the properties tab
-of the Silva root in the SMI, choose 'addables' and make sure the checkbox in
-front of 'Silva Poll Question' is checked.
+Depending on other Silva products installed on your system, you might need to
+adjust the 'addables' settings on the Silva root. Go to the properties tab of
+the Silva root in the SMI, choose 'addables' and make sure the checkbox in front
+of 'Silva Poll Question' is checked. You can also turn it on in the addables
+properties of a publication.
+
+
+Contact information
+-------------------
+
+For questions, bug reports, etc. send email to wim@infrae.com, jasper@infrae.com
