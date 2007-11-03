@@ -22,7 +22,7 @@ class ServicePollsMySQL(SimpleItem):
 
     security = ClassSecurityInfo()
     implements(IServicePolls)
-    meta_type = 'Silva Service Polls MySQL'
+    meta_type = 'Silva Polls Service MySQL'
 
     def __init__(self, id, title):
         if not has_mysql:

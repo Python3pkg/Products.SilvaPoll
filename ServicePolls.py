@@ -15,7 +15,7 @@ class ServicePolls(SimpleItem):
 
     security = ClassSecurityInfo()
     implements(IServicePolls)
-    meta_type = 'Silva Service Polls'
+    meta_type = 'Silva Polls Service'
 
     def __init__(self, id, title):
         self.id = id
