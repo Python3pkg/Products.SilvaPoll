@@ -62,7 +62,8 @@
             </label>
           </span>
         </div>
-        <input type="submit"
+        <input class="button"
+          type="submit"
           value="Submit"
           i18n:attributes="value"
         />
