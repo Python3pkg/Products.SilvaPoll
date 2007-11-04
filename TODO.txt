@@ -1,6 +1,9 @@
 ﻿ToDo items
 ==========
 
+- When a poll is not yet available, the message in the public view should 
+  include the time.
+
 - The poll display dates cannot be seen once a poll is published. These could
   be added to the info box in the status screeen. 
 
@@ -9,7 +12,7 @@
   or off using cookies. This make it very clunky to test since you must delete
   and add another service, losing all the related data and getting errors on
   existing questions. 
-
+  
 Known bugs
 ----------
 
