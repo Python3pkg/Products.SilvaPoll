@@ -1,8 +1,27 @@
 HISTORY
 =======
+
   * SilvaPoll-generic 0.4:
 
+    Features:
+
       - Different way of creating message ids for i18n
+
+      - Made title optional, the question may be all that's needed
+      
+      - Refactoring and cleanup of template code and css optimizations
+      
+      - Moved error message to above the answers you're supposed to choose from
+      
+      - Added "Poll Results" heading
+      
+      - New icons for ZMI service and SMI (needs transparent gif format for IE users)
+
+    Bugs fixed:
+
+      - Field description in edit screen wasn't rendering
+      
+      - Status screen had the Z210 tal attributes/replace problem
 
   * 0.3.5-generic:
 
