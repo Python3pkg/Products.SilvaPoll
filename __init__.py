@@ -14,14 +14,14 @@ def initialize(context):
         ServicePolls.ServicePolls,
         constructors = (ServicePolls.manage_addServicePollsForm,
                         ServicePolls.manage_addServicePolls),
-        icon = 'www/pollquestion.png'
+        icon = 'www/poll_service.png'
     )
 
     context.registerClass(
         ServicePollsMySQL.ServicePollsMySQL,
         constructors = (ServicePollsMySQL.manage_addServicePollsMySQLForm,
                         ServicePollsMySQL.manage_addServicePollsMySQL),
-        icon = 'www/pollquestion.png'
+        icon = 'www/pollquestion.gif'
     )
 
     registerDirectory('views', globals())
