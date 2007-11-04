@@ -1,5 +1,12 @@
-/* SilvaPoll specific */
-h3.poll_question, h3.poll_results {
+/* SilvaPoll specific CSS selectors */
+div.poll {
+  background:url(/images/poll_head.gif) no-repeat top left;
+  width: 368px;
+  padding: 0;
+  margin: 0;
+}
+
+h3.poll_question, h4.poll_result {
   font-size: 12px;
   font-family: Arial, Sans-Serif;
   color: black;
@@ -7,20 +14,6 @@ h3.poll_question, h3.poll_results {
   margin-bottom: 20px;
   line-height: 14px;
   font-weight: bold;
-}
-
-div.poll_head_image {
-  background:url(../images/poll_head.gif) no-repeat top left;
-  height:1.0em;
-  border-style: solid;
-  border-color: #B5B5B5;
-  border-width: 0px 0px 1px 0px;
-}
-
-div.poll {
-  width: 368px;
-  padding: 0;
-  margin: 0;
 }
 
 div.poll_answers {
@@ -80,7 +73,7 @@ div.poll_bar {
   background-color:#979797;
 }
 
-div.poll p.p {
+div.poll p {
   padding-bottom: 0;
   margin-bottom: 0;
 }

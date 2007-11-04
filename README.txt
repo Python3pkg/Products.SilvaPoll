@@ -1,5 +1,6 @@
-Copyright (c) 2006-2007 Infrae. All rights reserved.
-See also LICENSE.txt
+================
+SilvaPoll README
+================
 
 Meta::
 
@@ -7,37 +8,43 @@ Meta::
   Authors:    Guido Wesdorp, Wim Boucquaert, Jasper Op De Coul
   Email:      guido@infrae.com, wim@infrae.com, jasper@infrae.com
 
-SilvaPoll
----------
+Copyright (c) 2006-2007 Infrae. All rights reserved.
+See also LICENSE.txt
 
 SilvaPoll is an extension to have traditional polls inside Silva sites. A
 question is asked on which the public can answer, and results are displayed
-to those that do.
+to those that do. The poll can be an independent page or be embedded in a
+Silva Document as a Code Source.
 
 Installation
-------------
+============
 
-For installation instructions, see INSTALL.txt.
+For installation and styling instructions, see INSTALL.txt.
 
 Making a Poll
-------------
+=============
 
 Creating Silva Poll Questions
-=============================
+-----------------------------
 After following the installation instructions you can add a Silva Poll Question
 in the SMI. Fill in all required fields and save the question, repeat this step
 for all questions. Don't forget to separate possible answers by a blank line.
 
 Rendering the Silva Poll
-========================
-Make a new Silva Document and click on external sources and add all
-of your questions (don't forget to hit the "add external source" button ;-).
+------------------------
+You can use the Poll Questions like documents, and send visitors there via a
+link in content or navigation.
 
-- rendering the poll immediately:
-Publish your Silva Poll Questions and Silva Document and that's it.
+You can also embed Poll Questions in Silva Document. When editing a document,
+click on external sources and add all of your questions (don't forget to hit
+the "add external source" button ;-).
 
-- rendering time based Silva Poll Questions and their result:
-Go to the SMI and go to the publish tab of a Silva Poll Question
+- Rendering the poll immediately:
+Publish your Silva Poll Questions and/or Silva Document and that's it.
+
+- Rendering time based Silva Poll Questions and their result:
+In the SMI go to the publish tab of a Silva Poll Question and fill in dates as
+appropriate.
 
 Fill in the options you would like to set:
 * question display start time: time when a Silva Poll Question should be
@@ -52,61 +59,11 @@ be displayed for the public
 * results display end time: time when the result of Silva Poll Question should
 stop being displayed for the public
 
-How-to stop rendering the Silva Poll Questions in the TOC (Table Of Contents)
-=============================================================================
-By default Silva Poll Questions are not hidden for the TOC. As navigation
-the navigation of Silva relies on TOC they will be shown by default there.
-
-There are 2 ways on how to avoid this:
-1) The most time intensive one:
-Go to the properties (tab_metadata) of a closes question and set the option
-"hide from tables of content" to hide.
-You have to repeat this step for every question you want to hide.
-
-2) The time saver, more advanced way:
-People who never want to show Silva Poll Questions in the navigation (TOC) can
-do this by changing the code that creates the navigation in layout_macro.html.
-eg get_public_tree.py
-You can add a condition there to not show an OBJECT of
-the metatype "Silva Poll Question"
-OBJECT.meta_type == 'Silva Poll Question'
-
-eg
-def get_tree_html(node, endobj):
-    tree = ''
-    endpath = endobj.getPhysicalPath()
-    for OBJECT in node.get_ordered_publishables():
-        if not OBJECT.is_published():
-            continue
-        if OBJECT.get_metadata_element(
-            'silva-extra', 'hide_from_tocs') == 'hide' or
-            OBJECT.meta_type == 'Silva Poll Question':
-            continue
-            ...
-
 Styling Silva Poll
 ------------------
-
-DTML-way
-========
-Make a new DTML method or DTML document called eg "poll.css" and include all
-content of dtmlpoll.css and include the the newly created css in your Silva.
-You can also add the selectors to an existing DTML method/document.
-Customize background image references and other references as wanted.
-
-Non-DTML-way
-============
-Make a new a new css file eg "poll.css" and include all
-content of poll.css and include the the newly created css in your Silva.
-You can also add the selectors to an existing css file.
-Customize background image references and other references as wanted.
-
-ZCML-way
-========
-Add the content of zcmlpoll.css to your existing layout.css
-Customize background image references and other references as wanted.
+See the INSTALL.txt doc for instructions on referencing included stylesheets.
 
 Contact information
--------------------
-For questions, bug reports, etc. send email to wim@infrae.com, jasper@infrae.com
+===================
 
+For questions, bug reports, etc. send email to wim@infrae.com, jasper@infrae.com
