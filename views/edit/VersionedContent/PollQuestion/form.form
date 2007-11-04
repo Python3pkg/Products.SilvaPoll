@@ -51,8 +51,8 @@
           <required type="int">1</required>
           <css_class></css_class>
           <default></default>
-          <title>answers</title>
-          <description>enter individual answers, seperated by double newlines</description>
+          <title>answerings</title>
+          <description>Enter multiple answers separated by empty lines.</description>
           <extra>id="answers"</extra>
           <unicode type="int">1</unicode>
         </values>
