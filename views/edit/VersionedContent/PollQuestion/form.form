@@ -26,7 +26,7 @@
           <external_validator></external_validator>
           <height type="int">2</height>
           <required type="int">1</required>
-          <css_class></css_class>
+          <css_class>store</css_class>
           <default></default>
           <title>question</title>
           <description></description>
@@ -49,9 +49,9 @@
           <external_validator></external_validator>
           <height type="int">5</height>
           <required type="int">1</required>
-          <css_class></css_class>
+          <css_class>store</css_class>
           <default></default>
-          <title>answerings</title>
+          <title>answers</title>
           <description>Enter multiple answers separated by empty lines.</description>
           <extra>id="answers"</extra>
           <unicode type="int">1</unicode>
