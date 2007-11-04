@@ -14,7 +14,8 @@
      question nor the results should be displayed -->
 <div class="poll">
   <h2 class="heading"
-    tal:content="request/model/get_title_or_id">
+    tal:define="polltitle request/model/get_title"
+    tal:condition="python:polltitle != ''">
     poll title
   </h2>
   <span tal:replace="nothing"> _______ Display questions form _______ </span>
