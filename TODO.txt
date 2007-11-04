@@ -13,8 +13,10 @@
 Known bugs
 ----------
 
-- If a poll is only available in the future, the message talks about the results:
-  "The results of the poll will be available on this site from..."
+- If a poll is redeited, then made available in the future, the message talks 
+   about the results (there *are* results from the old poll):
+  "The results of the poll will be available on this site from...."
+  It should say "This poll is available from...."
 
 - If an editor tries to "approve for future" in a container publish screen, 
   an AttributeError occurs:  
