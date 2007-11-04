@@ -15,7 +15,8 @@
 <div class="poll">
   <h2 class="heading"
     tal:define="polltitle request/model/get_title"
-    tal:condition="python:polltitle != ''">
+    tal:condition="python:polltitle != ''"
+    tal:content="polltitle">
     poll title
   </h2>
   <span tal:replace="nothing"> _______ Display questions form _______ </span>
