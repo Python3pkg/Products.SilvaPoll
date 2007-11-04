@@ -22,7 +22,7 @@ from Products.Silva import SilvaPermissions
 from Products.SilvaExternalSources.ExternalSource import ExternalSource
 from Products.SilvaExternalSources.interfaces import IExternalSource
 
-icon = "www/pollquestion.png"
+icon = "www/pollquestion.gif"
 
 def set_no_cache_headers(REQUEST):
     headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
