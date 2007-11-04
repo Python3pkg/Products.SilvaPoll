@@ -11,13 +11,12 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="silva_poll">
 <!-- Note that nothing is displayed if the user has not voted and neither the
-     question not the results should be displayed -->
-<h2 class="heading"
-  tal:content="request/model/get_title_or_id">
-  poll title
-</h2>
-
+     question nor the results should be displayed -->
 <div class="poll">
+  <h2 class="heading"
+    tal:content="request/model/get_title_or_id">
+    poll title
+  </h2>
   <span tal:replace="nothing"> _______ Display questions form _______ </span>
   <tal:block condition="not: display_too_late">
     <tal:block condition="python: edit_mode or (display_question and not has_voted)">
@@ -78,8 +77,8 @@
       votes model/get_votes;
       total python: sum(votes) * 1.0;
       ">
-      <h3 tal:content="model/get_question">question title</h3>
-      <h4 i18n:translate="">Poll Results</h4>
+      <h3 i18n:translate="">Poll Results</h3>
+      <h4 tal:content="model/get_question">question title</h4>
       <div class="poll_results">
         <div class="poll_result"
           tal:repeat="i python:xrange(len(answers))">
@@ -187,5 +186,4 @@
     </p>
   </tal:block>
 </div>
-<br clear="all" />
 </tal:block>
