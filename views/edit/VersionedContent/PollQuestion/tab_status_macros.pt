@@ -11,8 +11,53 @@
   >
 
 <span tal:replace="nothing"> _______ notice of previous version times _______ </span>
-<metal:block define-macro="datetime_info">
-<!-- This datetime_info slot is emptied; SilvaPoll needs changeable values -->
+<metal:block define-macro="datetime_info"
+  tal:define="
+    start_q_time python: mangle.DateTime(model.current_question_start_datetime()).toStr();
+    end_q_time python: mangle.DateTime(model.current_question_end_datetime()).toStr();
+    start_r_time python: mangle.DateTime(model.current_result_start_datetime()).toStr();
+    end_r_time python: mangle.DateTime(model.current_result_end_datetime()).toStr();
+    "
+  tal:condition="start_q_time"
+  >
+<br />
+<p style="margin-top:0.3em; margin-bottom:0.2em;">
+&nbsp;</p>
+
+<!-- begin override publication date/time block -->
+
+<span class="subhead" i18n:translate="">Poll display dates</span>
+<br /><br />
+<tal:block condition="start_q_time">
+<span class="subhead"
+  i18n:translate="">Publication time of question</span>
+<br />
+<tal:block  replace="start_q_time" />
+</tal:block>
+<br />
+<tal:block condition="end_q_time">
+<span class="subhead"
+  i18n:translate="">Expiration time of question</span>
+<br />
+<tal:block replace="end_q_time" />
+</tal:block>
+<br />
+<tal:block condition="start_r_time">
+<span class="subhead"
+  i18n:translate="">Publication time of results</span>
+<br />
+<tal:block replace="start_r_time" />
+</tal:block>
+<br />
+<tal:block condition="end_r_time">
+<span class="subhead"
+  i18n:translate="">Expiration time of results</span>
+<br />
+<tal:block replace="end_r_time" />
+</tal:block>
+
+<!-- end override -->
+
 </metal:block>
 
 <span tal:replace="nothing"> _______ messages _______ </span>
