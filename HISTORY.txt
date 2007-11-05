@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-  * SilvaPoll-generic 0.4:
+  * SilvaPoll (moved to become trunk) 0.4:
 
     Features:
 
@@ -18,6 +18,9 @@ HISTORY
       - New icons for ZMI service and SMI (needs transparent gif format for IE users)
 
     Bugs fixed:
+
+      - Publication and expiration dates for both the question and the results 
+        are now again shown in the side bar.
 
       - Field description in edit screen wasn't rendering
       
