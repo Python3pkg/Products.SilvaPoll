@@ -11,7 +11,7 @@ h3.poll_question, h4.poll_result {
   font-family: Arial, Sans-Serif;
   color: black;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   line-height: 14px;
   font-weight: bold;
 }
@@ -50,10 +50,6 @@ div.poll_result_label, div.poll_result_label_last {
   padding: 3px 15px 5px 0px;
 }
 
-div.poll_result_set {
-  padding-top: 5pt;
-}
-
 div.poll_result, div.poll_result_result_last {
   float: right;
   width: 120px;
@@ -82,14 +78,19 @@ div.poll p {
   margin-bottom: 0;
 }
 
+div.poll p.poll_answer {
+}
+
 input.poll {
   margin: 0;
   padding: 0;
 }
 
+/*
 input.poll_submit {
   color:#979797;
   display:block;
   margin-top:2em;
   border:none;
 }
+*/
