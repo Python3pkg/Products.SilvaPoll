@@ -61,7 +61,8 @@ stop being displayed for the public
 
 Styling Silva Poll
 ------------------
-See the INSTALL.txt doc for instructions on referencing included stylesheets.
+Silva Poll looks much better if you reference the included stylesheet. See the 
+INSTALL.txt doc for instructions.
 
 Contact information
 ===================
