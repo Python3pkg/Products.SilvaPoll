@@ -17,6 +17,10 @@ except FormValidationError, e:
 message=None
 
 viewable = model.get_viewable()
+if viewable is None:
+    return view.tab_status(
+        message_type="error", message=_(
+        "Dates not set. No public version found."))
 viewable.set_question_start_datetime(result['question_start_datetime'])
 viewable.set_question_end_datetime(result['question_end_datetime'])
 viewable.set_result_start_datetime(result['result_start_datetime'])
