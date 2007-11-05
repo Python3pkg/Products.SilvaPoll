@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-  * 0.3.6-generic-Silva1.6:
+  * SilvaPoll-Silva-1.6 (changed from 0.3.6-generic-Silva1.6):
 
     Features:
 
@@ -16,6 +16,9 @@ HISTORY
       - New icons for ZMI service and SMI (needs transparent gif format for IE users)
 
     Bugs fixed:
+
+      - Publication and expiration dates for both the question and the results 
+        are now again shown in the side bar.
 
       - Field description in edit screen wasn't rendering
 
