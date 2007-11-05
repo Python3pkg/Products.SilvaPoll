@@ -1,14 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SilvaPoll trunk"
-"POT-Creation-Date: Thu Sep 20 12:40:19 2007\n"
+"POT-Creation-Date: Mon Nov  5 16:55:14 2007\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Silva Translators <eric+i18n@infrae.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Domain: silva_poll\n"
 "X-Generated-By: zope/app/translation_files/extract.py\n"
 
 #: /views/add/PollQuestion/add_submit.py:33
@@ -42,15 +41,15 @@ msgstr ""
 msgid "enter individual answers, seperated by a blank line"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/edit.pt:109
+#: /views/edit/VersionedContent/PollQuestion/edit.pt:108
 msgid "save settings"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/edit.pt:109
+#: /views/edit/VersionedContent/PollQuestion/edit.pt:108
 msgid "All votes will be discarded if you change answers. Are you sure?"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/edit.pt:109
+#: /views/edit/VersionedContent/PollQuestion/edit.pt:108
 msgid "access key: alt-s"
 msgstr ""
 
@@ -77,7 +76,7 @@ msgid "answers"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/form.form:55
-msgid "enter individual answers, seperated by double newlines"
+msgid "Enter multiple answers separated by empty lines."
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/get_tabs.py:17
@@ -120,280 +119,228 @@ msgstr ""
 msgid "message"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:100
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:234
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:439
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:572
-msgid "notes"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:113
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:108
 msgid "This message will remain visible in the status screen for other authors and editors."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:127
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:166
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:331
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:368
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:452
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:489
-msgid "access key: alt-m"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:127
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:331
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:452
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:124
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:302
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:50
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:30
 msgid "question display start time"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:138
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:176
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:341
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:378
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:462
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:499
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:129
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:156
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:307
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:334
 msgid "day / month / year &nbsp;(23:59)"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:146
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:184
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:349
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:386
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:470
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:507
-msgid "access key: alt-i (some platforms)"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:146
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:349
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:470
-#: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:73
-#: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:53
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:137
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:315
+#: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:72
+#: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:52
 msgid "question display end time"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:157
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:359
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:480
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:142
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:320
 msgid "If this content's question should expire, set the time."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:166
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:368
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:489
-#: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:96
-#: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:76
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:151
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:329
+#: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:94
+#: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:74
 msgid "results display start time"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:184
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:386
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:507
-#: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:119
-#: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:99
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:164
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:342
+#: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:116
+#: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:96
 msgid "results display end time"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:194
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:396
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:517
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:169
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:347
 msgid "If this content's results should expire, set the time."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:204
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:179
 msgid "request approval"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:204
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:403
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:606
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:179
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:436
 msgid "access key: alt-r"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:224
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:199
 msgid "change settings"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:231
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:206
 msgid "current timings"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:242
-msgid "access key: alt-m (some platforms)"
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:217
+msgid "publish time:"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:242
-msgid "publish ti<u>m</u>e:"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:242
-# Default: "m"
-msgid "access_key_publish_datetime"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:261
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:230
 msgid "expiratio<u>n</u> time"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:261
-msgid "access key: alt-n (some platforms)"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:272
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:235
 msgid "If this content should expire, set the time."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:280
-msgid "clear expiration"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:280
-msgid "access key: alt-o"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:29
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:24
 msgid "messages"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:297
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:243
+msgid "clear expiration"
+msgstr ""
+
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:254
 msgid "update timing"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:297
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:254
 msgid "access key: alt-u"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:323
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:274
 msgid "poll display dates"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:403
-msgid "update"
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:278
+msgid "poll display dates for closed version"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:41
-msgid "${author_id} sent a message on ${some_date} ${with_comments}"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:424
-msgid "publish new version"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:428
-msgid "publish closed version"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:436
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:286
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:52
 msgid "settings"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:528
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:358
 msgid "publish now"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:528
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:686
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:358
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:516
 msgid "access key: alt-p"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:551
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:36
+msgid "${author_id} sent a message on ${some_date}: ${with_comments}"
+msgstr ""
+
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:381
 msgid "reject"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:552
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:382
 msgid "withdraw"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:553
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:383
 msgid "request"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:562
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:392
 msgid "add message on"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:565
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:395
 msgid "rejection"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:568
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:398
 msgid "withdrawal"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:586
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:416
 msgid "The message may be viewed by local users."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:597
-msgid "access key: alt-j"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:597
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:427
 msgid "reject approval request"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:606
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:427
+msgid "access key: alt-j"
+msgstr ""
+
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:436
 msgid "withdraw approval request"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:631
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:649
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:461
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:479
 msgid "revoke approval"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:640
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:470
 msgid "If further editing is required, first revoke the approval."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:649
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:479
 msgid "access key: alt-v"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:672
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:502
 msgid "revert to previous version"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:678
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:508
 msgid "The current editable version can be replaced with the previous (published) version. This can not be undone afterwards and will discard all changes made to the current version."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:686
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:516
 msgid "revert to previous"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:69
-msgid "A previous request for approval has been rejected / withdrawn by ${requester} on ${some_date}. The last message regarding this issue is:"
-msgstr ""
-
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:710
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:540
 msgid "manual close"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:717
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:547
 msgid "If necessary, the published version of this content can be manually closed (taken offline). It will also be removed from the public index."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:726
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:556
 msgid "close published version"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:726
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:556
 msgid "access key: alt-c"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:92
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:64
+msgid "A previous request for approval has been rejected / withdrawn by ${requester} on ${some_date}. The last message regarding this issue is:"
+msgstr ""
+
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:87
 msgid "for new version"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:92
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:87
 msgid "request approval ${for_new_version}"
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:97
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:92
 msgid "message to editor"
+msgstr ""
+
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:95
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:209
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:289
+#: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:402
+msgid "notes"
 msgstr ""
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_request.py:18
@@ -408,7 +355,11 @@ msgstr ""
 msgid "Approval requested."
 msgstr ""
 
-#: /views/edit/VersionedContent/PollQuestion/tab_status_set_dates.py:26
+#: /views/edit/VersionedContent/PollQuestion/tab_status_set_dates.py:22
+msgid "Dates not set. No public version found."
+msgstr ""
+
+#: /views/edit/VersionedContent/PollQuestion/tab_status_set_dates.py:30
 # Default: "silva_poll"
 msgid "Dates set."
 msgstr ""
