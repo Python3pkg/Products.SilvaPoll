@@ -84,8 +84,9 @@
         tal:content="model/get_question">question title</h4>
       <tal:block repeat="i python:xrange(len(answers))">
         <div tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
-          <p>
-            <strong tal:content="python: answers[i]">answer</strong>
+          <p class="poll_answer"
+            tal:content="python: answers[i]">
+            answer
           </p>
         </div>
         <div tal:attributes="class python:repeat['i'].end and 'poll_result_result_last' or 'poll_result'"
@@ -123,7 +124,7 @@
     </p>
   </tal:block>
 
-  <span tal:replace="nothing"> _______ Poll not available yet _______ </span>
+  <span tal:replace="nothing"> _______ Poll results not available yet _______ </span>
   <tal:block condition="python: has_voted and not display_results">
     <h3 class="poll_reply"
       i18n:translate="">Many thanks for your participation!</h3>
