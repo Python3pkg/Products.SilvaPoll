@@ -11,13 +11,8 @@
   >
 
 <span tal:replace="nothing"> _______ notice of previous version times _______ </span>
-<metal:block define-macro="datetime_info"
-  tal:define="
-    start_time python: mangle.DateTime(model.get_public_version_publication_datetime()).toStr();
-    end_time python: mangle.DateTime(model.get_public_version_expiration_datetime()).toStr();
-    "
-  tal:condition="start_time"
-  >
+<metal:block define-macro="datetime_info">
+<!-- This datetime_info slot is emptied; SilvaPoll needs changeable values -->
 </metal:block>
 
 <span tal:replace="nothing"> _______ messages _______ </span>
@@ -37,7 +32,7 @@ messages
   colspan="2" i18n:translate="">
 <span tal:replace="python:model.get_approval_requester()" i18n:name="author_id">author id</span>
 sent a message on
-<span tal:replace="structure python:mangle.DateTime(model.get_approval_request_datetime()).toStr()" i18n:name="some_date">some date</span>
+<span tal:replace="structure python:mangle.DateTime(model.get_approval_request_datetime()).toStr()" i18n:name="some_date">some date</span>:
 <tal:if condition="python:model.get_approval_request_message()" i18n:name="with_comments">
   <tal:block i18n:translate="">with the following comments:</tal:block>
 </tal:if>
@@ -82,7 +77,7 @@ The last message regarding this issue is:
   colspan="2">
 <div class="message"
   tal:content="message">
-message text
+  message text
 </div>
 </td>
 </tr>
@@ -93,7 +88,7 @@ message text
 </td>
 </tr>
 
-<tr>
+<tr class="even">
 <th i18n:translate="">
 message to editor
 </th>
@@ -118,78 +113,58 @@ This message will remain visible in the status screen for other authors and edit
 <!-- start overridden bits, replaced publication/expiration datetime forms
       with question/result date ones -->
 
-<tal:block define="now modules/DateTime/DateTime;
-                    previewable model/get_previewable;">
-<tr class="inter-controls"
+<tal:block define="
+  now modules/DateTime/DateTime;
+  previewable model/get_previewable;
+">
+<tr class="even"
   tal:define="field view/tab_status_form_author/question_start_datetime">
 <td class="align-right"
- style="vertical-align:bottom; white-space: nowrap;'">
- <label
-   title="access key: alt-m"
-   tal:attributes="for field/id"
-   i18n:translate=""
-   i18n:attributes="title"
-   >question display start time</label>
-<tal:block
-  attributes="id field/id"
-  replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"
-/>
+  style="vertical-align:bottom; white-space: nowrap;'">
+<label tal:attributes="for field/id"
+  i18n:translate=""
+  >question display start time</label>
+<tal:block replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 day / month / year &nbsp;(23:59)
 </td>
 </tr>
 
-<tr class="inter-controls"
+<tr class="odd"
   tal:define="field view/tab_status_form_author/question_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-i (some platforms)"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
+<label tal:attributes="for field/id"
   i18n:translate=""
   >question display end time</label>
-<tal:block
-  attributes="id field/id"
-  replace="structure python: field.render(previewable.question_end_datetime())"
-/>
+<tal:block replace="structure python: field.render(previewable.question_end_datetime())"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 If this content's question should expire, set the time.
 </td>
 </tr>
 
-<tr class="inter-controls"
+<tr class="even"
   tal:define="field view/tab_status_form_author/result_start_datetime">
 <td class="align-right"
  style="vertical-align:bottom; white-space: nowrap;'">
- <label
-   title="access key: alt-m"
-   tal:attributes="for field/id"
-   i18n:translate=""
-   i18n:attributes="title"
-   >results display start time</label>
-<tal:block
-  replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"
-/>
+<label tal:attributes="for field/id"
+  i18n:translate=""
+  >results display start time</label>
+<tal:block replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 day / month / year &nbsp;(23:59)
 </td>
 </tr>
 
-<tr class="inter-controls"
+<tr class="odd"
   tal:define="field view/tab_status_form_author/result_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-i (some platforms)"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
+<label tal:attributes="for field/id"
   i18n:translate=""
   >results display end time</label>
-<tal:block
-  replace="structure python: field.render(previewable.result_end_datetime())"
-/>
+<tal:block replace="structure python: field.render(previewable.result_end_datetime())"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 If this content's results should expire, set the time.
@@ -201,13 +176,13 @@ If this content's results should expire, set the time.
 
 <tr class="controls">
 <td colspan="2" class="align-right">
-<input
-  type="submit"
-  value="request approval"
+<input 
+  type="submit" 
+  value="request approval" 
   name="tab_status_request:method"
-  class="button"
-  title="access key: alt-r"
-  accesskey="r"
+  class="button" 
+  title="access key: alt-r" 
+  accesskey="r" 
   i18n:attributes="value;title" />
 </td>
 </tr>
@@ -239,16 +214,10 @@ notes
 <tr class="odd"
   tal:define="field view/tab_status_form_change_settings/publish_datetime">
 <td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-m (some platforms)"
-  accesskey="m"
-  tal:attributes="for field/id"
-  i18n:attributes="title; accesskey access_key_publish_datetime;"
+<label tal:attributes="for field/id"
   i18n:translate=""
-  >publish ti<u>m</u>e:</label>&nbsp;
-<tal:block
-  replace="structure python: field.render(model.get_next_version_publication_datetime())"
-/>
+  >publish time:</label>&nbsp;
+<tal:block replace="structure python: field.render(model.get_next_version_publication_datetime())"/>
 </td>
 <td>
 &nbsp;
@@ -258,16 +227,10 @@ notes
 <tr class="even"
   tal:define="field view/tab_status_form_change_settings/expiration_datetime">
 <td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-n (some platforms)"
-  accesskey="n"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
+<label tal:attributes="for field/id"
   i18n:translate=""
   >expiratio<u>n</u> time</label>&nbsp;
-<tal:block
-  replace="structure python: field.render(model.get_next_version_expiration_datetime())"
-/>
+<tal:block replace="structure python: field.render(model.get_next_version_expiration_datetime())"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 If this content should expire, set the time.
@@ -277,17 +240,11 @@ If this content should expire, set the time.
 <tr>
 <th class="align-right" colspan="2"
   tal:define="field view/tab_status_form_change_settings/clear_expiration">
-<label
-  title="access key: alt-o"
-  accesskey="o"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
+<label tal:attributes="for field/id"
   i18n:translate=""
   >clear expiration
 </label>
-<tal:block
-  replace="structure python: field.render()"
-/>
+<tal:block replace="structure python: field.render()"/>
 </th>
 </tr>
 
@@ -309,113 +266,6 @@ If this content should expire, set the time.
 <span tal:replace="nothing"> _______ Editor approves _______ </span>
 <div tal:omit-tag=""
   metal:define-macro="approve_new">
-
-
-<!-- begin override publication date/time block -->
-
-<form action="." method="post">
-
-<table class="listing">
-<tbody>
-
-<tr class="top-controls">
-<td colspan="2">
-  <h3 i18n:translate="">poll display dates</h3>
-</td>
-</tr>
-
-<tr class="inter-controls"
-  tal:define="field view/tab_status_form_author/question_start_datetime">
-<td class="align-right"
- style="vertical-align:bottom; white-space: nowrap;'">
- <label
-   title="access key: alt-m"
-   tal:attributes="for field/id"
-   i18n:translate=""
-   i18n:attributes="title"
-   >question display start time</label>
-<tal:block
-  replace="structure python: field.render(value=model.current_question_start_datetime(), REQUEST=request)"
-/>
-</td>
-<td style="vertical-align:middle;" i18n:translate="">
-day / month / year &nbsp;(23:59)
-</td>
-</tr>
-
-<tr class="inter-controls"
-  tal:define="field view/tab_status_form_author/question_end_datetime">
-<td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-i (some platforms)"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
-  i18n:translate=""
-  >question display end time</label>
-<tal:block
-  replace="structure python: field.render(model.current_question_end_datetime())"
-/>
-</td>
-<td style="vertical-align:middle;" i18n:translate="">
-If this content's question should expire, set the time.
-</td>
-</tr>
-
-<tr class="inter-controls"
-  tal:define="field view/tab_status_form_author/result_start_datetime">
-<td class="align-right"
- style="vertical-align:bottom; white-space: nowrap;'">
- <label
-   title="access key: alt-m"
-   tal:attributes="for field/id"
-   i18n:translate=""
-   i18n:attributes="title"
-   >results display start time</label>
-<tal:block
-  replace="structure python: field.render(value=model.current_result_start_datetime(), REQUEST=request)"
-/>
-</td>
-<td style="vertical-align:middle;" i18n:translate="">
-day / month / year &nbsp;(23:59)
-</td>
-</tr>
-
-<tr class="inter-controls"
-  tal:define="field view/tab_status_form_author/result_end_datetime">
-<td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-i (some platforms)"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
-  i18n:translate=""
-  >results display end time</label>
-<tal:block
-  replace="structure python: field.render(model.current_result_end_datetime())"
-/>
-</td>
-<td style="vertical-align:middle;" i18n:translate="">
-If this content's results should expire, set the time.
-</td>
-</tr>
-
-<tr class="controls">
-<td colspan="2" class="align-right">
-<input
-  type="submit"
-  value="update"
-  name="tab_status_set_dates:method"
-  class="button"
-  title="access key: alt-r"
-  i18n:attributes="value;title" />
-</td>
-</tr>
-</tbody>
-</table>
-</form>
-
-<!-- end override -->
-
-
 <form action="tab_status_approve" method="POST">
 <table class="listing">
 <tr class="top-controls">
@@ -423,10 +273,10 @@ If this content's results should expire, set the time.
 <h3>
 <span tal:condition="python:not closed or (unapproved and (closed or published))"
   i18n:translate="">
-  publish new version
+  poll display dates
 </span>
 <span tal:condition="python: closed and not unapproved" i18n:translate="">
-  publish closed version
+  poll display dates for closed version
 </span>
 </h3>
 </td>
@@ -445,74 +295,54 @@ notes
 
 <tal:block define="now modules/DateTime/DateTime;
                     previewable model/get_previewable;">
-<tr class="inter-controls"
+<tr class="even"
   tal:define="field view/tab_status_form_editor/question_start_datetime">
 <td class="align-right"
  style="vertical-align:bottom; white-space: nowrap;'">
- <label
-   title="access key: alt-m"
-   tal:attributes="for field/id"
+ <label tal:attributes="for field/id"
    i18n:translate=""
-   i18n:attributes="title"
    >question display start time</label>
-<tal:block
-  replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"
-/>
+<tal:block replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 day / month / year &nbsp;(23:59)
 </td>
 </tr>
 
-<tr class="inter-controls"
+<tr class="odd"
   tal:define="field view/tab_status_form_editor/question_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-i (some platforms)"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
+<label tal:attributes="for field/id"
   i18n:translate=""
   >question display end time</label>
-<tal:block
-  replace="structure python: field.render(previewable.question_end_datetime())"
-/>
+<tal:block replace="structure python: field.render(previewable.question_end_datetime())"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 If this content's question should expire, set the time.
 </td>
 </tr>
 
-<tr class="inter-controls"
+<tr class="even"
   tal:define="field view/tab_status_form_editor/result_start_datetime">
 <td class="align-right"
  style="vertical-align:bottom; white-space: nowrap;'">
- <label
-   title="access key: alt-m"
-   tal:attributes="for field/id"
+ <label tal:attributes="for field/id"
    i18n:translate=""
-   i18n:attributes="title"
    >results display start time</label>
-<tal:block
-  replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"
-/>
+<tal:block replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 day / month / year &nbsp;(23:59)
 </td>
 </tr>
 
-<tr class="inter-controls"
+<tr class="odd"
   tal:define="field view/tab_status_form_editor/result_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
-<label
-  title="access key: alt-i (some platforms)"
-  tal:attributes="for field/id"
-  i18n:attributes="title"
+<label tal:attributes="for field/id"
   i18n:translate=""
   >results display end time</label>
-<tal:block
-  replace="structure python: field.render(previewable.result_end_datetime())"
-/>
+<tal:block replace="structure python: field.render(previewable.result_end_datetime())"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
 If this content's results should expire, set the time.
@@ -532,7 +362,7 @@ If this content's results should expire, set the time.
   accesskey="p"
   i18n:attributes="value;title"
 />
-</td>
+</td> 
 </tr>
 </table>
 </form>

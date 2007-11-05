@@ -28,7 +28,7 @@
           <title>message</title>
           <truncate type="int">0</truncate>
           <description></description>
-          <extra></extra>
+          <extra>wrap="soft" style="width:100%;"</extra>
           <unicode>1</unicode>
         </values>
         <tales>
@@ -50,7 +50,6 @@
           <title>question display start time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
-          <extra></extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
@@ -73,7 +72,6 @@
           <title>question display end time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
-          <extra></extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
@@ -96,7 +94,6 @@
           <title>results display start time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
-          <extra></extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
@@ -119,7 +116,6 @@
           <title>results display end time</title>
           <description></description>
           <allow_empty_time type="int">1</allow_empty_time>
-          <extra></extra>
         </values>
         <tales>
           <time_separator>python:form.get_time_punctuation()</time_separator>
