@@ -1,1 +1,1 @@
-SilvaPoll 1.0-WUW (unreleased)
+SilvaPoll-WUW 1.0
