@@ -20,8 +20,6 @@
     end_r_time python: mangle.DateTime(model.current_result_end_datetime()).toStr();
     "
   tal:condition="start_q_time">
-<h4 style="margin-top:1em;margin-bottom:0"
-  i18n:translate="">Poll display dates</h4>
 <p talcondition="start_q_time">
 <span class="subhead"
   i18n:translate="">Publication time of question</span>
@@ -134,10 +132,7 @@ notes
 <tr class="odd"
   tal:define="field view/tab_status_form_author/message">
 <td class="align-right">
-  <tal:block
-    attributes="id field/id"
-    replace="structure python: field.render(REQUEST=request)"
-  />
+  <tal:block replace="structure python: field.render(REQUEST=request)" />
 </td>
 <td i18n:translate="">
 This message will remain visible in the status screen for other authors and editors.
@@ -157,7 +152,8 @@ This message will remain visible in the status screen for other authors and edit
   style="vertical-align:bottom; white-space: nowrap;'">
 <label tal:attributes="for field/id"
   i18n:translate=""
-  >question display start time</label>
+  >question display start time</label><span class="warning"
+    tal:condition="field/is_required">*</span>
 <tal:block replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
@@ -184,7 +180,8 @@ If this content's question should expire, set the time.
  style="vertical-align:bottom; white-space: nowrap;'">
 <label tal:attributes="for field/id"
   i18n:translate=""
-  >results display start time</label>
+  >results display start time</label><span class="warning"
+    tal:condition="field/is_required">*</span>
 <tal:block replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
@@ -335,7 +332,8 @@ notes
  style="vertical-align:bottom; white-space: nowrap;'">
  <label tal:attributes="for field/id"
    i18n:translate=""
-   >question display start time</label>
+   >question display start time</label><span class="warning"
+     tal:condition="field/is_required">*</span>
 <tal:block replace="structure python: field.render(value=(previewable.question_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
@@ -362,7 +360,8 @@ If this content's question should expire, set the time.
  style="vertical-align:bottom; white-space: nowrap;'">
  <label tal:attributes="for field/id"
    i18n:translate=""
-   >results display start time</label>
+   >results display start time</label><span class="warning"
+     tal:condition="field/is_required">*</span>
 <tal:block replace="structure python: field.render(value=(previewable.result_start_datetime() or now), REQUEST=request)"/>
 </td>
 <td style="vertical-align:middle;" i18n:translate="">
