@@ -48,6 +48,9 @@
         <input type="hidden" name="pollid"
                 tal:attributes="value python:'/'.join(model.getPhysicalPath())"
                 />
+        <p id="error_nothing_selected" style="display:none;"> 
+          <span class="warning" i18n:translate="">Please select an answer.</span>
+        </p>
         <table class="poll">
           <tal:block repeat="i python:xrange(len(answers))">
             <tr>
@@ -64,7 +67,6 @@
             </tr>
           </tal:block>
         </table>
-        <span class="error" id="error_nothing_selected" style="display:none;" i18n:translate="">Please select an answer</span>
         <input type="image"
                 tal:attributes="src here/service_resources/SilvaPoll/send.gif/absolute_url"
                 value="submit"
