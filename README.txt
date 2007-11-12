@@ -28,7 +28,7 @@ Creating Silva Poll Questions
 -----------------------------
 After following the installation instructions you can add a Silva Poll Question
 in the SMI. Fill in all required fields and save the question, repeat this step
-for all questions. Don't forget to separate possible answers by a blank line.
+for all questions. Separate answers by an empty line.
 
 Rendering the Silva Poll
 ------------------------
