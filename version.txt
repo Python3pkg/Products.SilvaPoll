@@ -1,1 +1,1 @@
-SilvaPoll-0.4 unreleased
+SilvaPoll-1.0
