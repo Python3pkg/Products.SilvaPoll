@@ -41,9 +41,10 @@ Basic installation instructions
 Installing a service for data
 -----------------------------
 
-SilvaPoll comes with several different services that manage poll data: in the
-current version there's one to add the data to the ZODB (not very optimal, since
-it creates a new transaction on every vote) and one that uses a MySQL database.
+SilvaPoll comes with two different services that manage poll data: there's one 
+to add the data to the ZODB and one that uses a MySQL database. The ZODB based 
+version creates a new transaction on every vote, thus sites that expect heavy 
+usage may want to store the results seperately. 
 
 To install the ZODB version, go to the Silva root (ZMI) and choose 'Silva
 Service Polls' from the 'add' select menu. This will take you to a screen where
