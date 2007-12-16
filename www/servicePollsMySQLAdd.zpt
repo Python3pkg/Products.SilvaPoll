@@ -8,11 +8,11 @@ Version of this file: $Revision: 1.1 $
 
 <h1 tal:replace="structure here/manage_page_header">Header</h1>
 
-<h2 tal:define="form_title string:Add Service Polls"
+<h2 tal:define="form_title string:Add Service Poll MySQL"
     tal:replace="structure here/manage_form_title">Form Title</h2>
 
 <p class="form-help">
-Add Silva Polls Service
+Add Silva Poll Service MySQL
 </p>
 
 <form action="manage_addServicePollsMySQL" method="post">
@@ -24,7 +24,7 @@ Add Silva Polls Service
     </div>
     </td>
     <td align="left" valign="top">
-    <input type="text" name="id" size="40" value="service_polls" />
+    <input type="text" name="id" size="40" value="service_polls" disabled="disabled" />
     </td>
   </tr>
   <tr>
@@ -34,7 +34,7 @@ Add Silva Polls Service
     </div>
     </td>
     <td align="left" valign="top">
-    <input type="text" name="title" size="40" />
+    <input type="text" name="title" size="40" value="Silva Poll Service MySQL" />
     </td>
   </tr>
   <tr>

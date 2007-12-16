@@ -24,7 +24,7 @@ Add Silva Polls Service
     </div>
     </td>
     <td align="left" valign="top">
-    <input type="text" name="id" size="40" value="service_polls" />
+    <input type="text" name="id" size="40" value="service_polls" disabled="disabled" />
     </td>
   </tr>
   <tr>
@@ -34,7 +34,7 @@ Add Silva Polls Service
     </div>
     </td>
     <td align="left" valign="top">
-    <input type="text" name="title" size="40" />
+    <input type="text" name="title" size="40" value="Silva Poll Service" />
     </td>
   </tr>
   <tr>
