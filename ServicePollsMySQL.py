@@ -147,7 +147,7 @@ manage_addServicePollsMySQLForm = PageTemplateFile('www/servicePollsMySQLAdd',
                                 globals(), 
                                 __name__='manage_addServicePollsMySQLForm')
 
-def manage_addServicePollsMySQL(self, id, title='', REQUEST=None):
+def manage_addServicePollsMySQL(self, id='service_polls', title='', REQUEST=None):
     """add service to the ZODB"""
     id = self._setObject(id, ServicePollsMySQL(id, title))
     store_cookies = False

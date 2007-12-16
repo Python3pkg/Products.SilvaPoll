@@ -38,23 +38,21 @@ Add Silva Poll Service MySQL
     </td>
   </tr>
   <tr>
-    <td align="left" valign="top" colspan="2">
-    <div class="form-element">
-    <input class="form-element" type="submit" name="submit_add"
-     value=" Add " />
-    <input class="form-element" type="submit" name="submit_edit"
-     value=" Add and Edit " />
-    </div>
-    </td>
-  </tr>
-  <tr>
     <td align="left" valign="top">
       <div class="form-label">
         Store cookies
       </div>
     </td>
     <td align="left" valign="top">
-      <input type="checkbox" checked="checked" name="store_cookies" />
+      <div class="form-help"><input type="checkbox" checked="checked" name="store_cookies" /> (If you wish to test without cookies, you'll need to delete this service and add a new one with cookies. Results will be lost.)</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top" colspan="2">
+    <div class="form-element">
+    <input class="form-element" type="submit" name="submit_add"
+     value=" Add " />
+    </div>
     </td>
   </tr>
 </table>

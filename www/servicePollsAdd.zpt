@@ -8,11 +8,11 @@ Version of this file: $Revision: 1.1 $
 
 <h1 tal:replace="structure here/manage_page_header">Header</h1>
 
-<h2 tal:define="form_title string:Add Service Polls"
+<h2 tal:define="form_title string:Add Service Poll"
     tal:replace="structure here/manage_form_title">Form Title</h2>
 
 <p class="form-help">
-Add Silva Polls Service
+Add Silva Poll Service
 </p>
 
 <form action="manage_addServicePolls" method="post">
@@ -44,7 +44,7 @@ Add Silva Polls Service
       </div>
     </td>
     <td align="left" valign="top">
-      <input type="checkbox" checked="checked" name="store_cookies" />
+      <div class="form-help"><input type="checkbox" checked="checked" name="store_cookies" /> (If you wish to test without cookies, you'll need to delete this service and add a new one with cookies. Results will be lost.)</div>
     </td>
   </tr>
 
@@ -53,8 +53,6 @@ Add Silva Polls Service
     <div class="form-element">
     <input class="form-element" type="submit" name="submit_add"
      value=" Add " />
-    <input class="form-element" type="submit" name="submit_edit"
-     value=" Add and Edit " />
     </div>
     </td>
   </tr>

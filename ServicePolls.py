@@ -55,7 +55,7 @@ InitializeClass(ServicePolls)
 manage_addServicePollsForm = PageTemplateFile('www/servicePollsAdd', globals(),
                                         __name__='manage_addServicePollsForm')
 
-def manage_addServicePolls(self, id, title='', REQUEST=None):
+def manage_addServicePolls(self, id='service_polls', title='', REQUEST=None):
     """add service to the ZODB"""
     id = self._setObject(id, ServicePolls(id, unicode(title, 'UTF-8')))
     store_cookies = False
