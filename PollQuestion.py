@@ -73,7 +73,11 @@ class ViewableExternalSource(ExternalSource):
         return getattr(self, renderer)(view_method=view_method)
 
 class PollQuestion(VersionedContent, ViewableExternalSource):
-    """A question of the Silva Poll product"""
+    """This Silva extension enables users to conduct polls inside Silva sites. 
+        A Question is posed to the public and results of the answers are 
+        displayed to those that respond. The poll can be an independent page 
+        or be embedded in a document as a Code Source.
+    """
 
     security = ClassSecurityInfo()
     meta_type = 'Silva Poll Question'
