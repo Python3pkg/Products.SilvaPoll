@@ -46,14 +46,14 @@ to add the data to the ZODB and one that uses a MySQL database. The ZODB based
 version creates a new transaction on every vote, thus sites that expect heavy 
 usage may want to store the results seperately. 
 
-To install the ZODB version, go to the Silva root (ZMI) and choose 'Silva
-Service Polls' from the 'add' select menu. This will take you to a screen where
-an id and title can be entered for the service, leave the id as is, and
-optionally fill in the title.
+To install the ZODB version, go to the Silva root (ZMI) and choose
+'Silva Poll Service' from the 'add' select menu. This will take you to
+a screen where an id and title can be entered for the service, leave
+the id as is, and optionally fill in the title.
 
 Installing the MySQL service requires similar steps, but also requires a
 zMySQLDA database adapter to be installed, with the id 'service_polls_mysqldb'.
-Once this adapter has been placed, add a 'Silva Service Polls MySQL' and also
+Once this adapter has been placed, add a 'Silva Poll Service MySQL' and also
 make sure to not change the id (a ZODB and MySQL service can not co-exist).
 
 By default the option store cookie is turned on. This option limits voting by
