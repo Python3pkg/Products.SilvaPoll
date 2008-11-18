@@ -130,7 +130,7 @@ notes
 </tr>
 
 <tr class="odd"
-  tal:define="field view/tab_status_form_author/message">
+  tal:define="field here/tab_status_form_author/message">
 <td class="align-right">
   <tal:block replace="structure python: field.render(REQUEST=request)" />
 </td>
@@ -147,7 +147,7 @@ This message will remain visible in the status screen for other authors and edit
   previewable model/get_previewable;
 ">
 <tr class="even"
-  tal:define="field view/tab_status_form_author/question_start_datetime">
+  tal:define="field here/tab_status_form_author/question_start_datetime">
 <td class="align-right"
   style="vertical-align:bottom; white-space: nowrap;'">
 <label tal:attributes="for field/id"
@@ -162,7 +162,7 @@ day / month / year &nbsp;(23:59)
 </tr>
 
 <tr class="odd"
-  tal:define="field view/tab_status_form_author/question_end_datetime">
+  tal:define="field here/tab_status_form_author/question_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
 <label tal:attributes="for field/id"
   i18n:translate=""
@@ -175,7 +175,7 @@ If this content's question should expire, set the time.
 </tr>
 
 <tr class="even"
-  tal:define="field view/tab_status_form_author/result_start_datetime">
+  tal:define="field here/tab_status_form_author/result_start_datetime">
 <td class="align-right"
  style="vertical-align:bottom; white-space: nowrap;'">
 <label tal:attributes="for field/id"
@@ -190,7 +190,7 @@ day / month / year &nbsp;(23:59)
 </tr>
 
 <tr class="odd"
-  tal:define="field view/tab_status_form_author/result_end_datetime">
+  tal:define="field here/tab_status_form_author/result_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
 <label tal:attributes="for field/id"
   i18n:translate=""
@@ -243,7 +243,7 @@ notes
 </tr>
 
 <tr class="odd"
-  tal:define="field view/tab_status_form_change_settings/publish_datetime">
+  tal:define="field here/tab_status_form_change_settings/publish_datetime">
 <td class="align-right" style="white-space: nowrap;">
 <label tal:attributes="for field/id"
   i18n:translate=""
@@ -256,7 +256,7 @@ notes
 </tr>
 
 <tr class="even"
-  tal:define="field view/tab_status_form_change_settings/expiration_datetime">
+  tal:define="field here/tab_status_form_change_settings/expiration_datetime">
 <td class="align-right" style="white-space: nowrap;">
 <label tal:attributes="for field/id"
   i18n:translate=""
@@ -270,7 +270,7 @@ If this content should expire, set the time.
 
 <tr>
 <th class="align-right" colspan="2"
-  tal:define="field view/tab_status_form_change_settings/clear_expiration">
+  tal:define="field here/tab_status_form_change_settings/clear_expiration">
 <label tal:attributes="for field/id"
   i18n:translate=""
   >clear expiration
@@ -327,7 +327,7 @@ notes
 <tal:block define="now modules/DateTime/DateTime;
                     previewable model/get_previewable;">
 <tr class="even"
-  tal:define="field view/tab_status_form_editor/question_start_datetime">
+  tal:define="field here/tab_status_form_editor/question_start_datetime">
 <td class="align-right"
  style="vertical-align:bottom; white-space: nowrap;'">
  <label tal:attributes="for field/id"
@@ -342,7 +342,7 @@ day / month / year &nbsp;(23:59)
 </tr>
 
 <tr class="odd"
-  tal:define="field view/tab_status_form_editor/question_end_datetime">
+  tal:define="field here/tab_status_form_editor/question_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
 <label tal:attributes="for field/id"
   i18n:translate=""
@@ -355,7 +355,7 @@ If this content's question should expire, set the time.
 </tr>
 
 <tr class="even"
-  tal:define="field view/tab_status_form_editor/result_start_datetime">
+  tal:define="field here/tab_status_form_editor/result_start_datetime">
 <td class="align-right"
  style="vertical-align:bottom; white-space: nowrap;'">
  <label tal:attributes="for field/id"
@@ -370,7 +370,7 @@ day / month / year &nbsp;(23:59)
 </tr>
 
 <tr class="odd"
-  tal:define="field view/tab_status_form_editor/result_end_datetime">
+  tal:define="field here/tab_status_form_editor/result_end_datetime">
 <td class="align-right" style="white-space: nowrap;">
 <label tal:attributes="for field/id"
   i18n:translate=""

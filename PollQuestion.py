@@ -268,6 +268,8 @@ class PollQuestionVersion(Version):
             return
         answer = unicode(REQUEST['answer'], 'UTF-8')
         answers = self.get_answers()
+
+        import pdb; pdb.set_trace()
         id = answers.index(answer)
         service = self.service_polls
         service.vote(self.qid, id)

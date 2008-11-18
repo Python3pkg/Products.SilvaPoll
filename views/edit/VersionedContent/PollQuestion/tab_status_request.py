@@ -4,13 +4,12 @@ from zope.i18n import translate
 from Products.SilvaPoll.i18n import translate as _
 
 model = context.REQUEST.model
-view = context
 
 try:
-    result = view.tab_status_form_author.validate_all(context.REQUEST)
+    result = context.tab_status_form_author.validate_all(context.REQUEST)
 except FormValidationError, e:
-    return view.tab_status(
-        message_type="error", message=view.render_form_errors(e))
+    return context.tab_status(
+        message_type="error", message=context.render_form_errors(e))
 
 # check for status
 message=None
@@ -27,7 +26,7 @@ editable.set_result_start_datetime(result['result_start_datetime'])
 editable.set_result_end_datetime(result['result_end_datetime'])
 
 if message is not None:
-    return view.tab_status(message_type="error", message=message)
+    return context.tab_status(message_type="error", message=message)
 
 import DateTime
 context.set_unapproved_version_publication_datetime(DateTime.DateTime())
@@ -38,5 +37,5 @@ model.request_version_approval(result['message'])
 if hasattr(model, 'service_messages'):
     model.service_messages.send_pending_messages()
     
-return view.tab_status(message_type="feedback", 
+return context.tab_status(message_type="feedback", 
                         message=translate(_("Approval requested.")))

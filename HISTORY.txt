@@ -1,104 +1,132 @@
 HISTORY
 =======
 
-  * SilvaPoll (moved to become trunk) 0.4:
+SilvaPoll 0.5
+-------------
 
-    Features:
+- Fix template and scripts to be compatible with Silva-2.2.
 
-      - Different way of creating message ids for i18n
+SilvaPoll 0.4
+-------------
 
-      - Made title optional, the question may be all that's needed
-      
-      - Refactoring and cleanup of template code and css optimizations
-      
-      - Moved error message to above the answers you're supposed to choose from
-      
-      - Added "Poll Results" heading
-      
-      - New icons for ZMI service and SMI (needs transparent gif format for IE users)
+New Features
+~~~~~~~~~~~~
 
-    Bugs fixed:
+- Different way of creating message ids for i18n.
 
-      - Publication and expiration dates for both the question and the results 
-        are now again shown in the side bar.
+- Made title optional, the question may be all that's needed.
 
-      - Field description in edit screen wasn't rendering
-      
-      - Status screen had the Z210 tal attributes/replace problem
+- Refactoring and cleanup of template code and css optimizations.
 
-  * 0.3.5-generic:
+- Moved error message to above the answers you're supposed to choose
+  from.
 
-    Features:
+- Added "Poll Results" heading.
 
-      - Silva Service Polls MySQL now also has the store cookie feature
+- New icons for ZMI service and SMI (needs transparent gif format for
+  IE users).
 
-    Bugs fixed:
+Bugs fixed
+~~~~~~~~~~
 
-      - Singular Plural of votes for results.
+- Publication and expiration dates for both the question and the
+  results are now again shown in the side bar.
 
-  * 0.3.4-generic:
+- Field description in edit screen wasn't rendering.
 
-    Features:
+- Status screen had the Z210 tal attributes/replace problem.
 
-      - No answers selected when starting the Silva Poll
+0.3.5-generic
+-------------
 
-      - Message when no answer is selected
+Features
+~~~~~~~~
+  
+- Silva Service Polls MySQL now also has the store cookie feature.
 
-  * 0.3.3-generic:
+Bugs fixed
+~~~~~~~~~~
 
-    Changes:
-      - votes are now on the same line between ()'s
+- Singular Plural of votes for results.
 
-    Features:
+0.3.4-generic
+-------------
 
-      - tableless
+Features
+~~~~~~~~
 
-      - turn of cookies option
+- No answers selected when starting the Silva Poll.
 
-    Improvements:
+- Message when no answer is selected.
 
-      - code clean up
+0.3.3-generic
+-------------
 
-      - better compliancy
+Changes
+~~~~~~~
 
-      - more generic
+- votes are now on the same line between ()'s.
 
-      - updated documentation
+Features
+~~~~~~~~
 
-  * 0.3.1 from silva poll:
+- tableless.
 
-    Bugs fixed:
+- turn of cookies option.
 
-      - Fixed JS error in public view.
+Improvements
+~~~~~~~~~~~~
 
-      - Fixed bookmark text.
+- code clean up.
 
-      - Made public views not get cached anymore.
+- better compliancy.
 
-      - Fixed i18n initialization.
+- more generic.
 
-  * 0.3:
+- updated documentation.
 
-    Bugs fixed:
+0.3.1 from silva poll
+---------------------
 
-      - Error page was displayed when trying to add Poll Question with
-        duplicate id.
+Bugs fixed
+~~~~~~~~~~
 
-      - Fixed problem that made that the publically viewable version was
-        used to get data from in preview screens (which could result in errors
-        if no public version was available).
+- Fixed JS error in public view.
 
-      - Fixed attribute errors on 'day' in preview.
+- Fixed bookmark text.
 
-    Features added:
+- Made public views not get cached anymore.
 
-      - There's now a restriction on the amount of answers one can save:
-        the maximum allowed number of answers is 20.
+- Fixed i18n initialization.
 
-  * 0.2:
+0.3
+---
 
-    Bugs fixed:
+Bugs fixed
+~~~~~~~~~~
 
-    Features added:
+- Error page was displayed when trying to add Poll Question with
+  duplicate id.
 
-      - Cosmetic fixes.
+- Fixed problem that made that the publically viewable version was
+  used to get data from in preview screens (which could result in
+  errors if no public version was available).
+
+- Fixed attribute errors on 'day' in preview.
+
+Features added
+~~~~~~~~~~~~~~
+
+- There's now a restriction on the amount of answers one can save: the
+  maximum allowed number of answers is 20.
+
+0.2
+---
+
+Bugs fixed
+~~~~~~~~~~
+
+Features added
+~~~~~~~~~~~~~~
+
+- Cosmetic fixes.
