@@ -36,8 +36,8 @@ Bugs fixed
 
 - Status screen had the Z210 tal attributes/replace problem.
 
-0.3.5-generic
--------------
+SilvaPoll 0.3.5
+---------------
 
 Features
 ~~~~~~~~
@@ -49,8 +49,8 @@ Bugs fixed
 
 - Singular Plural of votes for results.
 
-0.3.4-generic
--------------
+SilvaPoll 0.3.4
+---------------
 
 Features
 ~~~~~~~~
@@ -59,8 +59,8 @@ Features
 
 - Message when no answer is selected.
 
-0.3.3-generic
--------------
+SilvaPoll 0.3.3
+---------------
 
 Changes
 ~~~~~~~
@@ -85,8 +85,8 @@ Improvements
 
 - updated documentation.
 
-0.3.1 from silva poll
----------------------
+SilvaPoll 0.3.1
+---------------
 
 Bugs fixed
 ~~~~~~~~~~
@@ -99,8 +99,8 @@ Bugs fixed
 
 - Fixed i18n initialization.
 
-0.3
----
+SilvaPoll 0.3
+-------------
 
 Bugs fixed
 ~~~~~~~~~~
@@ -120,8 +120,8 @@ Features added
 - There's now a restriction on the amount of answers one can save: the
   maximum allowed number of answers is 20.
 
-0.2
----
+SilvaPoll 0.2
+-------------
 
 Bugs fixed
 ~~~~~~~~~~
