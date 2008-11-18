@@ -1,10 +1,16 @@
-HISTORY
+History
 =======
 
-SilvaPoll 0.5
--------------
+SilvaPoll 1.2 (2008-11-18)
+--------------------------
 
-- Fix template and scripts to be compatible with Silva-2.2.
+- Fix template and scripts to be compatible with Silva 2.2.
+
+SilvaPoll 0.5 to 1.1
+--------------------
+
+- Due to a late night HISTORY.txt stopped working, but never fear
+  HISTORY.txt has decided to return to service as of SilvaPoll 1.2.
 
 SilvaPoll 0.4
 -------------
