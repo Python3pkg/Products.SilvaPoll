@@ -14,7 +14,7 @@ from Products.Formulator.XMLToForm import XMLToForm
 
 from Products.Silva.VersionedContent import VersionedContent
 from Products.Silva.Version import Version
-from Products.Silva.interfaces import IVersionedContent, IVersion
+from silva.core.interfaces import IVersionedContent, IVersion
 from Products.Silva import mangle
 from Products.Silva.helpers import add_and_edit
 from Products.Silva import SilvaPermissions
@@ -269,7 +269,6 @@ class PollQuestionVersion(Version):
         answer = unicode(REQUEST['answer'], 'UTF-8')
         answers = self.get_answers()
 
-        import pdb; pdb.set_trace()
         id = answers.index(answer)
         service = self.service_polls
         service.vote(self.qid, id)
