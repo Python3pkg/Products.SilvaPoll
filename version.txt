@@ -1,2 +1,2 @@
-SilvaPoll 1.3 (unreleased)
+SilvaPoll 1.4 (unreleased)
 
