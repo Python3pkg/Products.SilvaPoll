@@ -14,7 +14,7 @@ from Products.Formulator.XMLToForm import XMLToForm
 
 from Products.Silva.VersionedContent import VersionedContent
 from Products.Silva.Version import Version
-from silva.core.interfaces import IVersionedContent, IVersion
+from Products.Silva.interfaces import IVersionedContent, IVersion
 from Products.Silva import mangle
 from Products.Silva.helpers import add_and_edit
 from Products.Silva import SilvaPermissions
