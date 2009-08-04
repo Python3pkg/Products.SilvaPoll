@@ -79,10 +79,11 @@
       votes model/get_votes;
       total python: sum(votes) * 1.0;
       ">
-      <h3 class="poll_result" i18n:translate="">Poll Results</h3>
-      <h4 class="poll_result"
+      <h3 class="poll_result_heading" i18n:translate="">Poll Results</h3>
+      <h4 class="poll_result_question"
         tal:content="model/get_question">question title</h4>
       <tal:block repeat="i python:xrange(len(answers))">
+      <div class="poll_result_wrapper">
         <div tal:attributes="class python:repeat['i'].end and 'poll_result_label_last' or 'poll_result_label'">
           <p class="poll_answer"
             tal:content="python: answers[i]">
@@ -97,7 +98,7 @@
             </div>
           </div>
           <p>
-            <tal:block content="string:${percentage} %" /> (
+            <tal:block content="string:${percentage} %" /><br /> 
             <tal:block replace="python:votes[i]" />
             <tal:condition condition="python:int(votes[i]) == 1"
               i18n:translate="">
@@ -106,8 +107,9 @@
             <tal:condition condition="python:int(votes[i]) == 0 or int(votes[i]) > 1"
               i18n:translate="">
               votes
-            </tal:condition>)
+            </tal:condition>
           </p>
+        </div>
         </div>
       </tal:block>
     </tal:block>
