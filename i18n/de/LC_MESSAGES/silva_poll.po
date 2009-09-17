@@ -409,7 +409,7 @@ msgstr "Vielen Dank für Ihre Teilnahme!"
 #: /views/public/PollQuestion/render.pt:139
 msgid ""
 "The results of the poll will be available on this site ${from-until-or-from}"
-msgstr "Die Ergebnisse dieser Umfrage werden ab ${from-until-or-from} auf dieser Seite verfügbar sein."
+msgstr "Die Ergebnisse dieser Umfrage werden ${from-until-or-from} auf dieser Seite verfügbar sein."
 
 #: /views/public/PollQuestion/render.pt:145
 msgid "from ${startdate} until ${enddate}."
@@ -417,7 +417,7 @@ msgstr "von ${startdate} bis ${enddate}"
 
 #: /views/public/PollQuestion/render.pt:150
 msgid "on ${startdate}."
-msgstr "am ${startdate}"
+msgstr "ab ${startdate}"
 
 #: /views/public/PollQuestion/render.pt:184
 msgid ""
