@@ -13,93 +13,93 @@ msgstr ""
 #: /views/add/PollQuestion/add_submit.py:33
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:30
 msgid "you have exceeded the maximum of 20 allowed answers"
-msgstr ""
+msgstr "Die maximale Anzahl von 20 Antworten wurde überschritten."
 
 #: /views/add/PollQuestion/add_submit.py:51
 msgid "Problem: ${problem}"
-msgstr ""
+msgstr "Problem: ${problem}"
 
 # Default: "id"
 #: /views/add/PollQuestion/add_submit.py:68
 msgid "meta_type"
-msgstr ""
+msgstr "meta_type"
 
 #: /views/add/PollQuestion/form.form:29
 msgid "id"
-msgstr ""
+msgstr "ID"
 
 #: /views/add/PollQuestion/form.form:31
 msgid ""
 "No spaces or special characters besides &#8216;_&#8217; or &#8216;-&#8217; "
 "or &#8216;.&#8217;"
-msgstr ""
+msgstr "Keine Leerzeichen oder Sonderzeichen außer &#8216;_&#8217; oder &#8216;-&#8217;"
 
 #: /views/add/PollQuestion/form.form:51
 msgid "title of poll"
-msgstr ""
+msgstr "Titel der Umfrage"
 
 #: /views/add/PollQuestion/form.form:53
 msgid "Optional"
-msgstr ""
+msgstr "Optional"
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:108
 msgid "save settings"
-msgstr ""
+msgstr "Einstellungen speichern"
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:108
 msgid "All votes will be discarded if you change answers. Are you sure?"
-msgstr ""
+msgstr "Alle Stimmen werden bei einer Änderung der Anworten verworfen. Sind Sie sicher?"
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:108
 msgid "access key: alt-s"
-msgstr ""
+msgstr "Tastenkombination: alt-s"
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:61
 msgid "element"
-msgstr ""
+msgstr "Element"
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:63
 msgid "content"
-msgstr ""
+msgstr "Inhalt"
 
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:64
 msgid "note"
-msgstr ""
+msgstr "Anmerkung"
 
 #: /views/edit/VersionedContent/PollQuestion/form.form:31
 #: /views/add/PollQuestion/form.form:74
 msgid "question"
-msgstr ""
+msgstr "Frage"
 
 #: /views/edit/VersionedContent/PollQuestion/form.form:54
 #: /views/add/PollQuestion/form.form:96
 msgid "answers"
-msgstr ""
+msgstr "Antworten"
 
 #: /views/edit/VersionedContent/PollQuestion/form.form:55
 #: /views/add/PollQuestion/form.form:97
 msgid "Enter multiple answers separated by empty lines."
-msgstr ""
+msgstr "Geben Sie mehrere Antworten getrennt durch Leerzeilen ein."
 
 #: /views/edit/VersionedContent/PollQuestion/get_tabs.py:17
 msgid "edit"
-msgstr ""
+msgstr "editieren"
 
 #: /views/edit/VersionedContent/PollQuestion/get_tabs.py:18
 msgid "preview"
-msgstr ""
+msgstr "Vorschau"
 
 #: /views/edit/VersionedContent/PollQuestion/get_tabs.py:19
 msgid "properties"
-msgstr ""
+msgstr "Eigenschaften"
 
 #: /views/edit/VersionedContent/PollQuestion/get_tabs.py:20
 msgid "access"
-msgstr ""
+msgstr "Zugriff"
 
 #: /views/edit/VersionedContent/PollQuestion/get_tabs.py:21
 msgid "publish"
-msgstr ""
+msgstr "veröffentlichen"
 
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:22
 msgid ""
@@ -107,201 +107,206 @@ msgid ""
 "answers (not allowed) or you're trying to change answers when people have "
 "already voted"
 msgstr ""
+"Überschreiben der Werte ist nicht erlaubt. Entweder versuchen Sie die Anzahl der "
+"Antworten zu überschreiben (nicht erlaubt) oder Sie versuchen die Antworte zu ändern, "
+"nachdem Personen schon abgestimmt haben."
 
 #: /views/edit/VersionedContent/PollQuestion/submit_settings.py:34
 msgid "updated"
-msgstr ""
+msgstr "aktualisiert"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_approve.py:16
 msgid "There is no unapproved version to approve."
-msgstr ""
+msgstr "Es gibt keine nicht freigegebene Version zum Freigeben."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_approve.py:42
 msgid "Version approved."
-msgstr ""
+msgstr "Version freigegeben."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:28
 msgid "message"
-msgstr ""
+msgstr "Nachricht"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:108
 msgid ""
 "This message will remain visible in the status screen for other authors and "
 "editors."
 msgstr ""
+"Diese Nachricht wird im Statusschirm für andere Autoren und Editoren "
+"sichtbar bleiben."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:124
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:302
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:50
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:30
 msgid "question display start time"
-msgstr ""
+msgstr "Startzeitpunkt der Anzeige der Frage"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:129
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:156
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:307
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:334
 msgid "day / month / year &nbsp;(23:59)"
-msgstr ""
+msgstr "Tag / Monat / Jahr &nbsp;(23:59)"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:137
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:315
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:72
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:52
 msgid "question display end time"
-msgstr ""
+msgstr "Endzeitpunkt der Anzeige der Frage"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:142
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:320
 msgid "If this content's question should expire, set the time."
-msgstr ""
+msgstr "Wenn die Anzeige der Frage ablaufen soll, setzen Sie den Zeitpunkt."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:151
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:329
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:94
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:74
 msgid "results display start time"
-msgstr ""
+msgstr "Startzeitpunkt der Anzeige der Ergebnisse"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:164
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:342
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_author.form:116
 #: /views/edit/VersionedContent/PollQuestion/tab_status_form_editor.form:96
 msgid "results display end time"
-msgstr ""
+msgstr "Endzeitpunkt der Anzeige der Ergebnisse"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:169
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:347
 msgid "If this content's results should expire, set the time."
-msgstr ""
+msgstr "Wenn die Anzeige der Ergebnisse ablaufen soll, setzen Sie den Zeitpunkt."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:179
 msgid "request approval"
-msgstr ""
+msgstr "Freigabe anfordern"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:179
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:436
 msgid "access key: alt-r"
-msgstr ""
+msgstr "Tastenkombination: alt-r"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:199
 msgid "change settings"
-msgstr ""
+msgstr "Einstellungen ändern"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:206
 msgid "current timings"
-msgstr ""
+msgstr "Aktuelle Zeiteinstellungen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:217
 msgid "publish time:"
-msgstr ""
+msgstr "Veröffentlichungsdatum:"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:230
 msgid "expiratio<u>n</u> time"
-msgstr ""
+msgstr "Ablaufdatum"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:235
 msgid "If this content should expire, set the time."
-msgstr ""
+msgstr "Wenn der Inhalt ablaufen soll, setzten Sie den Zeitpunkt."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:24
 msgid "messages"
-msgstr ""
+msgstr "Nachrichten"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:243
 msgid "clear expiration"
-msgstr ""
+msgstr "Ablauf löschen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:254
 msgid "update timing"
-msgstr ""
+msgstr "Zeiteinstellungen aktualisieren"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:254
 msgid "access key: alt-u"
-msgstr ""
+msgstr "Tastenkombination: alt-u"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:274
 msgid "poll display dates"
-msgstr ""
+msgstr "Anzeigedaten der Umfrage"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:278
 msgid "poll display dates for closed version"
-msgstr ""
+msgstr "Anzeigedaten der geschlossenen Version der Umfrage"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:286
 #: /views/edit/VersionedContent/PollQuestion/edit.pt:52
 msgid "settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:358
 msgid "publish now"
-msgstr ""
+msgstr "jetzt veröffentlichen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:358
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:516
 msgid "access key: alt-p"
-msgstr ""
+msgstr "Tastenkombination: alt-p"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:36
 msgid "${author_id} sent a message on ${some_date}: ${with_comments}"
-msgstr ""
+msgstr "${author_id} hat am ${some_date} eine Nachricht gesendet: ${with_comments}"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:381
 msgid "reject"
-msgstr ""
+msgstr "zurückweisen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:382
 msgid "withdraw"
-msgstr ""
+msgstr "zurückziehen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:383
 msgid "request"
-msgstr ""
+msgstr "Anfrage"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:392
 msgid "add message on"
-msgstr ""
+msgstr "füge eine Nachricht hinzu"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:395
 msgid "rejection"
-msgstr ""
+msgstr "Zurückweisung"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:398
 msgid "withdrawal"
-msgstr ""
+msgstr "Zurückziehung"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:416
 msgid "The message may be viewed by local users."
-msgstr ""
+msgstr "Die Nachricht kann von lokalen Benutzern gesehen werden."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:427
 msgid "reject approval request"
-msgstr ""
+msgstr "Die Anfrage zur Freigabe zurückweisen."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:427
 msgid "access key: alt-j"
-msgstr ""
+msgstr "Tastenkombination: alt-j"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:436
 msgid "withdraw approval request"
-msgstr ""
+msgstr "Anfrage zur Freigabe zurückziehen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:461
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:479
 msgid "revoke approval"
-msgstr ""
+msgstr "Freigabe verwerfen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:470
 msgid "If further editing is required, first revoke the approval."
-msgstr ""
+msgstr "Wenn weiteres Editieren notwendig ist, verwerfen Sie zuerst die Freigabe."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:479
 msgid "access key: alt-v"
-msgstr ""
+msgstr "Tastenkombination: alt-v"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:502
 msgid "revert to previous version"
-msgstr ""
+msgstr "Wiederherstellen der vorherigen Version"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:508
 msgid ""
@@ -309,82 +314,89 @@ msgid ""
 "version. This can not be undone afterwards and will discard all changes made "
 "to the current version."
 msgstr ""
+"Die derzeitige editierbare Version kann durch die vorherige (veröffentlichte) "
+"Version ersetzt werden. Dies kann danach nicht mehr rückgängig gemacht werden und wird "
+"alle an der derzeitigen Version gemachten Änderungen verwerfen."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:516
 msgid "revert to previous"
-msgstr ""
+msgstr "Wiederherstellen der vorherigen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:540
 msgid "manual close"
-msgstr ""
+msgstr "manuelles Schließen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:547
 msgid ""
 "If necessary, the published version of this content can be manually closed "
 "(taken offline). It will also be removed from the public index."
 msgstr ""
+"Wenn notwenig, kann die veröffentlichte Version manuell geschlossen (offline genommen) "
+"werden. Sie wird auch vom öffentlichen Index entfernt. "
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:556
 msgid "close published version"
-msgstr ""
+msgstr "schließe veröffentlichte Version"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:556
 msgid "access key: alt-c"
-msgstr ""
+msgstr "Tastenkombination: alt-c"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:64
 msgid ""
 "A previous request for approval has been rejected / withdrawn by "
 "${requester} on ${some_date}. The last message regarding this issue is:"
 msgstr ""
+"Eine vorherige Anfrage zur Freigabe wurde zurückgewiesen / zurückgezogen durch "
+"${requester} am ${some_date}. Die letzte Nachricht betreffend dieser Anfrage ist:" 
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:87
 msgid "for new version"
-msgstr ""
+msgstr "für eine neue Version"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:87
 msgid "request approval ${for_new_version}"
-msgstr ""
+msgstr "Anfrage zur Freigabe ${for_new_version}"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:92
 msgid "message to editor"
-msgstr ""
+msgstr "Nachricht an den Editor"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:95
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:209
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:289
 #: /views/edit/VersionedContent/PollQuestion/tab_status_macros.pt:402
 msgid "notes"
-msgstr ""
+msgstr "Anmerkungen"
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_request.py:18
 msgid "There is no unapproved version."
-msgstr ""
+msgstr "Es gibt keine nicht freigegebene Version."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_request.py:20
 msgid "Approval has already been requested."
-msgstr ""
+msgstr "Die Freigabe wurde bereits angefordert."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_request.py:42
 msgid "Approval requested."
-msgstr ""
+msgstr "Freigabe angefordert."
 
 #: /views/edit/VersionedContent/PollQuestion/tab_status_set_dates.py:22
 msgid "Dates not set. No public version found."
-msgstr ""
+msgstr "Daten nicht gesetzt. Keine öffentliche Version gefunden."
 
 # Default: "silva_poll"
 #: /views/edit/VersionedContent/PollQuestion/tab_status_set_dates.py:30
 msgid "Dates set."
-msgstr ""
+msgstr "Daten gesetzt."
 
 #: /views/public/PollQuestion/render.pt:102
 msgid "vote"
-msgstr ""
+msgstr "Stimme"
 
 #: /views/public/PollQuestion/render.pt:106
 msgid "votes"
-msgstr ""
+msgstr "Stimmen"
 
 #: /views/public/PollQuestion/render.pt:120
 msgid "This poll is available from ${startdatetime}."
@@ -392,72 +404,49 @@ msgstr "Diese Umfrage steht ab ${startdatetime} zur Verf&#xfc;gung."
 
 #: /views/public/PollQuestion/render.pt:129
 msgid "Many thanks for your participation!"
-msgstr ""
+msgstr "Vielen Dank für Ihre Teilnahme!"
 
 #: /views/public/PollQuestion/render.pt:139
 msgid ""
 "The results of the poll will be available on this site ${from-until-or-from}"
-msgstr ""
+msgstr "Die Ergebnisse dieser Umfrage werden ab ${from-until-or-from} auf dieser Seite verfügbar sein."
 
 #: /views/public/PollQuestion/render.pt:145
 msgid "from ${startdate} until ${enddate}."
-msgstr ""
+msgstr "von ${startdate} bis ${enddate}"
 
 #: /views/public/PollQuestion/render.pt:150
 msgid "on ${startdate}."
-msgstr ""
+msgstr "am ${startdate}"
 
 #: /views/public/PollQuestion/render.pt:184
 msgid ""
 "Thank you for your interest, unfortunately the results of this poll are no "
 "longer available."
 msgstr ""
+"Vielen Dank für Ihr Interesse. Leider sind die Ergebnisse dieser Umfrage "
+"nicht mehr verfügbar."
 
 #: /views/public/PollQuestion/render.pt:51
 msgid "Please select an answer."
-msgstr ""
+msgstr "Bitte wählen Sie eine Antwort aus."
 
 #: /views/public/PollQuestion/render.pt:66
 msgid "Submit"
-msgstr ""
+msgstr "Absenden"
 
 #: /views/public/PollQuestion/render.pt:82
 msgid "Poll Results"
-msgstr ""
+msgstr "Ergebnisse der Umfrage"
 
 #: /www/externalSourceForm.form:20
 msgid ""
 "Set to 'inline' to display the question and results within the page, 'link' "
 "to display a link to the PollQuestion public views."
 msgstr ""
+"Setzen Sie dies auf 'inline', um die Frage und Ergebnisse innerhalb der Seite "
+"anzuzeigen, auf 'link', um einen Link auf die öffentliche Ansicht der Umfrage anzuzeigen."
 
 #: /www/externalSourceForm.form:29
 msgid "display"
-msgstr ""
-
-#~ msgid "Many thanks for your partipation!"
-#~ msgstr "Vielen Dank f&#xfc;r Ihre Teilnahme!"
-
-#~ msgid "The results will be available on this site ${from-until-or-from}"
-#~ msgstr ""
-#~ "Die Ergebnisse werden ${from-until-or-from} unter dieser Seite abrufbar "
-#~ "sein:"
-
-#~ msgid "from ${startdate} until ${enddate}"
-#~ msgstr "von ${startdate} bis ${enddate}"
-
-#~ msgid "from ${startdate}"
-#~ msgstr "ab ${startdate}"
-
-#~ msgid ""
-#~ "Thank you for your interest, unfortunately the results of this poll are "
-#~ "no longer available.\""
-#~ msgstr ""
-#~ "Danke f&#xfc;r Ihr Interesse, die Ergebnisse dieser Umfrage stehen leider "
-#~ "nicht mehr zur Verf&#xfc;gung."
-
-#~ msgid "Vote"
-#~ msgstr "Stimme"
-
-#~ msgid "Votes"
-#~ msgstr "Stimmen"
+msgstr "anzeigen"
