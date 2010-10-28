@@ -1,2 +1,0 @@
-SilvaPoll 1.4 (unreleased)
-
