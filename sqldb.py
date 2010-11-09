@@ -1,6 +1,6 @@
 # Copyright (c) 2003-2007 Infrae. All rights reserved.
 # See also LICENSE.txt
-# $Revision: 1.1 $
+# $Revision$
 from Products.ZSQLMethods.SQL import SQL
 
 # DATA RETRIEVERS

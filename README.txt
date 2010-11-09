@@ -38,25 +38,19 @@ document, click on external sources and add all of your questions
 
 Fill in the options you would like to set:
 
-* question display start time: time when a Silva Poll Question should
+- question display start time: time when a Silva Poll Question should
   be displayed for the public.
 
-* question display end time: time when a Silva Poll Question should
+- question display end time: time when a Silva Poll Question should
   stop being displayed for the public.
 
-* results display start time: time when the result of Silva Poll
+- results display start time: time when the result of Silva Poll
   Question should be displayed for the public.
 
-* results display end time: time when the result of Silva Poll
+- results display end time: time when the result of Silva Poll
   Question should stop being displayed for the public.
-
-Styling Silva Poll
-------------------
-
-Silva Poll looks much better if you reference the included stylesheet. See the 
-INSTALL.txt doc for instructions.
 
 Contact information
 ===================
 
-For questions, bug reports, etc. send email to wim@infrae.com, jasper@infrae.com
+For questions, bug reports, etc. send email to info@infrae.com.

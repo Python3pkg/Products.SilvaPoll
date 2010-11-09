@@ -12,38 +12,38 @@
 
 <span tal:replace="nothing"> _______ notice of previous version times _______ </span>
 <!-- begin override publication date/time block -->
-<metal:block define-macro="datetime_info"
-  tal:define="
-    start_q_time python: mangle.DateTime(model.current_question_start_datetime()).toStr();
-    end_q_time python: mangle.DateTime(model.current_question_end_datetime()).toStr();
-    start_r_time python: mangle.DateTime(model.current_result_start_datetime()).toStr();
-    end_r_time python: mangle.DateTime(model.current_result_end_datetime()).toStr();
-    "
-  tal:condition="start_q_time">
-<p talcondition="start_q_time">
-<span class="subhead"
-  i18n:translate="">Publication time of question</span>
-<br />
-<tal:block replace="start_q_time" />
-</p>
-<p tal:condition="end_q_time">
-<span class="subhead"
-  i18n:translate="">Expiration time of question</span>
-<br />
-<tal:block replace="end_q_time" />
-</p>
-<p tal:condition="start_r_time">
-<span class="subhead"
-  i18n:translate="">Publication time of results</span>
-<br />
-<tal:block replace="start_r_time" />
-</p>
-<p tal:condition="end_r_time">
-<span class="subhead"
-  i18n:translate="">Expiration time of results</span>
-<br />
-<tal:block replace="end_r_time" />
-</p>
+<metal:block
+   metal:define-macro="datetime_info"
+   tal:define="version model/get_editable"
+   tal:condition="python:version is not None">
+  <p tal:define="time python:mangle.DateTime(version.question_start_datetime()).toStr();"
+     tal:condition="time">
+    <span class="subhead"
+          i18n:translate="">Publication time of question</span>
+    <br />
+    <tal:block replace="time" />
+  </p>
+  <p tal:define="time python:mangle.DateTime(version.question_end_datetime()).toStr();"
+     tal:condition="time">
+    <span class="subhead"
+          i18n:translate="">Expiration time of question</span>
+    <br />
+    <tal:block replace="time" />
+  </p>
+  <p tal:define="time python: mangle.DateTime(version.result_start_datetime()).toStr();"
+     tal:condition="time">
+    <span class="subhead"
+          i18n:translate="">Publication time of results</span>
+    <br />
+    <tal:block replace="time" />
+  </p>
+  <p tal:define="time python:mangle.DateTime(version.result_end_datetime()).toStr();"
+     tal:condition="time">
+    <span class="subhead"
+          i18n:translate="">Expiration time of results</span>
+    <br />
+    <tal:block replace="time" />
+  </p>
 <!-- end override -->
 </metal:block>
 

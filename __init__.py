@@ -1,33 +1,30 @@
-from Products.Silva.ExtensionRegistry import extensionRegistry
-from Products.Silva.fssite import registerDirectory
-from Products.SilvaMetadata.Compatibility import registerTypeForMetadata
-import PollQuestion
-import ServicePolls, ServicePollsMySQL
-import install
+# -*- coding: utf-8 -*-
+# Copyright (c) 2006 Infrae. All rights reserved.
+# See also LICENSE.txt
 
-def initialize(context):
-    extensionRegistry.register(
-        'SilvaPoll', 'Silva Poll', context, [PollQuestion], 
-        install, depends_on='SilvaExternalSources')
+from silva.core import conf as silvaconf
+from silva.core.conf.installer import DefaultInstaller
+from zope.interface import Interface
 
-    context.registerClass(
-        ServicePolls.ServicePolls,
-        constructors = (ServicePolls.manage_addServicePollsForm,
-                        ServicePolls.manage_addServicePolls),
-        icon = 'www/poll_service.png'
-    )
+silvaconf.extension_name("SilvaPoll")
+silvaconf.extension_title("Silva Poll")
+silvaconf.extension_depends(["SilvaExternalSources"])
 
-    context.registerClass(
-        ServicePollsMySQL.ServicePollsMySQL,
-        constructors = (ServicePollsMySQL.manage_addServicePollsMySQLForm,
-                        ServicePollsMySQL.manage_addServicePollsMySQL),
-        icon = 'www/pollquestion.gif'
-    )
 
-    registerDirectory('views', globals())
-    registerDirectory('resources', globals())
-    registerTypeForMetadata('Silva Poll Question Version')
+class IExtension(Interface):
+    """Silva Forum extension.
+    """
 
-from AccessControl import allow_module
 
-allow_module('Products.SilvaPoll.i18n')
+class SilvaPollInstaller(DefaultInstaller):
+
+    def install_custom(self, root):
+        if 'service_polls' not in root.objectIds():
+            factory = root.manage_addProduct['SilvaPoll']
+            factory.manage_addServicePolls()
+        root.service_view_registry.register(
+            'edit', 'Silva Poll Question',
+            ['edit', 'VersionedContent', 'PollQuestion'])
+
+
+install = SilvaPollInstaller('SilvaPoll', IExtension)

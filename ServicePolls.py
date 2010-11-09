@@ -1,67 +1,92 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2006 Infrae. All rights reserved.
+# See also LICENSE.txt
+
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
-from OFS.SimpleItem import SimpleItem
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from App.class_init import InitializeClass
 
-from zope.interface import implements
+from Products.SilvaPoll.interfaces import IServicePolls
+from Products.SilvaPoll.zodbdb import DB
 
-from Products.Silva.helpers import add_and_edit
+from five import grok
+from silva.core.services.base import SilvaService
+from silva.core import conf as silvaconf
+from zeam.form import silva as silvaforms
+from zope import interface, schema
 
-from interfaces import IServicePolls
-from zodbdb import DB
 
-class ServicePolls(SimpleItem):
-    """Service that manages poll data"""
+class ServicePolls(SilvaService):
+    """Service that manages poll data
+    """
+    grok.implements(IServicePolls)
+
+    meta_type = 'Silva Poll Service'
+    default_service_identifier = 'service_polls'
+    silvaconf.icon('ServicePolls.png')
+
+    manage_options = (
+        {'label':'Settings', 'action':'manage_settings'},
+        ) + SilvaService.manage_options
 
     security = ClassSecurityInfo()
-    implements(IServicePolls)
-    meta_type = 'Silva Poll Service'
 
-    def __init__(self, id, title):
-        self.id = id
-        self.title = title
-        self.db = DB(self)
-        self._store_cookies = True
+    _store_cookies = True
+    _automatically_hide_question = True
 
-    def create_question(self, question, answers, votes):
-        return self.db.create(question, answers, votes)
+    def __init__(self, id=None):
+        super(ServicePolls, self).__init__(id=id)
+        self._init_database()
 
-    def set_store_cookies(self, store_cookies):
-        self._store_cookies = store_cookies
-        
+    def _init_database(self):
+        self.db = DB()
+
+    def create_question(self, question, answers):
+        return self.db.create(question, answers)
+
     def get_question(self, qid):
         return self.db.get(qid).question
+
+    def set_question(self, qid, question):
+        return self.db.set_question(qid, question)
 
     def get_answers(self, qid):
         return self.db.get(qid).answers
 
+    def set_answers(self, qid, answers):
+        return self.db.set_answers(qid, answers)
+
     def get_votes(self, qid):
         return self.db.get(qid).votes
-
-    def save(self, qid, question, answers):
-        self.db.update(qid, question, answers)
 
     def vote(self, qid, index):
         self.db.vote(qid, index)
 
+    def automatically_hide_question(self):
+        return self._automatically_hide_question
+
     def store_cookies(self):
-        if not hasattr(self, 'store_cookies'):
-            self._store_cookies = True
-            return True
         return self._store_cookies
-    
+
 InitializeClass(ServicePolls)
 
-manage_addServicePollsForm = PageTemplateFile('www/servicePollsAdd', globals(),
-                                        __name__='manage_addServicePollsForm')
 
-def manage_addServicePolls(self, id='service_polls', title='', REQUEST=None):
-    """add service to the ZODB"""
-    id = self._setObject(id, ServicePolls(id, unicode(title, 'UTF-8')))
-    store_cookies = False
-    if REQUEST.has_key('store_cookies'):
-        store_cookies = True
-    service = getattr(self, id)
-    service.set_store_cookies(store_cookies)
-    add_and_edit(self, id, REQUEST)
-    return ''
+class IServicePollsConfiguration(interface.Interface):
+
+    _store_cookies = schema.Bool(
+        title=u"Prevent visitor to vote multiple times by setting a cookie",
+        default=True)
+    _automatically_hide_question = schema.Bool(
+        title=u"Hide by default questions from navigation and TOCs.",
+        default=True)
+
+
+class ServicePollsConfiguration(silvaforms.ZMIForm):
+    """Configure service polls settings.
+    """
+    grok.context(IServicePolls)
+    grok.name('manage_settings')
+
+    label = u"Configure globals poll settings"
+    fields = silvaforms.Fields(IServicePollsConfiguration)
+    actions = silvaforms.Actions(silvaforms.EditAction())
+    ignoreContext = False

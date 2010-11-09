@@ -1,412 +1,338 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2006 Infrae. All rights reserved.
+# See also LICENSE.txt
+
 import os
-from urlparse import urlparse
+
+from localdatetime import get_formatted_date, get_locale_info
 
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass, package_home
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from OFS.SimpleItem import SimpleItem
+from App.class_init import InitializeClass
 from DateTime import DateTime
-
-from zope.interface import implements
 
 from Products.Formulator.Form import ZMIForm
 from Products.Formulator.XMLToForm import XMLToForm
 
-from Products.Silva.VersionedContent import VersionedContent
-from Products.Silva.Version import Version
-from silva.core.interfaces import IVersionedContent, IVersion
-from Products.Silva import mangle
-from Products.Silva.helpers import add_and_edit
 from Products.Silva import SilvaPermissions
-
+from Products.Silva.Version import Version
+from Products.Silva.VersionedContent import VersionedContent
+from Products.SilvaMetadata.interfaces import IMetadataService
 from Products.SilvaExternalSources.ExternalSource import ExternalSource
 from Products.SilvaExternalSources.interfaces import IExternalSource
+from Products.SilvaPoll.interfaces import IPollQuestion, IPollQuestionVersion
+from Products.SilvaPoll.interfaces import IServicePolls
 
-icon = "www/pollquestion.gif"
+from five import grok
+from silva.core import conf as silvaconf
+from silva.core.conf.interfaces import ITitledContent
+from silva.core.interfaces.events import IContentPublishedEvent
+from silva.core.views import views as silvaviews
+from silva.core.views.httpheaders import HTTPResponseHeaders
+from zeam.form import silva as silvaforms
+from zope import schema
+from zope.intid.interfaces import IIntIds
+from zope.component import getUtility, getMultiAdapter
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
+from zope.traversing.browser import absoluteURL
+from zope.publisher.interfaces.browser import IBrowserRequest
 
-def set_no_cache_headers(REQUEST):
-    headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
-                ('Last-Modified', 
-                    DateTime("GMT").strftime("%a, %d %b %Y %H:%M:%S GMT")),
-                ('Cache-Control', 'no-cache, must-revalidate'),
-                ('Cache-Control', 'post-check=0, pre-check=0'),
-                ('Pragma', 'no-cache'),
-                ]
-    placed = []
-    for key, value in headers:
-        if key not in placed:
-            REQUEST.RESPONSE.setHeader(key, value)
-            placed.append(key)
-        else:
-            REQUEST.RESPONSE.addHeader(key, value)
-    
-class OverwriteNotAllowed(Exception):
-    """raised when trying to overwrite answers for a used question"""
 
-class TooManyAnswers(Exception):
-    """raised when more than 20 answers are given"""
-
-class ViewableExternalSource(ExternalSource):
-    """ExternalSource subclass that has index_html overridden to display the
-        external source object's public view as usual
+class QuestionResponseHeaders(HTTPResponseHeaders):
+    """Disable cache on poll questions.
     """
+    grok.adapts(IBrowserRequest, IPollQuestion)
 
-    def index_html(self, view_method='view'):
-        """this is kinda nasty... copied the index_html Python script to
-            avoid having ExternalSources.index_html (which returns the props
-            form, not a decent public view, perhaps that should be changed some
-            time) 
+    def cache_headers(self):
+        self.disable_cache()
 
-            note that, in addition to the response headers index_html sets 
-            originally, this sets special headers to not have the content
-            cached in browsers
-        """
-        content = 'content.html'
-        override = 'override.html'
-        if hasattr(self.aq_explicit, override):
-            renderer = override
-        else:
-            renderer = content
-        self.REQUEST.RESPONSE.setHeader('Content-Type', 
-                                            'text/html;charset=utf-8')
 
-        return getattr(self, renderer)(view_method=view_method)
-
-class PollQuestion(VersionedContent, ViewableExternalSource):
-    """This Silva extension enables users to conduct polls inside Silva sites. 
-        A Question is posed to the public and results of the answers are 
-        displayed to those that respond. The poll can be an independent page 
-        or be embedded in a document as a Code Source.
+class PollQuestion(VersionedContent, ExternalSource):
+    """This Silva extension enables users to conduct polls inside Silva sites.
+       A Question is posed to the public and results of the answers are
+       displayed to those that respond. The poll can be an independent page
+       or be embedded in a document as a Code Source.
     """
-
     security = ClassSecurityInfo()
     meta_type = 'Silva Poll Question'
-    implements((IVersionedContent, IExternalSource))
-    
-    _sql_method_id = 'poll_question'
-    _layout_id = 'layout'
-    parameters = None
+    grok.implements(IPollQuestion, IExternalSource)
 
-    def __init__(self, id):
-        PollQuestion.inheritedAttribute('__init__')(self, id)
-        self._init_form()
+    silvaconf.icon("PollQuestion.png")
+    silvaconf.version_class('PollQuestionVersion')
 
-    def _init_form(self):
-        form = ZMIForm('form', 'Properties Form')
-        f = open(os.path.join(package_home(globals()), 'www', 
-                                'externalSourceForm.form'))
-        XMLToForm(f.read(), form)
-        f.close()
-        self.set_form(form)
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'to_html')
+    def to_html(self, context, request, **parameters):
+        """Return HTMl for ExternalSource interface.
+        """
+        if parameters.get('display', 'normal') == 'link':
+            url = absoluteURL(self, request)
+            # Should make it more sense to put the title as link ?
+            return '<p class="p"><a href="%s">%s</a></p>' % (url, url)
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'get_OverwriteNotAllowed')
-    def get_OverwriteNotAllowed(self):
-        return OverwriteNotAllowed
+        # Render the default view as source content.
+        # This will change again caching headers. (XXX Messy).
+        return getMultiAdapter((self, request), name='content.html')()
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'get_TooManyAnswers')
-    def get_TooManyAnswers(self):
-        return TooManyAnswers
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'to_html')
-    def to_html(self, REQUEST, **kw):
-        """return HTMl for ExternalSource interface"""
-        edit_mode = REQUEST.get('edit_mode', False)
-        if edit_mode:
-            version = self.get_previewable()
-        else:
-            version = self.get_viewable()
-        if kw.has_key('display') and kw['display'] == 'link':
-            return '<p class="p"><a href="%s">%s</a></p>' % (
-                self.absolute_url(), self.absolute_url())
-        # XXX is this the expected behaviour? do we want to display a link to
-        # the poll instead when the question and results shouldn't be 
-        # displayed?
-        if version is None:
-            return ''
-        view_type = edit_mode and 'preview' or 'public'
-        return self.view_version(view_type, version)
-
-    is_cacheable = ViewableExternalSource.is_cacheable
-    
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'current_question_start_datetime')
-    def current_question_start_datetime(self):
-        version = self._get_published_or_closed()
-        if version is None:
-            return None
-        return version.question_start_datetime()
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'current_question_end_datetime')
-    def current_question_end_datetime(self):
-        version = self._get_published_or_closed()
-        if version is None:
-            return None
-        return version.question_end_datetime()
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'current_result_start_datetime')
-    def current_result_start_datetime(self):
-        version = self._get_published_or_closed()
-        if version is None:
-            return None
-        return version.result_start_datetime()
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'current_result_end_datetime')
-    def current_result_end_datetime(self):
-        version = self._get_published_or_closed()
-        if version is None:
-            return None
-        return version.result_end_datetime()
-
-    def _get_published_or_closed(self):
-        version = self.get_viewable()
-        if version is None:
-            version = self.get_last_closed()
-        return version
-
-    # XXX hope this doesn't result in scary subtle breakage...
-    def approve_version(self):
-        """approve the current unapproved version"""
-        # just call super's approve_version, if that raises an exception let
-        # it pass through, in that case the dates are obviously not set
-        PollQuestion.inheritedAttribute('approve_version')(self)
-        viewable = self.get_viewable()
-        now = DateTime()
-        if self.current_question_start_datetime() is None:
-            viewable.set_question_start_datetime(now)
-        if self.current_result_start_datetime() is None:
-            viewable.set_result_start_datetime(now)
-
-    security.declarePublic('view_version')
-    def view_version(self, *args, **kwargs):
-        """overriding so we can set headers"""
-        set_no_cache_headers(self.REQUEST)
-        return PollQuestion.inheritedAttribute('view_version')(
-                                            self, *args, **kwargs)
 
 InitializeClass(PollQuestion)
 
+
+class IPollQuestionFields(ITitledContent):
+
+    question = schema.Text(
+        title=u"question",
+        required=True)
+    answers = schema.List(
+        title=u"answers",
+        description=u"Possible answers that a visitor can select.",
+        value_type=schema.TextLine(required=True),
+        required=True,
+        min_length=1,
+        max_length=20)
+
+
+class PollQuestionAddForm(silvaforms.SMIAddForm):
+    """Poll Question Add Form
+    """
+    grok.context(IPollQuestion)
+    grok.name(u"Silva Poll Question")
+
+    fields = silvaforms.Fields(IPollQuestionFields)
+
+
+class PollQuestionEditForm(silvaforms.SMIEditForm):
+    """Poll Question Add Form
+    """
+    grok.context(IPollQuestion)
+
+    fields = silvaforms.Fields(IPollQuestionFields).omit('id')
+
+
+def cookie_identifier(content):
+    return 'poll_cookie_%d' % getUtility(IIntIds).register(content)
+
+
 class PollQuestionVersion(Version):
-    """A poll question version"""
-
-    security = ClassSecurityInfo()
+    """A poll question version.
+    """
+    # XXX Why having version if you can't edit them after a while ?
     meta_type = 'Silva Poll Question Version'
-    implements(IVersion)
+    grok.implements(IPollQuestionVersion)
+    security = ClassSecurityInfo()
 
-    _question = None
-    _answers = None
     qid = None
+    _question_start_datetime = None
+    _question_end_datetime = None
+    _result_start_datetime = None
+    _result_end_datetime = None
 
-    def __init__(self, id):
-        PollQuestionVersion.inheritedAttribute('__init__')(self, id)
-        # for older SilvaExternalSources use this:
-        #PollQuestionVersion.inheritedAttribute('__init__')(self, id, '')
-        self.qid = None
-        self._question_start_datetime = None
-        self._question_end_datetime = None
-        self._result_start_datetime = None
-        self._result_end_datetime = None
+    def get_service(self):
+        return getUtility(IServicePolls)
 
-    def manage_afterAdd(self, item, container):
-        PollQuestionVersion.inheritedAttribute('manage_afterAdd')(self, 
-                                                            item, container)
-        question = ''
-        answers = []
-        votes = []
-        if self.qid is not None:
-            question = self.get_question()
-            answers = self.get_answers()
-            votes = self.get_votes()
-        self.qid = self.service_polls.create_question(question, answers, votes)
+    security.declareProtected(
+        SilvaPermissions.ChangeSilvaContent, 'set_question')
+    def set_question(self, question):
+        self.get_service().set_question(self.qid, question)
 
-    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
-                              'save')
-    def save(self, question, answers, overwrite=False):
-        """save question data"""
-        votes = self.service_polls.get_votes(self.qid)
-        curranswers = self.service_polls.get_answers(self.qid)
-        answers = [x.strip() for x in answers.strip().split('\n\n')]
-        if len(answers) > 20:
-            raise TooManyAnswers, self.qid
-        have_votes = not not [x for x in votes if x != 0]
-        if (answers != curranswers and have_votes and not overwrite):
-            raise OverwriteNotAllowed, self.qid
-        self._save(question, answers)
+    security.declareProtected(
+        SilvaPermissions.ChangeSilvaContent, 'set_answers')
+    def set_answers(self, answers):
+        self.get_service().set_answers(self.qid, answers)
 
-    def _save(self, question, answers):
-        self.service_polls.save(self.qid, question, answers)
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'get_question')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'get_question')
     def get_question(self):
         """returns a string"""
-        return self.service_polls.get_question(self.qid)
+        return self.get_service().get_question(self.qid)
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'get_answers')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'get_answers')
     def get_answers(self):
         """returns a list of strings"""
-        return self.service_polls.get_answers(self.qid)
+        return self.get_service().get_answers(self.qid)
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'get_votes')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'get_votes')
     def get_votes(self):
         """returns a list of ints"""
-        return self.service_polls.get_votes(self.qid)
+        return self.get_service().get_votes(self.qid)
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'manage_vote')
-    def manage_vote(self, REQUEST=None):
-        if REQUEST is None:
-            REQUEST = self.REQUEST
-        if not REQUEST or not REQUEST.has_key('answer'):
-            return
-        answer = unicode(REQUEST['answer'], 'UTF-8')
-        answers = self.get_answers()
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'vote')
+    def vote(self, request, answer):
+        service = self.get_service()
+        answers = service.get_answers(self.qid)
 
         id = answers.index(answer)
-        service = self.service_polls
         service.vote(self.qid, id)
         if service.store_cookies():
-            REQUEST.RESPONSE.setCookie('voted_cookie_%s' % 
-                                        self.get_silva_object().absolute_url(), 
-                                    '1', 
-                                    expires='Wed, 19 Feb 2020 14:28:00 GMT',
-                                    path='/')
-        headers = [('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT'),
-                    ('Last-Modified', 
-                        DateTime("GMT").strftime("%a, %d %b %Y %H:%M:%S GMT")),
-                    ('Cache-Control', 'no-cache, must-revalidate'),
-                    ('Cache-Control', 'post-check=0, pre-check=0'),
-                    ('Pragma', 'no-cache'),
-                    ]
-        placed = []
-        for key, value in headers:
-            if key not in placed:
-                REQUEST.RESPONSE.setHeader(key, value)
-                placed.append(key)
-            else:
-                REQUEST.RESPONSE.addHeader(key, value)
-        return True
+            response = request.response
+            response.setCookie(
+                cookie_identifier(self.get_content()), '1',
+                expires='Wed, 19 Feb 2020 14:28:00 GMT', path='/')
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'has_voted')
-    def has_voted(self, REQUEST=None):
-        if not self.service_polls.store_cookies():
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'has_voted')
+    def has_voted(self, request):
+        if not self.get_service().store_cookies():
             return False
-        if REQUEST is None:
-            REQUEST = self.REQUEST
-        return REQUEST.has_key('voted_cookie_%s' % 
-                                    self.get_silva_object().absolute_url())
+        return request.has_key(cookie_identifier(self.get_content()))
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'display_question')
-    def display_question(self):
-        """returns True if the question should be displayed, False if not"""
-        startdate = self.question_start_datetime()
-        enddate = self.question_end_datetime()
-        now = DateTime()
-        return ((startdate and startdate < now) and 
-                  (not enddate or enddate > now))
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'display_results')
-    def display_results(self):
-        """returns True if results should be displayed, False if not"""
-        startdate = self.result_start_datetime()
-        enddate = self.result_end_datetime()
-        now = DateTime()
-        return ((startdate and startdate < now) and 
-                  (not enddate or enddate > now))
-    
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                              'display_too_late')
-    def display_too_late(self):
-        """returns True if questions or results should be displayed
-
-            on False only a message 'this poll is closed' will be showed
-        """
-        red = self.result_end_datetime()
-        return red is not None and red < DateTime()
-
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'question_start_datetime')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'question_start_datetime')
     def question_start_datetime(self):
         return self._question_start_datetime
 
-    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
-                                'set_question_start_datetime')
+    security.declareProtected(
+        SilvaPermissions.ChangeSilvaContent, 'set_question_start_datetime')
     def set_question_start_datetime(self, dt):
         self._question_start_datetime = dt
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'question_end_datetime')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'question_end_datetime')
     def question_end_datetime(self):
         return self._question_end_datetime
 
-    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
-                                'set_question_end_datetime')
+    security.declareProtected(
+        SilvaPermissions.ChangeSilvaContent, 'set_question_end_datetime')
     def set_question_end_datetime(self, dt):
         self._question_end_datetime = dt
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'result_start_datetime')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'result_start_datetime')
     def result_start_datetime(self):
         return self._result_start_datetime
 
-    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
-                                'set_result_start_datetime')
+    security.declareProtected(
+        SilvaPermissions.ChangeSilvaContent, 'set_result_start_datetime')
     def set_result_start_datetime(self, dt):
         self._result_start_datetime = dt
 
-    security.declareProtected(SilvaPermissions.AccessContentsInformation,
-                                'result_end_datetime')
+    security.declareProtected(
+        SilvaPermissions.AccessContentsInformation, 'result_end_datetime')
     def result_end_datetime(self):
         return self._result_end_datetime
 
-    security.declareProtected(SilvaPermissions.ChangeSilvaContent,
-                                'set_result_end_datetime')
+    security.declareProtected(
+        SilvaPermissions.ChangeSilvaContent, 'set_result_end_datetime')
     def set_result_end_datetime(self, dt):
         self._result_end_datetime = dt
 
 InitializeClass(PollQuestionVersion)
 
-manage_addPollQuestionForm = PageTemplateFile('www/pollQuestionAdd', 
-                        globals(), __name__='manage_addPollQuestionForm')
 
-def manage_addPollQuestion(self, id, title, question, answers, REQUEST=None):
-    """add a poll question"""
-    if not mangle.Id(self, id).isValid():
-        return
-    obj = PollQuestion(id)
-    self._setObject(id, obj)
-    obj = getattr(self, id)
-    obj.manage_addProduct['SilvaPoll'].manage_addPollQuestionVersion(
-        '0', title, question, answers)
-    obj.create_version('0', None, None)
-    add_and_edit(self, id, REQUEST)
-    return ''
+class PollQuestionView(silvaviews.View):
 
-manage_addPollQuestionVersionForm = PageTemplateFile(
-                        'www/pollQuestionVersionAdd', globals(), 
-                        __name__='manage_addPollQuestionVersionForm')
+    def update(self, answer=None):
+        # This code is too complicated and would need
+        # simplification. This is all the logic that was in the
+        # template before.
+        now = DateTime()
+        locale_opts = {'size': 'full',
+                       'locale': get_locale_info(self.request),
+                       'display_time': False}
+        self.question = self.content.get_question()
+        self.has_voted = self.content.has_voted(self.request)
+        self.show_results_not_ready = False
 
-def manage_addPollQuestionVersion(self, id, title, question, answers,
-                                    REQUEST=None):
-    """add a poll question version"""
-    if not mangle.Id(self, id).isValid():
-        return
-    version = PollQuestionVersion(id)
-    self._setObject(id, version)
-    
-    version = self._getOb(id)
-    version.set_title(title)
-    version._save(question, answers)
+        if self.is_preview:
+            # Preview: show poll and results
+            self.show_poll_not_ready = False
+            self.show_poll = True
+            self.show_results = True
+            self.show_outdated = False
+        else:
+            # Public view: show corresponding section depending of the current time
+            start_date = self.content.question_start_datetime()
+            end_date = self.content.question_end_datetime()
+            self.show_poll_not_ready = start_date is not None and start_date > now
+            if self.show_poll_not_ready:
+                self.poll_start_date = get_formatted_date(
+                    start_date.asdatetime(), **locale_opts)
+            self.show_poll = (
+                (start_date is not None and start_date < now) and
+                (end_date is None or end_date > now))
+            start_date = self.content.result_start_datetime()
+            end_date = self.content.result_end_datetime()
+            self.show_outdated = end_date is not None and end_date > now
+            self.show_results = (
+                (start_date is not None and start_date < now) and
+                (end_date is None or end_date > now))
 
-    add_and_edit(self, id, REQUEST)
-    return ''
+        if self.show_poll:
+            # We want to show the poll.
+            if self.has_voted:
+                # The user already voted, don't show the poll, even if
+                # the dates are ok.
+                self.show_poll = False
+            else:
+                if answer is not None:
+                    # User just voted, register the code, and don't
+                    # show the poll.
+                    answer = unicode(answer, 'utf-8')
+                    self.content.vote(self.request, answer)
+                    self.has_voted = True
+                    self.show_poll = False
+                else:
+                    # The user didn't vote yet. Really show poll.
+                    self.answers = []
+                    for index, answer in enumerate(self.content.get_answers()):
+                        self.answers.append({'title': answer,
+                                             'id': 'answer-%02d' % index})
+
+        if self.show_results:
+            all_votes = self.content.get_votes()
+            self.total_votes = sum(all_votes)
+            self.results = []
+            for answer, votes in zip(self.content.get_answers(), all_votes):
+                percentage = 0
+                if self.total_votes:
+                    percentage = round((votes * 100.0)/ self.total_votes)
+                self.results.append({'answer': answer,
+                                     'votes': votes,
+                                     'percentage': percentage})
+        elif self.has_voted:
+            # The user voted, but cannot see the results yet. Tell him
+            # when he will be able to see them.
+
+            # The result start and end date and the last fetch into
+            # start_date, and end_date. Preview code doesn't fetch
+            # them, but in preview the results are always shown.
+            self.show_results_not_ready = True
+            self.show_results_start_date = get_formatted_date(
+                    start_date.asdatetime(), **locale_opts)
+            self.show_results_end_date = None
+            if end_date is not None:
+                self.show_results_end_date = get_formatted_date(
+                    end_date.asdatetime(), **locale_opts)
+
+
+@grok.subscribe(IPollQuestion, IObjectCreatedEvent)
+def question_created(question, event):
+    service = getUtility(IServicePolls)
+    editable = question.get_editable()
+    if service.automatically_hide_question():
+        # Hide poll question of tocs if setting is set by default.
+        binding = getUtility(IMetadataService).getMetadata(editable)
+        binding.setValues('silva-extra', {'hide_from_tocs': 'hide'}, reindex=1)
+    # Create question in storage.
+    editable.qid = service.create_question('', [])
+
+    # Set the code source configuration form thingy.
+    cs_form = ZMIForm('form', 'Properties Form')
+    cs_filename = os.path.join(
+        os.path.dirname(__file__),
+        'cs_configuration_form.form')
+    with open(cs_filename) as cs_file:
+        XMLToForm(cs_file.read(), cs_form)
+    question.set_form(cs_form)
+
+
+
+@grok.subscribe(IPollQuestionVersion, IContentPublishedEvent)
+def question_published(question, event):
+    now = DateTime()
+    if question.question_start_datetime() is None:
+        question.set_question_start_datetime(now)
+    if question.result_start_datetime() is None:
+        question.set_result_start_datetime(now)

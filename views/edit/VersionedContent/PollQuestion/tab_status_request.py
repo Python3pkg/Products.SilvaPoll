@@ -1,7 +1,7 @@
 from Products.Formulator.Errors import FormValidationError
 
 from zope.i18n import translate
-from Products.SilvaPoll.i18n import translate as _
+from Products.Silva.i18n import translate as _
 
 model = context.REQUEST.model
 
