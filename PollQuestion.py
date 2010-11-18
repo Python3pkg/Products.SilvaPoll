@@ -325,7 +325,7 @@ def question_created(question, event):
         'cs_configuration_form.form')
     with open(cs_filename) as cs_file:
         XMLToForm(cs_file.read(), cs_form)
-    question.set_form(cs_form)
+    question.parameters = cs_form
 
 
 

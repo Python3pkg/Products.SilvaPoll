@@ -19,19 +19,19 @@ class QuestionTestCase(unittest.TestCase):
 
     def test_question(self):
         factory = self.root.manage_addProduct['SilvaPoll']
-        factory.manage_addPollQuestion(
-            'poll', 'Poll Status',
-            question='Does it poll ?', answers=['Yeah baby', 'Well, not really'])
-        self.assertTrue('poll' in self.root.objectIds())
+        factory.manage_addPollQuestion('poll', 'Poll Status')
 
+        self.assertTrue('poll' in self.root.objectIds())
         poll = self.root.poll
         self.assertTrue(verifyObject(IPollQuestion, poll))
 
         version = poll.get_editable()
         self.assertTrue(verifyObject(IPollQuestionVersion, version))
+        version.set_question('Does it poll ?')
+        version.set_answers(['Yeah baby', 'Well, not really'])
 
-        self.assertEqual(version.get_question(), 'prout ?')
-        self.assertEqual(version.get_answers(), [])
+        self.assertEqual(version.get_question(), 'Does it poll ?')
+        self.assertEqual(version.get_answers(), ['Yeah baby', 'Well, not really'])
 
 
 def test_suite():
