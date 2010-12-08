@@ -222,6 +222,9 @@ InitializeClass(PollQuestionVersion)
 
 
 class PollQuestionView(silvaviews.View):
+    """ default view for poll question
+    """
+    grok.context(IPollQuestion)
 
     def update(self, answer=None):
         # This code is too complicated and would need
