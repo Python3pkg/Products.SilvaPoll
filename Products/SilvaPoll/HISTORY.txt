@@ -1,12 +1,12 @@
 History
 =======
 
-SilvaPoll 1.4 (unreleased)
+SilvaPoll 1.4 (2010/12/20)
 --------------------------
 
-- ...
+- Refactoring to be compatible with Zope 2.12, Python 2.6 and Silva 2.3.
 
-SilvaPoll 1.2 (2008-11-18)
+SilvaPoll 1.2 (2008/11/18)
 --------------------------
 
 - Fix template and scripts to be compatible with Silva 2.2.
