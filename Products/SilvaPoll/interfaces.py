@@ -58,10 +58,10 @@ class IServicePolls(ISilvaLocalService):
         """
 
 
-
 class IPollQuestion(IVersionedContent):
     """A question for a poll.
     """
+
 
 class IPollQuestionVersion(IVersion):
     """A version of a IPollQuestion.

@@ -22,9 +22,6 @@ class SilvaPollInstaller(DefaultInstaller):
         if 'service_polls' not in root.objectIds():
             factory = root.manage_addProduct['SilvaPoll']
             factory.manage_addServicePolls()
-        root.service_view_registry.register(
-            'edit', 'Silva Poll Question',
-            ['edit', 'VersionedContent', 'PollQuestion'])
 
 
 install = SilvaPollInstaller('SilvaPoll', IExtension)

@@ -3,8 +3,9 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:grok="http://namespaces.zope.org/grok">
 
-  <include package="five.grok" />
   <include package="silva.core.conf" />
+  <include package="zeam.form.silva" />
+  <include package="megrok.chameleon" />
   <include package="Products.Silva" />
 
   <!-- Grok SilvaPoll -->

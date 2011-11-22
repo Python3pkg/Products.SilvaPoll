@@ -2,7 +2,15 @@
 # Copyright (c) 2006-2010 Infrae. All rights reserved.
 # See also LICENSE.txt
 
+from datetime import datetime
 import os
+
+from five import grok
+from zope.intid.interfaces import IIntIds
+from zope.component import getUtility, getMultiAdapter
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
+from zope.traversing.browser import absoluteURL
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 from localdatetime import get_formatted_date, get_locale_info
 
@@ -22,19 +30,16 @@ from Products.SilvaExternalSources.interfaces import IExternalSource
 from Products.SilvaPoll.interfaces import IPollQuestion, IPollQuestionVersion
 from Products.SilvaPoll.interfaces import IServicePolls
 
-from five import grok
 from silva.core import conf as silvaconf
-from silva.core.conf.interfaces import ITitledContent
 from silva.core.interfaces.events import IContentPublishedEvent
 from silva.core.views import views as silvaviews
 from silva.core.views.httpheaders import HTTPResponseHeaders
-from zeam.form import silva as silvaforms
-from zope import schema
-from zope.intid.interfaces import IIntIds
-from zope.component import getUtility, getMultiAdapter
-from zope.lifecycleevent.interfaces import IObjectCreatedEvent
-from zope.traversing.browser import absoluteURL
-from zope.publisher.interfaces.browser import IBrowserRequest
+
+
+def convert_datetime(dt):
+    if isinstance(dt, DateTime):
+        return dt.asdatetime()
+    return dt
 
 
 class QuestionResponseHeaders(HTTPResponseHeaders):
@@ -75,37 +80,6 @@ class PollQuestion(VersionedContent, ExternalSource):
 
 
 InitializeClass(PollQuestion)
-
-
-class IPollQuestionFields(ITitledContent):
-
-    question = schema.Text(
-        title=u"question",
-        required=True)
-    answers = schema.List(
-        title=u"answers",
-        description=u"Possible answers that a visitor can select.",
-        value_type=schema.TextLine(required=True),
-        required=True,
-        min_length=1,
-        max_length=20)
-
-
-class PollQuestionAddForm(silvaforms.SMIAddForm):
-    """Poll Question Add Form
-    """
-    grok.context(IPollQuestion)
-    grok.name(u"Silva Poll Question")
-
-    fields = silvaforms.Fields(IPollQuestionFields)
-
-
-class PollQuestionEditForm(silvaforms.SMIEditForm):
-    """Poll Question Add Form
-    """
-    grok.context(IPollQuestion)
-
-    fields = silvaforms.Fields(IPollQuestionFields).omit('id')
 
 
 def cookie_identifier(content):
@@ -181,7 +155,7 @@ class PollQuestionVersion(Version):
     security.declareProtected(
         SilvaPermissions.AccessContentsInformation, 'question_start_datetime')
     def question_start_datetime(self):
-        return self._question_start_datetime
+        return convert_datetime(self._question_start_datetime)
 
     security.declareProtected(
         SilvaPermissions.ChangeSilvaContent, 'set_question_start_datetime')
@@ -191,7 +165,7 @@ class PollQuestionVersion(Version):
     security.declareProtected(
         SilvaPermissions.AccessContentsInformation, 'question_end_datetime')
     def question_end_datetime(self):
-        return self._question_end_datetime
+        return convert_datetime(self._question_end_datetime)
 
     security.declareProtected(
         SilvaPermissions.ChangeSilvaContent, 'set_question_end_datetime')
@@ -201,7 +175,7 @@ class PollQuestionVersion(Version):
     security.declareProtected(
         SilvaPermissions.AccessContentsInformation, 'result_start_datetime')
     def result_start_datetime(self):
-        return self._result_start_datetime
+        return convert_datetime(self._result_start_datetime)
 
     security.declareProtected(
         SilvaPermissions.ChangeSilvaContent, 'set_result_start_datetime')
@@ -211,7 +185,7 @@ class PollQuestionVersion(Version):
     security.declareProtected(
         SilvaPermissions.AccessContentsInformation, 'result_end_datetime')
     def result_end_datetime(self):
-        return self._result_end_datetime
+        return convert_datetime(self._result_end_datetime)
 
     security.declareProtected(
         SilvaPermissions.ChangeSilvaContent, 'set_result_end_datetime')
@@ -230,7 +204,7 @@ class PollQuestionView(silvaviews.View):
         # This code is too complicated and would need
         # simplification. This is all the logic that was in the
         # template before.
-        now = DateTime()
+        now = datetime.now()
         locale_opts = {'size': 'full',
                        'locale': get_locale_info(self.request),
                        'display_time': False}
@@ -245,19 +219,20 @@ class PollQuestionView(silvaviews.View):
             self.show_results = True
             self.show_outdated = False
         else:
-            # Public view: show corresponding section depending of the current time
+            # Public view: show corresponding section depending of the
+            # current time
             start_date = self.content.question_start_datetime()
             end_date = self.content.question_end_datetime()
             self.show_poll_not_ready = start_date is not None and start_date > now
             if self.show_poll_not_ready:
                 self.poll_start_date = get_formatted_date(
-                    start_date.asdatetime(), **locale_opts)
+                    start_date, **locale_opts)
             self.show_poll = (
                 (start_date is not None and start_date < now) and
                 (end_date is None or end_date > now))
             start_date = self.content.result_start_datetime()
             end_date = self.content.result_end_datetime()
-            self.show_outdated = end_date is not None and end_date > now
+            self.show_outdated = end_date is not None and end_date < now
             self.show_results = (
                 (start_date is not None and start_date < now) and
                 (end_date is None or end_date > now))
@@ -303,11 +278,11 @@ class PollQuestionView(silvaviews.View):
             # them, but in preview the results are always shown.
             self.show_results_not_ready = True
             self.show_results_start_date = get_formatted_date(
-                    start_date.asdatetime(), **locale_opts)
+                start_date, **locale_opts)
             self.show_results_end_date = None
             if end_date is not None:
                 self.show_results_end_date = get_formatted_date(
-                    end_date.asdatetime(), **locale_opts)
+                    end_date, **locale_opts)
 
 
 @grok.subscribe(IPollQuestion, IObjectCreatedEvent)
@@ -334,7 +309,7 @@ def question_created(question, event):
 
 @grok.subscribe(IPollQuestionVersion, IContentPublishedEvent)
 def question_published(question, event):
-    now = DateTime()
+    now = datetime.now()
     if question.question_start_datetime() is None:
         question.set_question_start_datetime(now)
     if question.result_start_datetime() is None:
