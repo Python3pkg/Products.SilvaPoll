@@ -6,6 +6,7 @@
   <include package="silva.core.conf" />
   <include package="zeam.form.silva" />
   <include package="megrok.chameleon" />
+  <include package="silva.fanstatic" />
   <include package="Products.Silva" />
 
   <!-- Grok SilvaPoll -->

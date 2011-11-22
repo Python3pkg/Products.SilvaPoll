@@ -11,6 +11,7 @@ from zope.component import getUtility, getMultiAdapter
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from zope.traversing.browser import absoluteURL
 from zope.publisher.interfaces.browser import IBrowserRequest
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 from localdatetime import get_formatted_date, get_locale_info
 
@@ -34,6 +35,7 @@ from silva.core import conf as silvaconf
 from silva.core.interfaces.events import IContentPublishedEvent
 from silva.core.views import views as silvaviews
 from silva.core.views.httpheaders import HTTPResponseHeaders
+from silva.fanstatic import need
 
 
 def convert_datetime(dt):
@@ -195,12 +197,18 @@ class PollQuestionVersion(Version):
 InitializeClass(PollQuestionVersion)
 
 
+
+class IPollQuestionResources(IDefaultBrowserLayer):
+    silvaconf.resource('poll.css')
+
+
 class PollQuestionView(silvaviews.View):
     """ default view for poll question
     """
     grok.context(IPollQuestion)
 
     def update(self, answer=None):
+        need(IPollQuestionResources)
         # This code is too complicated and would need
         # simplification. This is all the logic that was in the
         # template before.
