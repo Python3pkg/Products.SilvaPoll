@@ -31,6 +31,8 @@ setup(name='Products.SilvaPoll',
       install_requires=[
         'setuptools',
         'z3locales',
+        'five.grok',
+        'grokcore.chameleon',
         'Products.Silva',
         'Products.Formulator',
         'Products.SilvaExternalSources',
