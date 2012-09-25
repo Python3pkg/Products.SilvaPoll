@@ -54,3 +54,9 @@ Contact information
 ===================
 
 For questions, bug reports, etc. send email to info@infrae.com.
+
+Code repository
+===============
+
+You can find the code of this extension in Mercurial:
+https://hg.infrae.com/Products.SilvaPoll/.

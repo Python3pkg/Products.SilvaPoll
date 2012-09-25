@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2012  Infrae. All rights reserved.
+# See also LICENSE.txt
 from setuptools import setup, find_packages
 import os
 
-version = '1.4.1dev'
+version = '3.0c1'
 
 tests_require = [
     'Products.Silva [test]',
@@ -29,13 +32,26 @@ setup(name='Products.SilvaPoll',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-        'setuptools',
-        'z3locales',
+        'Products.Formulator',
+        'Products.Silva',
+        'Products.SilvaExternalSources',
         'five.grok',
         'grokcore.chameleon',
-        'Products.Silva',
-        'Products.Formulator',
-        'Products.SilvaExternalSources',
+        'setuptools',
+        'silva.core.conf',
+        'silva.core.interfaces',
+        'silva.core.services',
+        'silva.core.smi',
+        'silva.core.views',
+        'silva.fanstatic',
+        'z3locales',
+        'zeam.form.silva',
+        'zope.component',
+        'zope.interface',
+        'zope.lifecycleevent',
+        'zope.publisher',
+        'zope.schema',
+        'zope.traversing',
         ],
       tests_require = tests_require,
       extras_require = {'test': tests_require,}

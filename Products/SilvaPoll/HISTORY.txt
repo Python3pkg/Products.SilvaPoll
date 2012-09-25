@@ -1,10 +1,10 @@
 History
 =======
 
-SilvaPoll 1.4.1 (unreleased)
+SilvaPoll 3.0c1 (2012/09/25)
 ----------------------------
 
-- ...
+- Update to be compatible with Python 2.7 and Silva 3.0.
 
 SilvaPoll 1.4 (2010/12/20)
 --------------------------

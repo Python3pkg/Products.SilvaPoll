@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2006-2010 Infrae. All rights reserved.
+# Copyright (c) 2006-2012 Infrae. All rights reserved.
 # See also LICENSE.txt
 
 from datetime import datetime
@@ -25,7 +25,6 @@ from Products.Formulator.XMLToForm import XMLToForm
 from Products.Silva import SilvaPermissions
 from Products.Silva.Version import Version
 from Products.Silva.VersionedContent import VersionedContent
-from Products.SilvaMetadata.interfaces import IMetadataService
 from Products.SilvaExternalSources.ExternalSource import ExternalSource
 from Products.SilvaExternalSources.interfaces import IExternalSource
 from Products.SilvaPoll.interfaces import IPollQuestion, IPollQuestionVersion
@@ -33,6 +32,7 @@ from Products.SilvaPoll.interfaces import IServicePolls
 
 from silva.core import conf as silvaconf
 from silva.core.interfaces.events import IContentPublishedEvent
+from silva.core.services.interfaces import IMetadataService
 from silva.core.views import views as silvaviews
 from silva.core.views.httpheaders import HTTPResponseHeaders
 from silva.fanstatic import need
@@ -49,8 +49,8 @@ class QuestionResponseHeaders(HTTPResponseHeaders):
     """
     grok.adapts(IBrowserRequest, IPollQuestion)
 
-    def cache_headers(self):
-        self.disable_cache()
+    def cachable(self):
+        return False
 
 
 class PollQuestion(VersionedContent, ExternalSource):

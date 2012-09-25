@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2010 Infrae. All rights reserved.
+# Copyright (c) 2010-2012 Infrae. All rights reserved.
 # See also LICENSE.txt
-# $Id$
 
 import unittest
 
 from zope.interface.verify import verifyObject
+from silva.core.interfaces import IPublicationWorkflow
+from Products.Silva.ftesting import public_settings
 from Products.SilvaPoll.interfaces import IPollQuestion, IPollQuestionVersion
 from Products.SilvaPoll.testing import FunctionalLayer
+
+
+def poll_settings(browser):
+    public_settings(browser)
+    browser.inspect.add('polls', css='h3')
+    browser.inspect.add('forms', css='form.poll-form', type='form')
 
 
 class QuestionTestCase(unittest.TestCase):
@@ -15,9 +22,11 @@ class QuestionTestCase(unittest.TestCase):
 
     def setUp(self):
         self.root = self.layer.get_application()
-        self.layer.login('author')
+        self.layer.login('editor')
 
     def test_question(self):
+        """Test content type.
+        """
         factory = self.root.manage_addProduct['SilvaPoll']
         factory.manage_addPollQuestion('poll', 'Poll Status')
 
@@ -30,8 +39,39 @@ class QuestionTestCase(unittest.TestCase):
         version.set_question('Does it poll ?')
         version.set_answers(['Yeah baby', 'Well, not really'])
 
-        self.assertEqual(version.get_question(), 'Does it poll ?')
-        self.assertEqual(version.get_answers(), ['Yeah baby', 'Well, not really'])
+        self.assertEqual(
+            version.get_question(),
+            'Does it poll ?')
+        self.assertEqual(
+            version.get_answers(),
+            ['Yeah baby', 'Well, not really'])
+
+    def test_view(self):
+        """Test public view.
+        """
+        factory = self.root.manage_addProduct['SilvaPoll']
+        factory.manage_addPollQuestion('poll', 'Poll Status')
+        version = self.root.poll.get_editable()
+        version.set_question('Does it poll ?')
+        version.set_answers(['Yeah baby', 'Well, not really'])
+        IPublicationWorkflow(self.root.poll).publish()
+
+        with self.layer.get_browser(poll_settings) as browser:
+            self.assertEqual(browser.open('/root/poll'), 200)
+            self.assertEqual(browser.inspect.polls, ['Does it poll ?'])
+            self.assertEqual(len(browser.inspect.forms), 1)
+            form = browser.inspect.forms[0]
+            self.assertIn('answer', form.controls)
+            self.assertIn('submit', form.controls)
+            self.assertEqual(
+                form.controls['answer'].options,
+                ['Yeah baby', 'Well, not really'])
+            form.controls['answer'].value = 'Yeah baby'
+            self.assertEqual(
+                form.controls['submit'].click(),
+                200)
+            self.assertEqual(browser.inspect.polls, ['Does it poll ?'])
+            self.assertEqual(len(browser.inspect.forms), 0)
 
 
 def test_suite():
