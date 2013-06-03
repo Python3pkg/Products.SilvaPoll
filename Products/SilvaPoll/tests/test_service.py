@@ -24,7 +24,6 @@ class ServiceTestCase(unittest.TestCase):
         factory = self.root.manage_addProduct['ZSQLiteDA']
         factory.manage_addZSQLiteConnection(
             'service_polls_db', 'SQLite', ':memory:')
-        self.root.service_polls_db.connect(':memory:')
         self.assertIn('service_polls', self.root.objectIds())
         self.root.manage_delObjects(['service_polls'])
         factory = self.root.manage_addProduct['SilvaPoll']
