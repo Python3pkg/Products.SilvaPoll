@@ -40,8 +40,7 @@ class ServicePollsMySQL(ServicePolls):
                 """PRIMARY KEY(id), """
                 """INDEX(qid))"""))
 
-    def create_question(self, question, answers, votes):
-        assert len(votes) == len(answers), 'votes and answers don\'t match!'
+    def create_question(self, question, answers):
         db = self._get_database()
         db.getSQLData(self,
             u"INSERT INTO question (question) VALUES ('%(question)s')",
@@ -52,7 +51,7 @@ class ServicePollsMySQL(ServicePolls):
             query = (u"INSERT INTO answer (qid, answer, votes) VALUES "
                         "(%(qid)s, '%(answer)s', '%(votes)s')")
             db.getSQLData(self, query, {'qid': id, 'answer': answer,
-                                        'votes': votes[i]})
+                                        'votes': '0'})
         return id
 
     def get_question(self, qid):
