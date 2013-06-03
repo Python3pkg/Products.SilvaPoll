@@ -13,6 +13,7 @@ from silva.core.services.base import SilvaService
 from silva.core import conf as silvaconf
 from zeam.form import silva as silvaforms
 from zope import interface, schema
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 
 
 class ServicePolls(SilvaService):
@@ -32,10 +33,6 @@ class ServicePolls(SilvaService):
 
     _store_cookies = True
     _automatically_hide_question = True
-
-    def __init__(self, id=None):
-        super(ServicePolls, self).__init__(id=id)
-        self._init_database()
 
     def _init_database(self):
         self.db = DB()
@@ -90,3 +87,8 @@ class ServicePollsConfiguration(silvaforms.ZMIForm):
     fields = silvaforms.Fields(IServicePollsConfiguration)
     actions = silvaforms.Actions(silvaforms.EditAction())
     ignoreContext = False
+
+
+@grok.subscribe(IServicePolls, IObjectCreatedEvent)
+def service_added(service, event):
+    service._init_database()
