@@ -14,6 +14,11 @@ class ServicePollsMySQL(ServicePolls):
     """
     security = ClassSecurityInfo()
     meta_type = 'Silva Poll Service SQL'
+    _sqlite = False
+
+    def __init__(self, id, sqlite=False):
+        super(ServicePollsMySQL, self).__init__(id)
+        self._sqlite = sqlite
 
     def _get_database(self):
         return SQLDB('service_polls_db', 'UTF-8')
@@ -26,19 +31,31 @@ class ServicePollsMySQL(ServicePolls):
             self._create_tables(db)
 
     def _create_tables(self, db):
-        db.getSQLData(self, (
-            u"""CREATE TABLE question ("""
-                """id BIGINT NOT NULL AUTO_INCREMENT, """
-                """question TEXT NOT NULL, """
-                """PRIMARY KEY (id))"""))
-        db.getSQLData(self, (
-            u"""CREATE TABLE answer ("""
-                """id BIGINT NOT NULL AUTO_INCREMENT, """
-                """qid BIGINT NOT NULL, """
-                """answer TEXT NOT NULL, """
-                """votes BIGINT DEFAULT 0 NOT NULL, """
-                """PRIMARY KEY(id), """
-                """INDEX(qid))"""))
+        if self._sqlite:
+            db.getSQLData(self, (
+                u"""CREATE TABLE question ("""
+                    """id INTEGER PRIMARY KEY AUTOINCREMENT, """
+                    """question TEXT NOT NULL)"""))
+            db.getSQLData(self, (
+                u"""CREATE TABLE answer ("""
+                    """id INTEGER PRIMARY KEY AUTOINCREMENT, """
+                    """qid INTEGER NOT NULL, """
+                    """answer TEXT NOT NULL, """
+                    """votes INTEGER DEFAULT 0 NOT NULL)"""))
+        else:
+            db.getSQLData(self, (
+                u"""CREATE TABLE question ("""
+                    """id BIGINT NOT NULL AUTO_INCREMENT, """
+                    """question TEXT NOT NULL, """
+                    """PRIMARY KEY (id))"""))
+            db.getSQLData(self, (
+                u"""CREATE TABLE answer ("""
+                    """id BIGINT NOT NULL AUTO_INCREMENT, """
+                    """qid BIGINT NOT NULL, """
+                    """answer TEXT NOT NULL, """
+                    """votes BIGINT DEFAULT 0 NOT NULL, """
+                    """PRIMARY KEY(id), """
+                    """INDEX(qid))"""))
 
     def create_question(self, question, answers):
         db = self._get_database()

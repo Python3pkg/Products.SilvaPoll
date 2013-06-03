@@ -8,6 +8,7 @@ version = '3.0dev'
 
 tests_require = [
     'Products.Silva [test]',
+    'Products.ZSQLiteDA',
     ]
 
 setup(name='Products.SilvaPoll',

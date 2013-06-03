@@ -8,7 +8,10 @@ import transaction
 
 
 class PollLayer(SilvaLayer):
-    default_products = ['SilvaPoll'] + SilvaLayer.default_products
+    default_products = [
+        'SilvaPoll',
+        'ZSQLiteDA'
+        ] + SilvaLayer.default_products
 
     def _install_application(self, app):
         super(PollLayer, self)._install_application(app)
