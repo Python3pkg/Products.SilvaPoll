@@ -1,9 +1,10 @@
 <tal:poll i18n:domain="silvapoll">
-  <h3 class="heading" tal:content="view.question">Question</h3>
+ <div class="poll">
+  <h2 class="heading" tal:content="view.question">Question</h2>
   <form tal:condition="view.show_poll" method="POST"
         class="poll-form">
 
-    <div tal:repeat="answer view.answers">
+    <div class="poll_answers" tal:repeat="answer view.answers">
       <input type="radio" name="answer" id="#" value="#"
              tal:attributes="value answer.title;
                              id answer.id" />
@@ -17,8 +18,8 @@
            i18n:attributes="value" />
   </form>
   <div class="poll-result"
-       tal:condition="view.show_results">
-    <h4 i18n:translate="">Poll Results</h4>
+       tal:condition="view.show_results and view.has_voted">
+    <h3 i18n:translate="">Poll Results</h3>
     <div class="poll-result-line"
        tal:repeat="result view.results">
       <p tal:content="result.answer">
@@ -66,4 +67,5 @@
     Thank you for your interest, unfortunately the results of this poll are
     no longer available.
   </p>
+ </div>
 </tal:poll>
