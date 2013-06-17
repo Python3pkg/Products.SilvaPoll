@@ -1,12 +1,7 @@
-div.poll h2 {
-    font-size: 24px;
-    border-bottom: 1px dashed #C8C8C8;
-    padding-bottom: 0.2em;
-}
-
 .poll_answers {
     font-size: 14px;
     height: 1.4em;
+    margin-bottom: 5px;
 }
 
 .poll_answers label {
