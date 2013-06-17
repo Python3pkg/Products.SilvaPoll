@@ -13,8 +13,8 @@
     margin-bottom: 20px;
 }
 
-.poll-result-line p {
-    margin: 2px;
+.poll-result-line span {
+    color: #999;
 }
 
 .poll-percentage-bar {

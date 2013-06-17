@@ -1,11 +1,11 @@
 <tal:poll i18n:domain="silvapoll">
  <div class="poll">
-  <h2 class="heading" tal:define="title content.get_title()"
+  <h1 class="heading" tal:define="title content.get_title()"
       tal:condition="title"
       tal:content="title">
     Title
-  </h2>
-  <h3 tal:content="view.question">Question</h3>
+  </h1>
+  <h2 tal:content="view.question">Question</h2>
   <form tal:condition="view.show_poll" method="POST"
         class="poll-form">
 
