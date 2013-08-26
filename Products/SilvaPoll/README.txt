@@ -2,8 +2,7 @@
 SilvaPoll
 =========
 
-
-SilvaPoll is an extension to have traditional polls inside Silva
+SilvaPoll is an extension to have traditional polls inside `Silva`_
 sites. A question is asked on which the public can answer, and results
 are displayed to those that do. The poll can be an independent page or
 be embedded in a Silva Document as a Code Source.
@@ -60,3 +59,5 @@ Code repository
 
 You can find the code of this extension in Mercurial:
 https://hg.infrae.com/Products.SilvaPoll/.
+
+.. _Silva: http://silvacms.org

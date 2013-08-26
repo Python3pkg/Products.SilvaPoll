@@ -1,10 +1,12 @@
 History
 =======
 
-SilvaPoll 3.0 (unreleased)
+SilvaPoll 3.0 (2013/08/26)
 --------------------------
 
-- ...
+- Update default question view and CSS.
+
+- Test and update the SQL service.
 
 SilvaPoll 3.0c1 (2012/09/25)
 ----------------------------
