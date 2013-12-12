@@ -49,15 +49,10 @@ Fill in the options you would like to set:
 - results display end time: time when the result of Silva Poll
   Question should stop being displayed for the public.
 
-Contact information
-===================
-
-For questions, bug reports, etc. send email to info@infrae.com.
-
 Code repository
 ===============
 
-You can find the code of this extension in Mercurial:
-https://hg.infrae.com/Products.SilvaPoll/.
+You can find the code of this extension in Git:
+https://github.com/silvacms/Products.SilvaPoll
 
 .. _Silva: http://silvacms.org

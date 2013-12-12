@@ -13,7 +13,7 @@ tests_require = [
 
 setup(name='Products.SilvaPoll',
       version=version,
-      description="Poll for Silva",
+      description="Poll extension for Silva CMS",
       long_description=open(os.path.join("Products", "SilvaPoll", "README.txt")).read() + "\n" +
                        open(os.path.join("Products", "SilvaPoll", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -26,7 +26,7 @@ setup(name='Products.SilvaPoll',
       keywords='poll silva zope2',
       author='Guido Wesdorp, Wim Boucquaert, Jasper Op De Coul',
       author_email='info@infrae.com',
-      url='http://infrae.com/products/silva/extensions/silva_poll',
+      url='https://github.com/silvacms/Products.SilvaPoll',
       license='BSD',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['Products'],
