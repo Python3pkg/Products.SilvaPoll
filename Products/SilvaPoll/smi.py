@@ -20,11 +20,11 @@ _ = MessageFactory('silvapoll')
 
 class IPollQuestionFields(ITitledContent):
     question = schema.Text(
-        title=_(u"Question"),
+        title=_("Question"),
         required=True)
     answers = schema.List(
-        title=_(u"Answers"),
-        description=_(u"Possible answers that a visitor can select."),
+        title=_("Answers"),
+        description=_("Possible answers that a visitor can select."),
         value_type=schema.TextLine(required=True),
         required=True,
         min_length=1,
@@ -35,7 +35,7 @@ class PollQuestionAddForm(silvaforms.SMIAddForm):
     """Poll Question Add Form
     """
     grok.context(IPollQuestion)
-    grok.name(u"Silva Poll Question")
+    grok.name("Silva Poll Question")
 
     fields = silvaforms.Fields(IPollQuestionFields)
 
@@ -53,22 +53,22 @@ class PollQuestionEditForm(silvaforms.SMIEditForm):
 
 class IQuestionPublicationFields(interface.Interface):
     question_start_datetime = schema.Datetime(
-        title=_(u"Publication time of question"),
-        description=_(u"Time at which the question should be "
-                      u"shown to the public."))
+        title=_("Publication time of question"),
+        description=_("Time at which the question should be "
+                      "shown to the public."))
     question_end_datetime = schema.Datetime(
-        title=_(u"Expiration time of question"),
-        description=_(u"Time at which the question should be "
-                      u"hidden from the public."),
+        title=_("Expiration time of question"),
+        description=_("Time at which the question should be "
+                      "hidden from the public."),
         required=False)
     result_start_datetime = schema.Datetime(
-        title=_(u"Publication time of results"),
-        description=_(u"Time at which the poll results should be "
-                      u"shown to the public."))
+        title=_("Publication time of results"),
+        description=_("Time at which the poll results should be "
+                      "shown to the public."))
     result_end_datetime = schema.Datetime(
-        title=_(u"Expiration time of results"),
-        description=_(u"Time at which the poll results should be "
-                      u"hidden from the public."),
+        title=_("Expiration time of results"),
+        description=_("Time at which the poll results should be "
+                      "hidden from the public."),
         required=False)
 
     @interface.invariant
@@ -76,16 +76,16 @@ class IQuestionPublicationFields(interface.Interface):
         if data.question_end_datetime:
             if data.question_end_datetime < data.question_start_datetime:
                 raise interface.Invalid(
-                    _(u"Question expiration cannot be "
-                      u"before question publication."))
+                    _("Question expiration cannot be "
+                      "before question publication."))
 
     @interface.invariant
     def check_result_end_datetime(data):
         if data.result_end_datetime:
             if data.result_end_datetime < data.result_start_datetime:
                 raise interface.Invalid(
-                    _(u"Result display expiration cannot be "
-                      u"before result display publication."))
+                    _("Result display expiration cannot be "
+                      "before result display publication."))
 
 
 class QuestionPublication(grok.Adapter):

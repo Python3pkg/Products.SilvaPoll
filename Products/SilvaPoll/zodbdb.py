@@ -5,6 +5,7 @@
 import operator
 from Persistence import Persistent
 from Products.SilvaPoll.i18n import translate as _
+from functools import reduce
 
 
 class Question:
@@ -39,7 +40,7 @@ class DB(Persistent):
         current = self.get(id)
         if reduce(operator.or_, current.votes + [0]):
             raise ValueError(
-                _(u"Cannot change answers as votes have already been casted."))
+                _("Cannot change answers as votes have already been casted."))
         self.db[id] = (current.question, answers, [0] * len(answers))
         self._p_changed = True
 

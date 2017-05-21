@@ -70,10 +70,10 @@ InitializeClass(ServicePolls)
 class IServicePollsConfiguration(interface.Interface):
 
     _store_cookies = schema.Bool(
-        title=u"Prevent visitor to vote multiple times by setting a cookie",
+        title="Prevent visitor to vote multiple times by setting a cookie",
         default=True)
     _automatically_hide_question = schema.Bool(
-        title=u"Hide by default questions from navigation and TOCs.",
+        title="Hide by default questions from navigation and TOCs.",
         default=True)
 
 
@@ -83,7 +83,7 @@ class ServicePollsConfiguration(silvaforms.ZMIForm):
     grok.context(IServicePolls)
     grok.name('manage_settings')
 
-    label = u"Configure globals poll settings"
+    label = "Configure globals poll settings"
     fields = silvaforms.Fields(IServicePollsConfiguration)
     actions = silvaforms.Actions(silvaforms.EditAction())
     ignoreContext = False

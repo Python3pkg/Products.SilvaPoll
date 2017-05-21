@@ -19,7 +19,7 @@ class SQLDB:
         parameters = self._escapeParameters(parameters)
         statement = template % parameters
         
-        assert type(statement) == type(u'')
+        assert type(statement) == type('')
         statement = statement.encode(self.encoding)
 
         sql_method = SQL(
@@ -41,7 +41,7 @@ class SQLDB:
         """
         data = self.getSQLData(
                 context, 
-                u"""SELECT * FROM %(table)s WHERE %(key)s = %(value)s""",
+                """SELECT * FROM %(table)s WHERE %(key)s = %(value)s""",
                 {'table':table, 'key':key, 'value':value})
         if not data:
             return None        
@@ -69,7 +69,7 @@ class SQLDB:
             start, end = range
             data = self.getSQLData(
                 context, 
-                (u"""SELECT DISTINCT %(select_clause)s FROM %(table)s """
+                ("""SELECT DISTINCT %(select_clause)s FROM %(table)s """
                     """WHERE lower(%(column)s) BETWEEN '%(start)s' AND """
                     """'%(end)s'"""),
                     {'column': column, 
@@ -80,14 +80,14 @@ class SQLDB:
         else:
             data = self.getSQLData(
                 context, 
-                u"""SELECT DISTINCT %(select_clause)s FROM %(table)s""",
+                """SELECT DISTINCT %(select_clause)s FROM %(table)s""",
                 {'select_clause': select_clause, 'table': table})
         return data
 
     # XXX copied from SilvaExternalSources.SQLSource
     def _unicodeHelper(self, dictionaries):
         for d in dictionaries:
-            for key, value in d.items():
+            for key, value in list(d.items()):
                 # XXX: Aaargll, the DA's have inconsistent casing policies, 
                 # so I have to explicitly make the keys lower case here...
                 # (this might leave a 'duplicate' with different casing in
@@ -96,13 +96,13 @@ class SQLDB:
                 d[key] = value
                 # Make non-unicode strings unicode
                 if type(value) is type(''):
-                    d[key] = unicode(value, self.encoding, 'replace')
+                    d[key] = str(value, self.encoding, 'replace')
         return dictionaries
 
     def _escapeParameters(self, parameters):
         escaped_parameters = {}
-        for key, value in parameters.items():
-            if type(value) == type(u''):
+        for key, value in list(parameters.items()):
+            if type(value) == type(''):
                 # escape a single quote with a double single quote
                 value = value.replace("'", "''")
             escaped_parameters[key] = value

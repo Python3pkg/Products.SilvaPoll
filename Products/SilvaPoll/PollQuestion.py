@@ -152,7 +152,7 @@ class PollQuestionVersion(Version):
     def has_voted(self, request):
         if not self.get_service().store_cookies():
             return False
-        return request.has_key(cookie_identifier(self.get_content()))
+        return cookie_identifier(self.get_content()) in request
 
     security.declareProtected(
         SilvaPermissions.AccessContentsInformation, 'question_start_datetime')
@@ -255,7 +255,7 @@ class PollQuestionView(silvaviews.View):
                 if answer is not None:
                     # User just voted, register the code, and don't
                     # show the poll.
-                    answer = unicode(answer, 'utf-8')
+                    answer = str(answer, 'utf-8')
                     self.content.vote(self.request, answer)
                     self.has_voted = True
                     self.show_poll = False

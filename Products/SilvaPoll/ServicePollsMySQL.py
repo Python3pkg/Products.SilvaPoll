@@ -26,30 +26,30 @@ class ServicePollsMySQL(ServicePolls):
     def _init_database(self):
         db = self._get_database()
         try:
-            db.getSQLData(self, u'SELECT * FROM question')
+            db.getSQLData(self, 'SELECT * FROM question')
         except:
             self._create_tables(db)
 
     def _create_tables(self, db):
         if self._sqlite:
             db.getSQLData(self, (
-                u"""CREATE TABLE question ("""
+                """CREATE TABLE question ("""
                     """id INTEGER PRIMARY KEY AUTOINCREMENT, """
                     """question TEXT NOT NULL)"""))
             db.getSQLData(self, (
-                u"""CREATE TABLE answer ("""
+                """CREATE TABLE answer ("""
                     """id INTEGER PRIMARY KEY AUTOINCREMENT, """
                     """qid INTEGER NOT NULL, """
                     """answer TEXT NOT NULL, """
                     """votes INTEGER DEFAULT 0 NOT NULL)"""))
         else:
             db.getSQLData(self, (
-                u"""CREATE TABLE question ("""
+                """CREATE TABLE question ("""
                     """id BIGINT NOT NULL AUTO_INCREMENT, """
                     """question TEXT NOT NULL, """
                     """PRIMARY KEY (id))"""))
             db.getSQLData(self, (
-                u"""CREATE TABLE answer ("""
+                """CREATE TABLE answer ("""
                     """id BIGINT NOT NULL AUTO_INCREMENT, """
                     """qid BIGINT NOT NULL, """
                     """answer TEXT NOT NULL, """
@@ -60,12 +60,12 @@ class ServicePollsMySQL(ServicePolls):
     def create_question(self, question, answers):
         db = self._get_database()
         db.getSQLData(self,
-            u"INSERT INTO question (question) VALUES ('%(question)s')",
+            "INSERT INTO question (question) VALUES ('%(question)s')",
             {'question': question})
-        idres = db.getSQLData(self, u'SELECT LAST_INSERT_ID() as id')
+        idres = db.getSQLData(self, 'SELECT LAST_INSERT_ID() as id')
         id = idres[0]['id']
         for i, answer in enumerate(answers):
-            query = (u"INSERT INTO answer (qid, answer, votes) VALUES "
+            query = ("INSERT INTO answer (qid, answer, votes) VALUES "
                         "(%(qid)s, '%(answer)s', '%(votes)s')")
             db.getSQLData(self, query, {'qid': id, 'answer': answer,
                                         'votes': '0'})
@@ -74,19 +74,19 @@ class ServicePollsMySQL(ServicePolls):
     def get_question(self, qid):
         db = self._get_database()
         res = db.getSQLData(self,
-                u'SELECT * FROM question WHERE id=%(id)s', {'id': qid})
+                'SELECT * FROM question WHERE id=%(id)s', {'id': qid})
         return res[0]['question']
 
     def set_question(self, qid, question):
         db = self._get_database()
         db.getSQLData(self,
-                u"UPDATE question SET question='%(question)s' WHERE id=%(id)s",
+                "UPDATE question SET question='%(question)s' WHERE id=%(id)s",
                 {'question': question, 'id': qid})
 
     def get_answers(self, qid):
         db = self._get_database()
         res = db.getSQLData(self,
-                u'SELECT answer FROM answer WHERE qid=%(id)s ORDER BY id',
+                'SELECT answer FROM answer WHERE qid=%(id)s ORDER BY id',
                     {'id': qid})
         ret = [r['answer'] for r in res]
         return ret
@@ -98,24 +98,24 @@ class ServicePollsMySQL(ServicePolls):
             # this is kinda nasty: first get the ids of the answers, then (in
             # order!) update the rows
             res = db.getSQLData(self,
-                    u"SELECT id FROM answer WHERE qid=%(id)s ORDER BY id", {'id': qid})
+                    "SELECT id FROM answer WHERE qid=%(id)s ORDER BY id", {'id': qid})
             for i, id in enumerate([r['id'] for r in res]):
                 db.getSQLData(self,
-                    u"UPDATE answer SET answer='%(answer)s' where id=%(id)s",
+                    "UPDATE answer SET answer='%(answer)s' where id=%(id)s",
                     {'id': id, 'answer': answers[i]})
         else:
             # drop any existing rows
-            db.getSQLData(self, u'DELETE FROM answer WHERE qid=%(qid)s',
+            db.getSQLData(self, 'DELETE FROM answer WHERE qid=%(qid)s',
                             {'qid': qid})
             for answer in answers:
                 db.getSQLData(self,
-                    (u"INSERT INTO answer (qid, answer) VALUES (%(qid)s, "
+                    ("INSERT INTO answer (qid, answer) VALUES (%(qid)s, "
                             "'%(answer)s')"), {'qid': qid, 'answer': answer})
 
     def get_votes(self, qid):
         db = self._get_database()
         res = db.getSQLData(self,
-                u'SELECT votes FROM answer WHERE qid=%(id)s', {'id': qid})
+                'SELECT votes FROM answer WHERE qid=%(id)s', {'id': qid})
         return [int(r['votes']) for r in res]
 
     def vote(self, qid, index):
@@ -123,11 +123,11 @@ class ServicePollsMySQL(ServicePolls):
         # find out what answer has index <index>, then do the update
         db = self._get_database()
         res = db.getSQLData(self,
-                u"SELECT id, votes FROM answer WHERE qid=%(id)s", {'id': qid})
+                "SELECT id, votes FROM answer WHERE qid=%(id)s", {'id': qid})
         idvotes = [(r['id'], int(r['votes'])) for r in res]
         idvotesindex = idvotes[index]
         db.getSQLData(self,
-                u"UPDATE answer SET votes=%(votes)s WHERE id=%(id)s",
+                "UPDATE answer SET votes=%(votes)s WHERE id=%(id)s",
                 {'id': idvotesindex[0], 'votes': idvotesindex[1] + 1})
 
 
